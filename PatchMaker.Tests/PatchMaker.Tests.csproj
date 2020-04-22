@@ -61,7 +61,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ExampleXml\bad-xml.config" />
     <None Include="packages.config" />
     <None Include="ExampleXml\Sitecore.config" />
     <None Include="ExampleXml\v92-runtime.config" />
@@ -75,9 +74,6 @@
       <Project>{72822d72-e816-4eed-83fb-a59dae1de708}</Project>
       <Name>PatchMaker</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ExampleXml\OtherNamespaces.config" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
