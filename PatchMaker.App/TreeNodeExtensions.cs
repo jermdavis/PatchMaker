@@ -1,0 +1,87 @@
+﻿using System;
+using System.Linq;
+using System.Windows.Forms;
+using System.Xml.Linq;
+
+namespace PatchMaker.App
+{
+
+    public static class TreeNodeExtensions
+    {
+        private static string fetchFirstAttribute(TreeNode node, Func<XAttribute, string> func)
+        {
+            var element = node.Tag as XElement;
+
+            if (element == null)
+            {
+                return string.Empty;
+            }
+
+            if (!element.Attributes().Any())
+            {
+                return string.Empty;
+            }
+
+            var attr = element.Attributes().First();
+
+            if (attr == null)
+            {
+                return string.Empty;
+            }
+
+            return func(attr);
+        }
+
+        public static string FirstAttributeName(this TreeNode node)
+        {
+            return fetchFirstAttribute(node, a => a.Name.ToString());
+        }
+
+        public static string FirstAttributeValue(this TreeNode node)
+        {
+            return fetchFirstAttribute(node, a => a.Value);
+        }
+
+        public static string DefaultXPath(this TreeNode node)
+        {
+            string xPath = string.Empty;
+            var currentNode = node;
+
+            while (currentNode != null)
+            {
+                if (currentNode.Tag != null)
+                {
+                    var xElement = currentNode.Tag as XElement;
+                    xPath += "/" + xElement.Name.LocalName;
+
+                    if (xElement.Attributes().Any())
+                    {
+                        var query = string.Empty;
+                        foreach (var xAttr in xElement.Attributes())
+                        {
+                            if (xAttr.Value == Namespaces.PatchUri || xAttr.Name.NamespaceName == Namespaces.PatchUri)
+                            {
+                                // we never want to query on the patch namespace, if it's in the source file?
+                                continue;
+                            }
+
+                            var clause = $"@{xAttr.Name.LocalName}='{xAttr.Value}'";
+                            if (query.Length > 0)
+                            {
+                                query += " and ";
+                            }
+                            query += clause;
+                        }
+                        xPath += $"[{query}]";
+                    }
+                }
+
+                currentNode = currentNode.FirstNode;
+            }
+
+            return xPath;
+        }
+
+    }
+
+}

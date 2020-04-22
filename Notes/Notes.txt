@@ -1,0 +1,91 @@
+Notes
+=====
+
+-- Bugs to fix before release
+   -- Some sort of search to filter the tree window?
+   -- A find/highlight in the results preview window?
+   -- Work out what to do when the source XML includes namespaces - and implement
+      -- when reading source, pull namespaces into a manager?
+      -- use nsmgr to reformat xpath when processing?
+
+-- For release
+   -- Create a github repo
+   -- Work out a license
+   -- Rework help for name / add images?
+   -- Write up readme properly - include comment on Sitecore DLLs.
+   -- Go through all source files, tidy usings, tidy whitespace
+   -- Put current state of source into master
+   -- Work out how to make it build on merge into master?
+   -- Add a release
+
+-- UI tool
+   -- Config for which namespaces are ignored when generating default queries?
+      (Defaulting to automatically ignore attributes with the Sitecore Patch namespace for now)
+   -- Should xml tree in dialogs always select the leaf node?
+   -- Allow loading "real" config XML from ShowConfig.aspx on a Sitecore instance for the
+      xml source window.
+   -- Standardise layout of components on forms?
+   -- handle exceptions trying to render the post-patch preview
+      General UI exception handling for app?
+   -- Can you reverse-engineer a patch file into editable data? Would that be useful?
+   -- how to test the xpath in any specific field is valid ?? Does Linq.Xml have an "XPath" object to parse it?
+
+-- Can the processing bits of the patches be abstracted? Some of it's repeated?
+-- Ancestor attribute copies - is this only necessary if there's >1 of the element at that level? Does that matter?
+-- maybe have a static helper method to construct from file path?
+
+Done
+====
+-- Refactor default generation logic out of forms? Into patch classes maybe?
+-- Why does help spawn not respect the #fragment
+-- Help spawning from all dialogs.
+-- Images in docs: https://www.thesitewizard.com/html-tutorial/embed-images-with-data-urls.shtml
+-- Fix any layout mistakes in forms - to standardise
+-- Add nuget config so it builds even if you don't have Sitecore feed configured?
+-- Rename the app to "Patchmaker" -- "make me a patch..."
+-- UI
+   -- Handle exceptions from load source xml, save patch and generate preview
+   -- Make the XPath fields validate the text with XPathExpression.Parse() ?
+   -- Leaving attribute name empty throws...
+   -- Test what happens if you load a file with other namespaces defined! What breaks?
+      -- when generating tree, it puts the namespace url into the name...
+      -- xPath defaults does this too.
+   -- Clearer naming for options
+   -- The xml popup doesn't need separate menu entries for patch/set:attribute - the dialog does that
+   -- Need a way to distribute the binary without the Sitecore code?
+   -- Finish help
+   -- Add some help
+   -- Can "pick different default" be an option for attribute changes?
+   -- App Icon
+   -- forms which take XML text as input need to have validation behaviour
+   -- Right-click on patch listview should select items as it does in treeview
+   -- Tab order on forms
+   -- Crashes if you try to apply some patches to the 1st level node?
+   -- basic defaults for the set/patch:attribute form
+   -- double click on an item should be edit
+   -- menu popus need to have enabled behaviour
+   -- Delete / insert / instead / attr forms
+   -- allow order / remove of patch data
+   -- Save the patch
+-- Remove code duplication across attribute changes.
+-- what about attributes on ancestors??
+   Copied now
+-- Is naming of the Patch concrete types sensible?
+-- Patches always have "<configuration>" as their root element:
+    <?xml version="1.0" encoding="utf-8" ?>
+    <configuration xmlns:patch="http://www.sitecore.net/xmlconfig/" xmlns:set="http://www.sitecore.net/xmlconfig/set/">
+      <sitecore>
+        <linkManager>
+          <providers>
+            <add name="sitecore">
+              <patch:attribute name="useDisplayName">true</patch:attribute>
+              <patch:attribute name="lowercaseUrls">true</patch:attribute>
+              <patch:attribute name="alwaysIncludeServerUrl">true</patch:attribute>
+              <patch:attribute name="languageEmbedding">always</patch:attribute>
+            </add>
+          </providers>
+        </linkManager>
+      </sitecore>
+    </configuration>
+-- Explitic tests for behaviour if xpaths fail to match - need sensible exceptions
+   -- Catch null references from failed queries and throw custom error
