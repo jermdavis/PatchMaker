@@ -40,6 +40,8 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.foundABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.sourceTreeView = new System.Windows.Forms.TreeView();
@@ -56,8 +58,9 @@
             this.patchDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patchInsertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patchInsteadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
-            this.foundABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.filterTextBox = new System.Windows.Forms.TextBox();
+            this.filterBtn = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -65,6 +68,7 @@
             this.splitContainer1.SuspendLayout();
             this.patchMenu.SuspendLayout();
             this.treeMenu.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip
@@ -144,14 +148,26 @@
             // openHelpToolStripMenuItem
             // 
             this.openHelpToolStripMenuItem.Name = "openHelpToolStripMenuItem";
-            this.openHelpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openHelpToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openHelpToolStripMenuItem.Text = "&Open Help";
             this.openHelpToolStripMenuItem.Click += new System.EventHandler(this.openHelpToolStripMenuItem_Click);
+            // 
+            // foundABugToolStripMenuItem
+            // 
+            this.foundABugToolStripMenuItem.Name = "foundABugToolStripMenuItem";
+            this.foundABugToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.foundABugToolStripMenuItem.Text = "Found a bug?";
+            this.foundABugToolStripMenuItem.Click += new System.EventHandler(this.foundABugToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(143, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -163,13 +179,14 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.panel1);
             this.splitContainer1.Panel1.Controls.Add(this.sourceTreeView);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.patchListBox);
             this.splitContainer1.Size = new System.Drawing.Size(813, 473);
-            this.splitContainer1.SplitterDistance = 500;
+            this.splitContainer1.SplitterDistance = 503;
             this.splitContainer1.TabIndex = 2;
             // 
             // sourceTreeView
@@ -178,7 +195,7 @@
             this.sourceTreeView.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sourceTreeView.Location = new System.Drawing.Point(0, 0);
             this.sourceTreeView.Name = "sourceTreeView";
-            this.sourceTreeView.Size = new System.Drawing.Size(500, 473);
+            this.sourceTreeView.Size = new System.Drawing.Size(503, 473);
             this.sourceTreeView.TabIndex = 0;
             // 
             // patchListBox
@@ -188,7 +205,7 @@
             this.patchListBox.FormattingEnabled = true;
             this.patchListBox.Location = new System.Drawing.Point(0, 0);
             this.patchListBox.Name = "patchListBox";
-            this.patchListBox.Size = new System.Drawing.Size(309, 473);
+            this.patchListBox.Size = new System.Drawing.Size(306, 473);
             this.patchListBox.TabIndex = 1;
             this.patchListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.patchListBox_MouseDoubleClick);
             // 
@@ -279,17 +296,34 @@
             this.patchInsteadToolStripMenuItem.Text = "Replace Element";
             this.patchInsteadToolStripMenuItem.Click += new System.EventHandler(this.patchInsteadToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem5
+            // panel1
             // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
+            this.panel1.Controls.Add(this.filterBtn);
+            this.panel1.Controls.Add(this.filterTextBox);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(503, 33);
+            this.panel1.TabIndex = 1;
             // 
-            // foundABugToolStripMenuItem
+            // filterTextBox
             // 
-            this.foundABugToolStripMenuItem.Name = "foundABugToolStripMenuItem";
-            this.foundABugToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.foundABugToolStripMenuItem.Text = "Found a bug?";
-            this.foundABugToolStripMenuItem.Click += new System.EventHandler(this.foundABugToolStripMenuItem_Click);
+            this.filterTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterTextBox.Location = new System.Drawing.Point(8, 6);
+            this.filterTextBox.Name = "filterTextBox";
+            this.filterTextBox.Size = new System.Drawing.Size(407, 20);
+            this.filterTextBox.TabIndex = 0;
+            // 
+            // filterBtn
+            // 
+            this.filterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterBtn.Location = new System.Drawing.Point(425, 4);
+            this.filterBtn.Name = "filterBtn";
+            this.filterBtn.Size = new System.Drawing.Size(75, 23);
+            this.filterBtn.TabIndex = 1;
+            this.filterBtn.Text = "Filter";
+            this.filterBtn.UseVisualStyleBackColor = true;
             // 
             // PatchPlanningForm
             // 
@@ -312,6 +346,8 @@
             this.splitContainer1.ResumeLayout(false);
             this.patchMenu.ResumeLayout(false);
             this.treeMenu.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,6 +383,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem foundABugToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button filterBtn;
+        private System.Windows.Forms.TextBox filterTextBox;
     }
 }
 
