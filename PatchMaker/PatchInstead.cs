@@ -7,7 +7,7 @@ namespace PatchMaker
     public class PatchInstead : BasePatch
     {
         public string XPathForParent { get; }
-        public string XPathForReplacement { get; set; }
+        public string XPathForReplacement { get; }
         public XElement Replacement { get; }
 
         public PatchInstead(string xPathForParent, string xPathForReplacement, XElement replacement)
