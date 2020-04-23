@@ -2,7 +2,8 @@
 
 # PatchMaker
 
-An experiment to see if it's possible to build a helpful UI for creating and testing Sitecore config patches.
+An experiment to see if it's possible to build a helpful UI for creating and testing Sitecore config patches. There's a [write-up of
+some of the whys and hows of this]( https://jermdavis.wordpress.com/2020/04/27/a-tool-to-help-you-build-config-patches/) on my blog.
 
 Since it's an experiment, there are probably some rough edges in this code. Don't judge it too harshly please -
 but [write me a bug report](https://github.com/jermdavis/PatchMaker/issues) if you find anything that doesn't work.
