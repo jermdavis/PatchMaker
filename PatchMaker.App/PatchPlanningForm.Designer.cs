@@ -50,6 +50,7 @@
             this.collapseBtn = new System.Windows.Forms.Button();
             this.filterBtn = new System.Windows.Forms.Button();
             this.filterTextBox = new System.Windows.Forms.TextBox();
+            this.patchListBox = new System.Windows.Forms.ListBox();
             this.patchMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +64,6 @@
             this.patchDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patchInsertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patchInsteadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.patchListBox = new System.Windows.Forms.ListBox();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -259,6 +259,17 @@
             this.filterTextBox.TabIndex = 0;
             this.filterTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.filterTextBox_KeyPress);
             // 
+            // patchListBox
+            // 
+            this.patchListBox.ContextMenuStrip = this.patchMenu;
+            this.patchListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.patchListBox.FormattingEnabled = true;
+            this.patchListBox.IntegralHeight = false;
+            this.patchListBox.Location = new System.Drawing.Point(0, 33);
+            this.patchListBox.Name = "patchListBox";
+            this.patchListBox.Size = new System.Drawing.Size(338, 406);
+            this.patchListBox.TabIndex = 3;
+            // 
             // patchMenu
             // 
             this.patchMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -353,16 +364,6 @@
             this.patchInsteadToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.patchInsteadToolStripMenuItem.Text = "Replace Element";
             this.patchInsteadToolStripMenuItem.Click += new System.EventHandler(this.patchInsteadToolStripMenuItem_Click);
-            // 
-            // patchListBox
-            // 
-            this.patchListBox.ContextMenuStrip = this.patchMenu;
-            this.patchListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.patchListBox.FormattingEnabled = true;
-            this.patchListBox.Location = new System.Drawing.Point(0, 33);
-            this.patchListBox.Name = "patchListBox";
-            this.patchListBox.Size = new System.Drawing.Size(338, 406);
-            this.patchListBox.TabIndex = 3;
             // 
             // PatchPlanningForm
             // 
