@@ -12,7 +12,6 @@ namespace PatchMaker.App
         private string _titleTemplate = "PatchMaker: [{0}]";
         private PatchProcessManager _manager = new PatchProcessManager();
 
-
         public PatchPlanningForm()
         {
             InitializeComponent();
@@ -200,7 +199,40 @@ namespace PatchMaker.App
             if (sourceTreeView.Nodes.Count > 0)
             {
                 var root = sourceTreeView.Nodes[0];
-                root.ColourNodesRecursive(txt);
+                root.HighlightNodesRecursive(txt);
+            }
+        }
+
+        private void sourceTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
+        {
+            if (e.Node is HighlightableTreeNode)
+            {
+                (e.Node as HighlightableTreeNode).OnExpand();
+            }
+        }
+
+        private void sourceTreeView_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
+        {
+            if (e.Node is HighlightableTreeNode)
+            {
+                (e.Node as HighlightableTreeNode).OnCollapse();
+            }
+        }
+
+        private void filterTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                filterBtn_Click(sender, e);
+            }
+        }
+
+        private void collapseBtn_Click(object sender, EventArgs e)
+        {
+            if (sourceTreeView.Nodes.Count > 0)
+            {
+                sourceTreeView.CollapseAll();
+                sourceTreeView.Nodes[0].Expand();
             }
         }
     }

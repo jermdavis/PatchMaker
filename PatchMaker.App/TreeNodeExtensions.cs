@@ -83,7 +83,16 @@ namespace PatchMaker.App
             return xPath;
         }
 
-        public static void ColourNodesRecursive(this TreeNode node, string textToFind)
+        public static void ExpandAncestors(this TreeNode node)
+        {
+            while(node != null)
+            {
+                node.Expand();
+                node = node.Parent;
+            }
+        }
+
+        public static void HighlightNodesRecursive(this TreeNode node, string textToFind)
         {
             if(node == null)
             {
@@ -92,16 +101,23 @@ namespace PatchMaker.App
 
             if (node.Text.IndexOf(textToFind, StringComparison.OrdinalIgnoreCase) >= 0 && !string.IsNullOrWhiteSpace(textToFind))
             {
-                node.ForeColor = Color.Red;
+                if (node is HighlightableTreeNode)
+                {
+                    (node as HighlightableTreeNode).SetHighlight();
+                    node.ExpandAncestors();
+                }
             }
             else
             {
-                node.ForeColor = SystemColors.WindowText;
+                if (node is HighlightableTreeNode)
+                {
+                    (node as HighlightableTreeNode).RemoveHighlight();
+                }
             }
 
             foreach(TreeNode child in node.Nodes)
             {
-                ColourNodesRecursive(child, textToFind);
+                HighlightNodesRecursive(child, textToFind);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlTypes;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -47,12 +48,7 @@ namespace PatchMaker.App
 
         private void mapNode(XElement element, TreeNode parentTreeNode)
         {
-            var treeNode = new TreeNode() {
-                Text = element.Name.ToString(),
-                Name = element.Name.LocalName,
-                Tag = element,
-                ContextMenuStrip = _treeMenu
-            };
+            var treeNode = new HighlightableTreeNode(element, _treeMenu);
             
             foreach(var attr in element.Attributes())
             {
