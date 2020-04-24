@@ -1,6 +1,7 @@
 ﻿using PatchMaker.App.PatchForms;
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -191,5 +192,17 @@ namespace PatchMaker.App
         {
             HelpSpawner.SpawnUrl("https://github.com/jermdavis/PatchMaker/issues");
         }
+
+        private void filterBtn_Click(object sender, EventArgs e)
+        {
+            var txt = filterTextBox.Text;
+
+            if (sourceTreeView.Nodes.Count > 0)
+            {
+                var root = sourceTreeView.Nodes[0];
+                root.ColourNodesRecursive(txt);
+            }
+        }
     }
+
 }

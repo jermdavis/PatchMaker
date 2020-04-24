@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -82,6 +83,27 @@ namespace PatchMaker.App
             return xPath;
         }
 
+        public static void ColourNodesRecursive(this TreeNode node, string textToFind)
+        {
+            if(node == null)
+            {
+                return;
+            }
+
+            if (node.Text.IndexOf(textToFind, StringComparison.OrdinalIgnoreCase) >= 0 && !string.IsNullOrWhiteSpace(textToFind))
+            {
+                node.ForeColor = Color.Red;
+            }
+            else
+            {
+                node.ForeColor = SystemColors.WindowText;
+            }
+
+            foreach(TreeNode child in node.Nodes)
+            {
+                ColourNodesRecursive(child, textToFind);
+            }
+        }
     }
 
 }

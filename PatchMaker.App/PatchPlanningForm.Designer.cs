@@ -45,6 +45,9 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.sourceTreeView = new System.Windows.Forms.TreeView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.filterBtn = new System.Windows.Forms.Button();
+            this.filterTextBox = new System.Windows.Forms.TextBox();
             this.patchListBox = new System.Windows.Forms.ListBox();
             this.patchMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,17 +61,14 @@
             this.patchDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patchInsertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patchInsteadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.filterTextBox = new System.Windows.Forms.TextBox();
-            this.filterBtn = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.patchMenu.SuspendLayout();
             this.treeMenu.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip
@@ -179,24 +179,54 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.panel1);
             this.splitContainer1.Panel1.Controls.Add(this.sourceTreeView);
+            this.splitContainer1.Panel1.Controls.Add(this.panel1);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.patchListBox);
             this.splitContainer1.Size = new System.Drawing.Size(813, 473);
-            this.splitContainer1.SplitterDistance = 503;
+            this.splitContainer1.SplitterDistance = 502;
             this.splitContainer1.TabIndex = 2;
             // 
             // sourceTreeView
             // 
             this.sourceTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sourceTreeView.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sourceTreeView.Location = new System.Drawing.Point(0, 0);
+            this.sourceTreeView.Location = new System.Drawing.Point(0, 33);
             this.sourceTreeView.Name = "sourceTreeView";
-            this.sourceTreeView.Size = new System.Drawing.Size(503, 473);
-            this.sourceTreeView.TabIndex = 0;
+            this.sourceTreeView.Size = new System.Drawing.Size(502, 440);
+            this.sourceTreeView.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.filterBtn);
+            this.panel1.Controls.Add(this.filterTextBox);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(502, 33);
+            this.panel1.TabIndex = 1;
+            // 
+            // filterBtn
+            // 
+            this.filterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterBtn.Location = new System.Drawing.Point(424, 4);
+            this.filterBtn.Name = "filterBtn";
+            this.filterBtn.Size = new System.Drawing.Size(75, 23);
+            this.filterBtn.TabIndex = 1;
+            this.filterBtn.Text = "Filter";
+            this.filterBtn.UseVisualStyleBackColor = true;
+            this.filterBtn.Click += new System.EventHandler(this.filterBtn_Click);
+            // 
+            // filterTextBox
+            // 
+            this.filterTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterTextBox.Location = new System.Drawing.Point(8, 6);
+            this.filterTextBox.Name = "filterTextBox";
+            this.filterTextBox.Size = new System.Drawing.Size(406, 20);
+            this.filterTextBox.TabIndex = 0;
             // 
             // patchListBox
             // 
@@ -205,7 +235,7 @@
             this.patchListBox.FormattingEnabled = true;
             this.patchListBox.Location = new System.Drawing.Point(0, 0);
             this.patchListBox.Name = "patchListBox";
-            this.patchListBox.Size = new System.Drawing.Size(306, 473);
+            this.patchListBox.Size = new System.Drawing.Size(307, 473);
             this.patchListBox.TabIndex = 1;
             this.patchListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.patchListBox_MouseDoubleClick);
             // 
@@ -296,35 +326,6 @@
             this.patchInsteadToolStripMenuItem.Text = "Replace Element";
             this.patchInsteadToolStripMenuItem.Click += new System.EventHandler(this.patchInsteadToolStripMenuItem_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.filterBtn);
-            this.panel1.Controls.Add(this.filterTextBox);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(503, 33);
-            this.panel1.TabIndex = 1;
-            // 
-            // filterTextBox
-            // 
-            this.filterTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterTextBox.Location = new System.Drawing.Point(8, 6);
-            this.filterTextBox.Name = "filterTextBox";
-            this.filterTextBox.Size = new System.Drawing.Size(407, 20);
-            this.filterTextBox.TabIndex = 0;
-            // 
-            // filterBtn
-            // 
-            this.filterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.filterBtn.Location = new System.Drawing.Point(425, 4);
-            this.filterBtn.Name = "filterBtn";
-            this.filterBtn.Size = new System.Drawing.Size(75, 23);
-            this.filterBtn.TabIndex = 1;
-            this.filterBtn.Text = "Filter";
-            this.filterBtn.UseVisualStyleBackColor = true;
-            // 
             // PatchPlanningForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -344,10 +345,10 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.patchMenu.ResumeLayout(false);
-            this.treeMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.patchMenu.ResumeLayout(false);
+            this.treeMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -363,7 +364,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TreeView sourceTreeView;
         private System.Windows.Forms.ListBox patchListBox;
         private System.Windows.Forms.ContextMenuStrip treeMenu;
         private System.Windows.Forms.ToolStripMenuItem attributeToolStripMenuItem;
@@ -386,6 +386,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button filterBtn;
         private System.Windows.Forms.TextBox filterTextBox;
+        private System.Windows.Forms.TreeView sourceTreeView;
     }
 }
 
