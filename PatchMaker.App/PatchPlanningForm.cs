@@ -177,6 +177,10 @@ namespace PatchMaker.App
             {
                 createDialog = i => new PatchAttributeForm(i);
             }
+            if(item.Patch is PatchNewChild)
+            {
+                createDialog = i => new PatchNewChildForm(i);
+            }
 
             var deleteDialog = createDialog(item);
             var dr = deleteDialog.ShowDialog(this);

@@ -7,7 +7,7 @@ namespace PatchMaker
     {
         public abstract void ApplyPatchElement(XDocument sourceXml, XDocument patchXml);
 
-        protected XElement CopyAncestors(XElement targetElement, XElement root)
+        protected XElement CopyAncestors(XElement targetElement, XElement root, bool copyAttrs = false)
         {
             var currentPatchNode = root;
             var ancestors = targetElement.Ancestors().Reverse();
@@ -20,6 +20,13 @@ namespace PatchMaker
                     if (child == null)
                     {
                         var newSourceNode = new XElement(ancestor.Name);
+                        if (copyAttrs)
+                        {
+                            foreach (var attr in ancestor.Attributes())
+                            {
+                                newSourceNode.Add(new XAttribute(attr));
+                            }
+                        }
                         currentPatchNode.Add(newSourceNode);
                         currentPatchNode = newSourceNode;
                     }

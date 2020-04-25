@@ -35,6 +35,7 @@ namespace PatchMaker
 
             var newNode = new XElement(ChildXml);
 
+            // 
             var currentPatchNode = base.CopyAncestorsAndSelf(targetElement, patchXml.Root, copyAttrs: true);
             currentPatchNode.Add(newNode);
         }
