@@ -271,6 +271,7 @@
             this.patchListBox.Name = "patchListBox";
             this.patchListBox.Size = new System.Drawing.Size(338, 406);
             this.patchListBox.TabIndex = 3;
+            this.patchListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.patchListBox_MouseDoubleClick);
             // 
             // patchMenu
             // 
