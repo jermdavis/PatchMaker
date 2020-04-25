@@ -40,9 +40,16 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.foundABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.sourceTreeView = new System.Windows.Forms.TreeView();
+            this.sourceTreeView = new PatchMaker.App.HighlightableTreeView();
+            this.treeImageList = new System.Windows.Forms.ImageList(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.collapseBtn = new System.Windows.Forms.Button();
+            this.filterBtn = new System.Windows.Forms.Button();
+            this.filterTextBox = new System.Windows.Forms.TextBox();
             this.patchListBox = new System.Windows.Forms.ListBox();
             this.patchMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,28 +57,28 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.moveUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.treeMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.attributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.patchDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patchInsertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patchInsteadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
-            this.foundABugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.patchMenu.SuspendLayout();
             this.treeMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip
             // 
-            this.statusStrip.Location = new System.Drawing.Point(0, 497);
+            this.statusStrip.Location = new System.Drawing.Point(0, 463);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(813, 22);
+            this.statusStrip.Size = new System.Drawing.Size(742, 22);
             this.statusStrip.TabIndex = 0;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -82,7 +89,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(813, 24);
+            this.menuStrip.Size = new System.Drawing.Size(742, 24);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -144,14 +151,26 @@
             // openHelpToolStripMenuItem
             // 
             this.openHelpToolStripMenuItem.Name = "openHelpToolStripMenuItem";
-            this.openHelpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openHelpToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openHelpToolStripMenuItem.Text = "&Open Help";
             this.openHelpToolStripMenuItem.Click += new System.EventHandler(this.openHelpToolStripMenuItem_Click);
+            // 
+            // foundABugToolStripMenuItem
+            // 
+            this.foundABugToolStripMenuItem.Name = "foundABugToolStripMenuItem";
+            this.foundABugToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.foundABugToolStripMenuItem.Text = "Found a bug?";
+            this.foundABugToolStripMenuItem.Click += new System.EventHandler(this.foundABugToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(143, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -164,32 +183,94 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.sourceTreeView);
+            this.splitContainer1.Panel1.Controls.Add(this.panel1);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.patchListBox);
-            this.splitContainer1.Size = new System.Drawing.Size(813, 473);
-            this.splitContainer1.SplitterDistance = 500;
+            this.splitContainer1.Panel2.Controls.Add(this.panel2);
+            this.splitContainer1.Size = new System.Drawing.Size(742, 439);
+            this.splitContainer1.SplitterDistance = 400;
             this.splitContainer1.TabIndex = 2;
             // 
             // sourceTreeView
             // 
             this.sourceTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sourceTreeView.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
             this.sourceTreeView.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sourceTreeView.Location = new System.Drawing.Point(0, 0);
+            this.sourceTreeView.HideSelection = false;
+            this.sourceTreeView.ImageIndex = 0;
+            this.sourceTreeView.ImageList = this.treeImageList;
+            this.sourceTreeView.Location = new System.Drawing.Point(0, 33);
             this.sourceTreeView.Name = "sourceTreeView";
-            this.sourceTreeView.Size = new System.Drawing.Size(500, 473);
-            this.sourceTreeView.TabIndex = 0;
+            this.sourceTreeView.SelectedImageIndex = 0;
+            this.sourceTreeView.Size = new System.Drawing.Size(400, 406);
+            this.sourceTreeView.TabIndex = 2;
+            this.sourceTreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.sourceTreeView_BeforeCollapse);
+            this.sourceTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.sourceTreeView_BeforeExpand);
+            // 
+            // treeImageList
+            // 
+            this.treeImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("treeImageList.ImageStream")));
+            this.treeImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.treeImageList.Images.SetKeyName(0, "FolderClosed_16x.png");
+            this.treeImageList.Images.SetKeyName(1, "FolderOpened_16x.png");
+            this.treeImageList.Images.SetKeyName(2, "SearchFolderClosed_16x.png");
+            this.treeImageList.Images.SetKeyName(3, "SearchFolderOpened_16x.png");
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.collapseBtn);
+            this.panel1.Controls.Add(this.filterBtn);
+            this.panel1.Controls.Add(this.filterTextBox);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(400, 33);
+            this.panel1.TabIndex = 1;
+            // 
+            // collapseBtn
+            // 
+            this.collapseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.collapseBtn.Image = ((System.Drawing.Image)(resources.GetObject("collapseBtn.Image")));
+            this.collapseBtn.Location = new System.Drawing.Point(370, 5);
+            this.collapseBtn.Name = "collapseBtn";
+            this.collapseBtn.Size = new System.Drawing.Size(25, 23);
+            this.collapseBtn.TabIndex = 2;
+            this.collapseBtn.UseVisualStyleBackColor = true;
+            this.collapseBtn.Click += new System.EventHandler(this.collapseBtn_Click);
+            // 
+            // filterBtn
+            // 
+            this.filterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterBtn.Image = ((System.Drawing.Image)(resources.GetObject("filterBtn.Image")));
+            this.filterBtn.Location = new System.Drawing.Point(341, 5);
+            this.filterBtn.Name = "filterBtn";
+            this.filterBtn.Size = new System.Drawing.Size(25, 23);
+            this.filterBtn.TabIndex = 1;
+            this.filterBtn.UseVisualStyleBackColor = true;
+            this.filterBtn.Click += new System.EventHandler(this.filterBtn_Click);
+            // 
+            // filterTextBox
+            // 
+            this.filterTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.filterTextBox.Location = new System.Drawing.Point(8, 6);
+            this.filterTextBox.Name = "filterTextBox";
+            this.filterTextBox.Size = new System.Drawing.Size(327, 20);
+            this.filterTextBox.TabIndex = 0;
+            this.filterTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.filterTextBox_KeyPress);
             // 
             // patchListBox
             // 
             this.patchListBox.ContextMenuStrip = this.patchMenu;
             this.patchListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.patchListBox.FormattingEnabled = true;
-            this.patchListBox.Location = new System.Drawing.Point(0, 0);
+            this.patchListBox.IntegralHeight = false;
+            this.patchListBox.Location = new System.Drawing.Point(0, 33);
             this.patchListBox.Name = "patchListBox";
-            this.patchListBox.Size = new System.Drawing.Size(309, 473);
-            this.patchListBox.TabIndex = 1;
+            this.patchListBox.Size = new System.Drawing.Size(338, 406);
+            this.patchListBox.TabIndex = 3;
             this.patchListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.patchListBox_MouseDoubleClick);
             // 
             // patchMenu
@@ -235,6 +316,14 @@
             this.moveDownToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.moveDownToolStripMenuItem.Text = "Move down";
             // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(338, 33);
+            this.panel2.TabIndex = 0;
+            // 
             // treeMenu
             // 
             this.treeMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -279,23 +368,11 @@
             this.patchInsteadToolStripMenuItem.Text = "Replace Element";
             this.patchInsteadToolStripMenuItem.Click += new System.EventHandler(this.patchInsteadToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
-            // 
-            // foundABugToolStripMenuItem
-            // 
-            this.foundABugToolStripMenuItem.Name = "foundABugToolStripMenuItem";
-            this.foundABugToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.foundABugToolStripMenuItem.Text = "Found a bug?";
-            this.foundABugToolStripMenuItem.Click += new System.EventHandler(this.foundABugToolStripMenuItem_Click);
-            // 
             // PatchPlanningForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(813, 519);
+            this.ClientSize = new System.Drawing.Size(742, 485);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
@@ -304,12 +381,15 @@
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "PatchPlanningForm";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PatchPlanningForm_FormClosing);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.patchMenu.ResumeLayout(false);
             this.treeMenu.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -327,8 +407,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TreeView sourceTreeView;
-        private System.Windows.Forms.ListBox patchListBox;
         private System.Windows.Forms.ContextMenuStrip treeMenu;
         private System.Windows.Forms.ToolStripMenuItem attributeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem patchDeleteToolStripMenuItem;
@@ -347,6 +425,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem foundABugToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button filterBtn;
+        private System.Windows.Forms.TextBox filterTextBox;
+        private HighlightableTreeView sourceTreeView;
+        private System.Windows.Forms.ImageList treeImageList;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button collapseBtn;
+        private System.Windows.Forms.ListBox patchListBox;
     }
 }
 

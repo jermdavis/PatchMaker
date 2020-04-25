@@ -11,7 +11,6 @@ namespace PatchMaker.App
         private string _titleTemplate = "PatchMaker: [{0}]";
         private PatchProcessManager _manager = new PatchProcessManager();
 
-
         public PatchPlanningForm()
         {
             InitializeComponent();
@@ -191,5 +190,66 @@ namespace PatchMaker.App
         {
             HelpSpawner.SpawnUrl("https://github.com/jermdavis/PatchMaker/issues");
         }
+
+        private void filterBtn_Click(object sender, EventArgs e)
+        {
+            var txt = filterTextBox.Text;
+
+            if (sourceTreeView.Nodes.Count > 0)
+            {
+                var root = sourceTreeView.Nodes[0];
+
+                sourceTreeView.SuspendLayout();
+                root.HighlightNodesRecursive(txt);
+
+                if(sourceTreeView.SelectedNode != null)
+                {
+                    sourceTreeView.SelectedNode.EnsureVisible();
+                }
+
+                sourceTreeView.ResumeLayout();
+            }
+        }
+
+        private void sourceTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
+        {
+            if (e.Node is HighlightableTreeNode)
+            {
+                (e.Node as HighlightableTreeNode).OnExpand();
+            }
+        }
+
+        private void sourceTreeView_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
+        {
+            if (e.Node is HighlightableTreeNode)
+            {
+                (e.Node as HighlightableTreeNode).OnCollapse();
+            }
+        }
+
+        private void filterTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\r')
+            {
+                filterBtn_Click(sender, e);
+            }
+        }
+
+        private void collapseBtn_Click(object sender, EventArgs e)
+        {
+            if (sourceTreeView.Nodes.Count > 0)
+            {
+                sourceTreeView.CollapseAll();
+                sourceTreeView.Nodes[0].Expand();
+            }
+        }
+
+        private void PatchPlanningForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // This is necessary because otherwise you get odd over-draw
+            // on the treeview when the app is exiting. Looks strange without this.
+            sourceTreeView.DrawMode = TreeViewDrawMode.Normal;
+        }
     }
+
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -82,6 +83,43 @@ namespace PatchMaker.App
             return xPath;
         }
 
+        public static void ExpandAncestors(this TreeNode node)
+        {
+            while(node != null)
+            {
+                node.Expand();
+                node = node.Parent;
+            }
+        }
+
+        public static void HighlightNodesRecursive(this TreeNode node, string textToFind)
+        {
+            if(node == null)
+            {
+                return;
+            }
+
+            if (node.Text.IndexOf(textToFind, StringComparison.OrdinalIgnoreCase) >= 0 && !string.IsNullOrWhiteSpace(textToFind))
+            {
+                if (node is HighlightableTreeNode)
+                {
+                    (node as HighlightableTreeNode).SetHighlight();
+                    node.ExpandAncestors();
+                }
+            }
+            else
+            {
+                if (node is HighlightableTreeNode)
+                {
+                    (node as HighlightableTreeNode).RemoveHighlight();
+                }
+            }
+
+            foreach(TreeNode child in node.Nodes)
+            {
+                HighlightNodesRecursive(child, textToFind);
+            }
+        }
     }
 
 }
