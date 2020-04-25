@@ -78,6 +78,23 @@ namespace PatchMaker.App
             }
         }
 
+        private void treeMenu_Opening(object sender, CancelEventArgs e)
+        {
+            if (sourceTreeView.SelectedNode == null)
+            {
+                addAChildToolStripMenuItem.Enabled = false;
+                return;
+            }
+
+            var hasChildren = sourceTreeView.SelectedNode.Nodes.Count == 0;
+            addAChildToolStripMenuItem.Enabled = hasChildren;
+        }
+
+        private void addAChildToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showAddDialog(n => new PatchNewChildForm(n));
+        }
+
         private void patchDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showAddDialog(n => new PatchDeleteForm(n));
