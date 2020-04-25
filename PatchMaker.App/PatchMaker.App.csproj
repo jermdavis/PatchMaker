@@ -57,6 +57,9 @@
     </Compile>
     <Compile Include="HelpSpawner.cs" />
     <Compile Include="HighlightableTreeNode.cs" />
+    <Compile Include="HighlightableTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="IAddPatchForm.cs" />
     <Compile Include="FormExtensions.cs" />
     <Compile Include="PatchForms\AttributePatchTypes.cs" />

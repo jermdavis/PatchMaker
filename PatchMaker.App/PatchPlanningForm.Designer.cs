@@ -44,7 +44,7 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.sourceTreeView = new System.Windows.Forms.TreeView();
+            this.sourceTreeView = new PatchMaker.App.HighlightableTreeView();
             this.treeImageList = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.collapseBtn = new System.Windows.Forms.Button();
@@ -196,7 +196,9 @@
             // sourceTreeView
             // 
             this.sourceTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sourceTreeView.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
             this.sourceTreeView.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sourceTreeView.HideSelection = false;
             this.sourceTreeView.ImageIndex = 0;
             this.sourceTreeView.ImageList = this.treeImageList;
             this.sourceTreeView.Location = new System.Drawing.Point(0, 33);
@@ -378,6 +380,7 @@
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "PatchPlanningForm";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PatchPlanningForm_FormClosing);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -424,7 +427,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button filterBtn;
         private System.Windows.Forms.TextBox filterTextBox;
-        private System.Windows.Forms.TreeView sourceTreeView;
+        private HighlightableTreeView sourceTreeView;
         private System.Windows.Forms.ImageList treeImageList;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button collapseBtn;

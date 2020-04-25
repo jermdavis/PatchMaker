@@ -32,9 +32,11 @@ namespace PatchMaker.App
             }
             _sourceFileName = sourceXmlPath;
 
+            _patchTreeView.SuspendLayout();
             clearControls();
             loadXml(sourceXmlPath);
             mapTreeView();
+            _patchTreeView.ResumeLayout();
         }
 
         private void mapTreeView()

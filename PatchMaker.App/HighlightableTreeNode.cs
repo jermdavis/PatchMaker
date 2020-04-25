@@ -8,6 +8,8 @@ namespace PatchMaker.App
     {
         private bool _highlighted = false;
 
+        public bool Highlighted => _highlighted;
+
         public HighlightableTreeNode(XElement element, ContextMenuStrip treeMenu)
         {
             Text = element.Name.ToString();

@@ -1,7 +1,6 @@
 ﻿using PatchMaker.App.PatchForms;
 using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -199,7 +198,10 @@ namespace PatchMaker.App
             if (sourceTreeView.Nodes.Count > 0)
             {
                 var root = sourceTreeView.Nodes[0];
+
+                sourceTreeView.SuspendLayout();
                 root.HighlightNodesRecursive(txt);
+                sourceTreeView.ResumeLayout();
             }
         }
 
@@ -234,6 +236,13 @@ namespace PatchMaker.App
                 sourceTreeView.CollapseAll();
                 sourceTreeView.Nodes[0].Expand();
             }
+        }
+
+        private void PatchPlanningForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // This is necessary because otherwise you get odd over-draw
+            // on the treeview when the app is exiting. Looks strange without this.
+            sourceTreeView.DrawMode = TreeViewDrawMode.Normal;
         }
     }
 
