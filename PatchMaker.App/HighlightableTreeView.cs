@@ -49,13 +49,12 @@ namespace PatchMaker.App
                     }
                 }
 
+                var bounds = e.Bounds;
+                bounds.Y += 1;
+
                 var font = e.Node.NodeFont ?? e.Node.TreeView.Font;
-                TextRenderer.DrawText(e.Graphics, e.Node.Text, font, e.Bounds, foreColour, TextFormatFlags.GlyphOverhangPadding);
+                TextRenderer.DrawText(e.Graphics, e.Node.Text, font, bounds, foreColour, TextFormatFlags.GlyphOverhangPadding);
             }
-            //else
-            //{
-            //    base.OnDrawNode(e);
-            //}
         }
     }
 

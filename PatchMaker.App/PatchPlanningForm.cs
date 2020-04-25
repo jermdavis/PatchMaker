@@ -201,6 +201,12 @@ namespace PatchMaker.App
 
                 sourceTreeView.SuspendLayout();
                 root.HighlightNodesRecursive(txt);
+
+                if(sourceTreeView.SelectedNode != null)
+                {
+                    sourceTreeView.SelectedNode.EnsureVisible();
+                }
+
                 sourceTreeView.ResumeLayout();
             }
         }
