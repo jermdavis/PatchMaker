@@ -120,6 +120,26 @@ namespace PatchMaker.App
                 HighlightNodesRecursive(child, textToFind);
             }
         }
+
+        public static void MoveDown(this ListBox list)
+        {
+            var idx = list.SelectedIndex + 1;
+
+            var itm = list.Items[idx];
+            list.Items.RemoveAt(idx);
+
+            list.Items.Insert(list.SelectedIndex, itm);
+        }
+
+        public static void MoveUp(this ListBox list)
+        {
+            var idx = list.SelectedIndex - 1;
+
+            var itm = list.Items[list.SelectedIndex];
+            list.Items.RemoveAt(list.SelectedIndex);
+
+            list.Items.Insert(idx, itm);
+        }
     }
 
 }

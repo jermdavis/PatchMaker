@@ -271,6 +271,16 @@ namespace PatchMaker.App
             // on the treeview when the app is exiting. Looks strange without this.
             sourceTreeView.DrawMode = TreeViewDrawMode.Normal;
         }
+
+        private void moveUpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            patchListBox.MoveUp();
+        }
+
+        private void moveDownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            patchListBox.MoveDown();
+        }
     }
 
 }

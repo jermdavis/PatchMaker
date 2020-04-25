@@ -267,39 +267,41 @@
             this.moveUpToolStripMenuItem,
             this.moveDownToolStripMenuItem});
             this.patchMenu.Name = "patchMenu";
-            this.patchMenu.Size = new System.Drawing.Size(141, 98);
+            this.patchMenu.Size = new System.Drawing.Size(181, 120);
             this.patchMenu.Opening += new System.ComponentModel.CancelEventHandler(this.patchMenu_Opening);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.editToolStripMenuItem.Text = "Edit patch";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteToolStripMenuItem.Text = "Delete patch";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(137, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
             // 
             // moveUpToolStripMenuItem
             // 
             this.moveUpToolStripMenuItem.Name = "moveUpToolStripMenuItem";
-            this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.moveUpToolStripMenuItem.Text = "Move up";
+            this.moveUpToolStripMenuItem.Click += new System.EventHandler(this.moveUpToolStripMenuItem_Click);
             // 
             // moveDownToolStripMenuItem
             // 
             this.moveDownToolStripMenuItem.Name = "moveDownToolStripMenuItem";
-            this.moveDownToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.moveDownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.moveDownToolStripMenuItem.Text = "Move down";
+            this.moveDownToolStripMenuItem.Click += new System.EventHandler(this.moveDownToolStripMenuItem_Click);
             // 
             // panel2
             // 
