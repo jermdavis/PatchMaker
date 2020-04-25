@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace PatchMaker.App
@@ -9,6 +11,9 @@ namespace PatchMaker.App
         public AboutForm()
         {
             InitializeComponent();
+
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            versionLabel.Text = $"v{version.Major}.{version.Minor}";
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

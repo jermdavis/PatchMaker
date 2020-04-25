@@ -37,6 +37,7 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
+            this.versionLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,12 +121,23 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "\"PatchMaker, PatchMaker, make me a patch...\"";
             // 
+            // versionLabel
+            // 
+            this.versionLabel.AutoSize = true;
+            this.versionLabel.Location = new System.Drawing.Point(12, 143);
+            this.versionLabel.Name = "versionLabel";
+            this.versionLabel.Size = new System.Drawing.Size(35, 13);
+            this.versionLabel.TabIndex = 8;
+            this.versionLabel.Text = "label5";
+            this.versionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // AboutForm
             // 
             this.AcceptButton = this.okBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(452, 169);
+            this.Controls.Add(this.versionLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.linkLabel1);
@@ -158,5 +170,6 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label versionLabel;
     }
 }
