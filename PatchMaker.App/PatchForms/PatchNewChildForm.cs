@@ -53,7 +53,7 @@ namespace PatchMaker.App.PatchForms
             Patch = new PatchItem(patchChild, _treeNode);
         }
 
-        private void PatchInsteadForm_HelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
+        private void PatchNewChildForm_HelpButtonClicked(object sender, CancelEventArgs e)
         {
             HelpSpawner.SpawnLocalFile("newchild");
         }

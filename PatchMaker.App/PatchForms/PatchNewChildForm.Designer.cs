@@ -141,10 +141,12 @@
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.okBtn);
             this.Controls.Add(this.treeView);
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PatchNewChildForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add a child";
+            this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.PatchNewChildForm_HelpButtonClicked);
             this.ResumeLayout(false);
             this.PerformLayout();
 
