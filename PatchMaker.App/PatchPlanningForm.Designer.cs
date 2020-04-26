@@ -44,6 +44,7 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.sourceTreeView = new PatchMaker.App.HighlightableTreeView();
             this.treeImageList = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.collapseBtn = new System.Windows.Forms.Button();
@@ -64,7 +65,7 @@
             this.patchInsertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patchInsteadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addAChildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sourceTreeView = new PatchMaker.App.HighlightableTreeView();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -194,6 +195,22 @@
             this.splitContainer1.SplitterDistance = 400;
             this.splitContainer1.TabIndex = 2;
             // 
+            // sourceTreeView
+            // 
+            this.sourceTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sourceTreeView.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
+            this.sourceTreeView.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sourceTreeView.HideSelection = false;
+            this.sourceTreeView.ImageIndex = 0;
+            this.sourceTreeView.ImageList = this.treeImageList;
+            this.sourceTreeView.Location = new System.Drawing.Point(0, 33);
+            this.sourceTreeView.Name = "sourceTreeView";
+            this.sourceTreeView.SelectedImageIndex = 0;
+            this.sourceTreeView.Size = new System.Drawing.Size(400, 406);
+            this.sourceTreeView.TabIndex = 2;
+            this.sourceTreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.sourceTreeView_BeforeCollapse);
+            this.sourceTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.sourceTreeView_BeforeExpand);
+            // 
             // treeImageList
             // 
             this.treeImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("treeImageList.ImageStream")));
@@ -267,39 +284,39 @@
             this.moveUpToolStripMenuItem,
             this.moveDownToolStripMenuItem});
             this.patchMenu.Name = "patchMenu";
-            this.patchMenu.Size = new System.Drawing.Size(181, 120);
+            this.patchMenu.Size = new System.Drawing.Size(141, 98);
             this.patchMenu.Opening += new System.ComponentModel.CancelEventHandler(this.patchMenu_Opening);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.editToolStripMenuItem.Text = "Edit patch";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.deleteToolStripMenuItem.Text = "Delete patch";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(137, 6);
             // 
             // moveUpToolStripMenuItem
             // 
             this.moveUpToolStripMenuItem.Name = "moveUpToolStripMenuItem";
-            this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.moveUpToolStripMenuItem.Text = "Move up";
             this.moveUpToolStripMenuItem.Click += new System.EventHandler(this.moveUpToolStripMenuItem_Click);
             // 
             // moveDownToolStripMenuItem
             // 
             this.moveDownToolStripMenuItem.Name = "moveDownToolStripMenuItem";
-            this.moveDownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.moveDownToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.moveDownToolStripMenuItem.Text = "Move down";
             this.moveDownToolStripMenuItem.Click += new System.EventHandler(this.moveDownToolStripMenuItem_Click);
             // 
@@ -319,9 +336,10 @@
             this.patchDeleteToolStripMenuItem,
             this.patchInsertToolStripMenuItem,
             this.patchInsteadToolStripMenuItem,
+            this.toolStripMenuItem6,
             this.addAChildToolStripMenuItem});
             this.treeMenu.Name = "treeMenu";
-            this.treeMenu.Size = new System.Drawing.Size(181, 142);
+            this.treeMenu.Size = new System.Drawing.Size(181, 148);
             this.treeMenu.Opening += new System.ComponentModel.CancelEventHandler(this.treeMenu_Opening);
             // 
             // attributeToolStripMenuItem
@@ -364,21 +382,10 @@
             this.addAChildToolStripMenuItem.Text = "Add a child";
             this.addAChildToolStripMenuItem.Click += new System.EventHandler(this.addAChildToolStripMenuItem_Click);
             // 
-            // sourceTreeView
+            // toolStripMenuItem6
             // 
-            this.sourceTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sourceTreeView.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
-            this.sourceTreeView.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sourceTreeView.HideSelection = false;
-            this.sourceTreeView.ImageIndex = 0;
-            this.sourceTreeView.ImageList = this.treeImageList;
-            this.sourceTreeView.Location = new System.Drawing.Point(0, 33);
-            this.sourceTreeView.Name = "sourceTreeView";
-            this.sourceTreeView.SelectedImageIndex = 0;
-            this.sourceTreeView.Size = new System.Drawing.Size(400, 406);
-            this.sourceTreeView.TabIndex = 2;
-            this.sourceTreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.sourceTreeView_BeforeCollapse);
-            this.sourceTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.sourceTreeView_BeforeExpand);
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(177, 6);
             // 
             // PatchPlanningForm
             // 
@@ -446,6 +453,7 @@
         private System.Windows.Forms.Button collapseBtn;
         private System.Windows.Forms.ListBox patchListBox;
         private System.Windows.Forms.ToolStripMenuItem addAChildToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
     }
 }
 
