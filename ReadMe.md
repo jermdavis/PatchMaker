@@ -26,7 +26,7 @@ but [write me a bug report](https://github.com/jermdavis/PatchMaker/releases) if
 
 ## Running it
 
-You can download a pre-built copy from the [Release page](https://github.com/jermdavis/PatchMaker/issues).
+You can download a pre-built copy from the [Release page](https://github.com/jermdavis/PatchMaker/releases).
 
 _**Note**_: For licensing reasons, these builds do not include the Sitecore DLL used for previewing the effect of your patches.
 The app will run happily without it, but the "preview" button in the patch generation UI will be disabled. If you use a pre-built
