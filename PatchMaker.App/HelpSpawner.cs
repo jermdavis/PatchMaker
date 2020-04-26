@@ -81,7 +81,7 @@ namespace PatchMaker.App
             ProcessStartInfo sInfo = new ProcessStartInfo()
             {
                 FileName = GetDefaultBrowserPath(),
-                Arguments = $"file:///{file}"
+                Arguments = $"\"file:///{file}\""
             };
             Process.Start(sInfo);
         }
