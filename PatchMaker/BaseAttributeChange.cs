@@ -68,6 +68,12 @@ namespace PatchMaker
             // if nesc, copy other attributes from source doc!
             foreach (var attr in targetElement.Attributes())
             {
+                // don't copy existing patch stuff
+                if(attr.Name.Namespace == Namespaces.Patch)
+                {
+                    continue;
+                }
+
                 if (currentPatchNode.Attribute(attr.Name) == null)
                 {
                     currentPatchNode.Add(attr);

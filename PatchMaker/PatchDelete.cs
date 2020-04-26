@@ -32,6 +32,11 @@ namespace PatchMaker
             var newTargetElement = new XElement(targetElement.Name);
             foreach(var attr in targetElement.Attributes())
             {
+                // don't copy anything from the patch namespace!
+                if(attr.Name.Namespace == Namespaces.Patch)
+                {
+                    continue;
+                }
                 newTargetElement.Add(attr);
             }
             var currentPatchNode = base.CopyAncestors(targetElement, patchXml.Root);

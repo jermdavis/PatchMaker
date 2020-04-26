@@ -1,5 +1,6 @@
 ﻿using PatchMaker.Sitecore;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -17,8 +18,19 @@ namespace PatchMaker.App
 
             var xml = XDocument.Parse(result);
 
-            patchResultEdit.Text = xml.ToString();
-            patchResultEdit.Select(0, 0);
+            richTextBox.Text = xml.ToString();
+
+            foreach(var line in richTextBox.Lines)
+            {
+                if(line.Contains("preview.patch.config"))
+                {
+                    int idx = richTextBox.Find(line);
+                    richTextBox.Select(idx, line.Length);
+                    richTextBox.SelectionColor = Color.Red;
+                }
+            }
+
+            richTextBox.Select(0, 0);
         }
     }
 }

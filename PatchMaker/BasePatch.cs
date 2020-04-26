@@ -78,6 +78,11 @@ namespace PatchMaker
                         {
                             foreach (var attr in ancestor.Attributes())
                             {
+                                // don't copy patch:source attributes!
+                                if(attr.Name.Namespace == Namespaces.Patch)
+                                {
+                                    continue;
+                                }
                                 newSourceNode.Add(new XAttribute(attr));
                             }
                         }
