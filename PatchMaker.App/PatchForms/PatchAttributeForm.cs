@@ -62,6 +62,10 @@ namespace PatchMaker.App.PatchForms
 
             foreach (var attr in element.Attributes())
             {
+                if(attr.Name.Namespace == Namespaces.Patch)
+                {
+                    continue;
+                }
                 defaultComboBox.Items.Add(attr);
             }
 
