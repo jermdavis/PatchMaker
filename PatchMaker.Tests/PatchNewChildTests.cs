@@ -80,5 +80,36 @@ namespace PatchMaker.Tests
             Assert.IsNotNull(newSite);
             Assert.AreEqual("c", newSite.Attribute("name").Value);
         }
+
+        [TestMethod]
+        public void PatchNewChild_ParentWithMultipleInstancesOfTargetNode_CausesAttributeCopy()
+        {
+            var xml = XDocument.Parse("<sitecore><node name=\"1\"/><node name=\"2\"/></sitecore>");
+            var ins1 = new PatchNewChild("/sitecore/node[@name='1']", new XElement("xml"));
+            var ins2 = new PatchNewChild("/sitecore/node[@name='2']", new XElement("abc"));
+
+            var sut = new PatchGenerator(xml);
+
+            var result = sut.GeneratePatchFile(new BasePatch[] { ins1, ins2 });
+
+            var nodes = result
+                .Element("configuration")
+                .Element("sitecore")
+                .Elements("node");
+
+            Assert.AreEqual(2, nodes.Count());
+
+            var node1 = nodes.ElementAt(0);
+            Assert.AreEqual("node", node1.Name.LocalName);
+            Assert.AreEqual(1, node1.Attributes().Count());
+            Assert.AreEqual("1", node1.Attribute("name").Value);
+            Assert.IsNotNull(node1.Element("xml"));
+
+            var node2 = nodes.ElementAt(1);
+            Assert.AreEqual("node", node2.Name.LocalName);
+            Assert.AreEqual(1, node2.Attributes().Count());
+            Assert.AreEqual("2", node2.Attribute("name").Value);
+            Assert.IsNotNull(node2.Element("abc"));
+        }
     }
 }
