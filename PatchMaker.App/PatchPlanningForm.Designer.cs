@@ -64,6 +64,8 @@
             this.patchDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patchInsertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patchInsteadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addAChildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -282,39 +284,39 @@
             this.moveUpToolStripMenuItem,
             this.moveDownToolStripMenuItem});
             this.patchMenu.Name = "patchMenu";
-            this.patchMenu.Size = new System.Drawing.Size(181, 120);
+            this.patchMenu.Size = new System.Drawing.Size(141, 98);
             this.patchMenu.Opening += new System.ComponentModel.CancelEventHandler(this.patchMenu_Opening);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.editToolStripMenuItem.Text = "Edit patch";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.deleteToolStripMenuItem.Text = "Delete patch";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(137, 6);
             // 
             // moveUpToolStripMenuItem
             // 
             this.moveUpToolStripMenuItem.Name = "moveUpToolStripMenuItem";
-            this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.moveUpToolStripMenuItem.Text = "Move up";
             this.moveUpToolStripMenuItem.Click += new System.EventHandler(this.moveUpToolStripMenuItem_Click);
             // 
             // moveDownToolStripMenuItem
             // 
             this.moveDownToolStripMenuItem.Name = "moveDownToolStripMenuItem";
-            this.moveDownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.moveDownToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.moveDownToolStripMenuItem.Text = "Move down";
             this.moveDownToolStripMenuItem.Click += new System.EventHandler(this.moveDownToolStripMenuItem_Click);
             // 
@@ -333,42 +335,57 @@
             this.toolStripMenuItem3,
             this.patchDeleteToolStripMenuItem,
             this.patchInsertToolStripMenuItem,
-            this.patchInsteadToolStripMenuItem});
+            this.patchInsteadToolStripMenuItem,
+            this.toolStripMenuItem6,
+            this.addAChildToolStripMenuItem});
             this.treeMenu.Name = "treeMenu";
-            this.treeMenu.Size = new System.Drawing.Size(166, 98);
+            this.treeMenu.Size = new System.Drawing.Size(181, 148);
+            this.treeMenu.Opening += new System.ComponentModel.CancelEventHandler(this.treeMenu_Opening);
             // 
             // attributeToolStripMenuItem
             // 
             this.attributeToolStripMenuItem.Name = "attributeToolStripMenuItem";
-            this.attributeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.attributeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.attributeToolStripMenuItem.Text = "Change Attribute";
             this.attributeToolStripMenuItem.Click += new System.EventHandler(this.attributeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(162, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
             // 
             // patchDeleteToolStripMenuItem
             // 
             this.patchDeleteToolStripMenuItem.Name = "patchDeleteToolStripMenuItem";
-            this.patchDeleteToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.patchDeleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.patchDeleteToolStripMenuItem.Text = "Delete Element";
             this.patchDeleteToolStripMenuItem.Click += new System.EventHandler(this.patchDeleteToolStripMenuItem_Click);
             // 
             // patchInsertToolStripMenuItem
             // 
             this.patchInsertToolStripMenuItem.Name = "patchInsertToolStripMenuItem";
-            this.patchInsertToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.patchInsertToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.patchInsertToolStripMenuItem.Text = "Insert Element";
             this.patchInsertToolStripMenuItem.Click += new System.EventHandler(this.patchInsertToolStripMenuItem_Click);
             // 
             // patchInsteadToolStripMenuItem
             // 
             this.patchInsteadToolStripMenuItem.Name = "patchInsteadToolStripMenuItem";
-            this.patchInsteadToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.patchInsteadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.patchInsteadToolStripMenuItem.Text = "Replace Element";
             this.patchInsteadToolStripMenuItem.Click += new System.EventHandler(this.patchInsteadToolStripMenuItem_Click);
+            // 
+            // addAChildToolStripMenuItem
+            // 
+            this.addAChildToolStripMenuItem.Name = "addAChildToolStripMenuItem";
+            this.addAChildToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addAChildToolStripMenuItem.Text = "Add a child";
+            this.addAChildToolStripMenuItem.Click += new System.EventHandler(this.addAChildToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(177, 6);
             // 
             // PatchPlanningForm
             // 
@@ -435,6 +452,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button collapseBtn;
         private System.Windows.Forms.ListBox patchListBox;
+        private System.Windows.Forms.ToolStripMenuItem addAChildToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
     }
 }
 

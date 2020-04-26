@@ -50,6 +50,7 @@
     <Compile Include="BasePatch.cs" />
     <Compile Include="PatchAttribute.cs" />
     <Compile Include="PatchGenerator.cs" />
+    <Compile Include="PatchNewChild.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PatchInstead.cs" />
     <Compile Include="SetAttribute.cs" />

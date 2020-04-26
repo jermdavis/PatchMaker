@@ -23,23 +23,27 @@ namespace PatchMaker.App
                 return;
             }
 
-            if(e.Node is HighlightableTreeNode)
-            {
-                var node = e.Node as HighlightableTreeNode;
+            var bounds = e.Bounds;
+            bounds.Y += 1;
+            var foreColour = e.Node.TreeView.ForeColor;
+            var backColour = Brushes.Transparent;
 
-                var foreColour = e.Node.TreeView.ForeColor;
+            if (e.Node == e.Node.TreeView.SelectedNode)
+            {
+                backColour = SystemBrushes.Highlight;
+                foreColour = SystemColors.HighlightText;
+            }
+
+            if (e.Node is HighlightableTreeNode)
+            {
+                var node = e.Node as HighlightableTreeNode;              
 
                 if(e.Node == e.Node.TreeView.SelectedNode)
                 {
-                    var backColour = SystemBrushes.Highlight;
-                    foreColour = SystemColors.HighlightText;
-
                     if(node.Highlighted)
                     {
                         backColour = Brushes.Red;
                     }
-
-                    e.Graphics.FillRectangle(backColour, e.Bounds);
                 }
                 else
                 {
@@ -48,13 +52,12 @@ namespace PatchMaker.App
                         foreColour = Color.Red;
                     }
                 }
-
-                var bounds = e.Bounds;
-                bounds.Y += 1;
-
-                var font = e.Node.NodeFont ?? e.Node.TreeView.Font;
-                TextRenderer.DrawText(e.Graphics, e.Node.Text, font, bounds, foreColour, TextFormatFlags.GlyphOverhangPadding);
             }
+
+            e.Graphics.FillRectangle(backColour, e.Bounds);
+
+            var font = e.Node.NodeFont ?? e.Node.TreeView.Font;
+            TextRenderer.DrawText(e.Graphics, e.Node.Text, font, bounds, foreColour, TextFormatFlags.GlyphOverhangPadding);
         }
     }
 
