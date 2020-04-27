@@ -34,7 +34,7 @@ release you can drop your own copy of `Sitecore.Kernel.dll` into the folder you 
 from. The code is built against Sitecore V8.2 - so if you don't use this release yourself you will need a version
 redirect in the `app.config`.
 
-Take a look at [the help included](PatchMaker.App/PatchMaker.App.Help.html) with the app for details of how to
+Take a look at [the help included](https://htmlpreview.github.io/?https://github.com/jermdavis/PatchMaker/blob/master/PatchMaker.App/PatchMaker.App.Help.html) with the app for details of how to
 use it.
 
 ## Building it
