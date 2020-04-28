@@ -44,7 +44,6 @@
     <Compile Include="BaseAttributeChange.cs" />
     <Compile Include="PatchDelete.cs" />
     <Compile Include="ElementInsertPosition.cs" />
-    <Compile Include="PatchException.cs" />
     <Compile Include="PatchInsert.cs" />
     <Compile Include="Namespaces.cs" />
     <Compile Include="BasePatch.cs" />

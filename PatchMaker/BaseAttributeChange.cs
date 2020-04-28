@@ -40,7 +40,8 @@ namespace PatchMaker
 
             if (targetElement == null)
             {
-                throw new PatchException(nameof(PatchAttribute), XPathForElement, nameof(XPathForElement));
+                patchXml.AddFirst(new XComment($"ERROR: Patch '{this.GetType().Name}' targeting '{XPathForElement}' found zero elements in source XML, and cannot be applied."));
+                return;
             }
 
             // copy ancestors-and-self

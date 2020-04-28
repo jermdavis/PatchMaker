@@ -162,8 +162,23 @@ namespace PatchMaker.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(PatchException))]
+        [ExpectedException(typeof(XPathException))]
         public void InserElement_InvalidXPath_Throws()
+        {
+            var sourceXmlText = "<sitecore><sites><site name=\"a\"/></sites></sitecore>";
+            var sourceXml = XDocument.Parse(sourceXmlText);
+
+            var replaces = new BasePatch[] {
+                new PatchInstead("/sitecore/zsites[", "site[@name='b']", new XElement("site", new XAttribute("name", "2")))
+            };
+
+            var sut = new PatchGenerator(sourceXml);
+
+            var result = sut.GeneratePatchFile(replaces).ToString();
+        }
+
+        [TestMethod]
+        public void InserElement_XPathMatchingNothing_AddsComment()
         {
             var sourceXmlText = "<sitecore><sites><site name=\"a\"/></sites></sitecore>";
             var sourceXml = XDocument.Parse(sourceXmlText);
@@ -175,6 +190,8 @@ namespace PatchMaker.Tests
             var sut = new PatchGenerator(sourceXml);
 
             var result = sut.GeneratePatchFile(replaces).ToString();
+
+            Assert.IsTrue(result.ToString().Contains("<!--ERROR:"));
         }
     }
 

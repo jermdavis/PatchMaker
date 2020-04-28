@@ -3,6 +3,7 @@ using PatchMaker.Sitecore;
 using System;
 using System.Linq;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace PatchMaker.Tests
 {
@@ -181,8 +182,21 @@ namespace PatchMaker.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(PatchException))]
+        [ExpectedException(typeof(XPathException))]
         public void PatchAttribute_InvalidXPath_Throws()
+        {
+            var patches = new BasePatch[] {
+                new PatchAttribute("/sitecore/sites/site[@name='b'", "cheese", "1"),
+            };
+            var xml = XDocument.Parse("<sitecore><sites><site name=\"a\"/></sites></sitecore>");
+
+            var sut = new PatchGenerator(xml);
+
+            var result = sut.GeneratePatchFile(patches);
+        }
+
+        [TestMethod]
+        public void PatchAttribute_XPathMatchingNothing_AddsComment()
         {
             var patches = new BasePatch[] {
                 new PatchAttribute("/sitecore/sites/site[@name='b']", "cheese", "1"),
@@ -192,6 +206,8 @@ namespace PatchMaker.Tests
             var sut = new PatchGenerator(xml);
 
             var result = sut.GeneratePatchFile(patches);
+
+            Assert.IsTrue(result.ToString().Contains("<!--ERROR:"));
         }
     }
 
