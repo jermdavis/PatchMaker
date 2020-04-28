@@ -14,7 +14,7 @@ namespace PatchMaker
 
             foreach(var attrA in a.Attributes())
             {
-                if(attrA.Name.Namespace == "http://www.w3.org/2000/xmlns/" || attrA.Name.Namespace == Namespaces.Set || attrA.Name.Namespace == Namespaces.Patch)
+                if(attrA.Name.Namespace.IsIgnorable())
                 {
                     continue;
                 }
