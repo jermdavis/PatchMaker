@@ -103,19 +103,36 @@ namespace PatchMaker.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(PatchException))]
+        [ExpectedException(typeof(XPathException))]
         public void PatchDelete_InvalidXPath_Throws()
         {
             var sourceXmlText = "<sitecore><sites><site name=\"a\"/></sites></sitecore>";
             var sourceXml = XDocument.Parse(sourceXmlText);
 
             var deletes = new BasePatch[] {
-                new PatchDelete("/sitecore/sites/site[@name='z']"),
+                new PatchDelete("/sitecore/sites/site[@name='z'"),
             };
 
             var sut = new PatchGenerator(sourceXml);
 
             var result = sut.GeneratePatchFile(deletes);
+        }
+
+        [TestMethod]
+        public void InserElement_XPathMatchingNothing_AddsComment()
+        {
+            var sourceXmlText = "<sitecore><sites><site name=\"a\"/></sites></sitecore>";
+            var sourceXml = XDocument.Parse(sourceXmlText);
+
+            var deletes = new BasePatch[] {
+                new PatchDelete("/sitecore/sites/sitae[@name='z']"),
+            };
+
+            var sut = new PatchGenerator(sourceXml);
+
+            var result = sut.GeneratePatchFile(deletes);
+
+            Assert.IsTrue(result.ToString().Contains("<!--ERROR:"));
         }
     }
 
