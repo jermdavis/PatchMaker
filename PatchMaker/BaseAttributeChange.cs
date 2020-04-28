@@ -69,7 +69,7 @@ namespace PatchMaker
             foreach (var attr in targetElement.Attributes())
             {
                 // don't copy existing patch stuff
-                if(attr.Name.Namespace == Namespaces.Patch)
+                if(attr.Name.Namespace.IsIgnorable())
                 {
                     continue;
                 }

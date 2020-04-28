@@ -62,7 +62,7 @@ namespace PatchMaker.App.PatchForms
 
             foreach (var attr in element.Attributes())
             {
-                if(attr.Name.Namespace == Namespaces.Patch)
+                if(attr.Name.Namespace.IsIgnorable())
                 {
                     continue;
                 }

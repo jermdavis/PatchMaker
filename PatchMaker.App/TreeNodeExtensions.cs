@@ -60,7 +60,7 @@ namespace PatchMaker.App
                         var query = string.Empty;
                         foreach (var xAttr in xElement.Attributes())
                         {
-                            if (xAttr.Value == Namespaces.PatchUri || xAttr.Name.NamespaceName == Namespaces.PatchUri)
+                            if(xAttr.IsIgnorable())
                             {
                                 // we never want to query on the patch namespace, if it's in the source file?
                                 continue;
