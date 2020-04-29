@@ -10,6 +10,8 @@ namespace PatchMaker.App.PatchForms
     {
         private TreeNode _treeNode;
 
+        private XDocument _rootXml => (_treeNode.Tag as XElement).Document;
+
         public PatchItem Patch { get; private set; }
 
         protected PatchInsertForm()
@@ -17,8 +19,8 @@ namespace PatchMaker.App.PatchForms
             InitializeComponent();
             this.ConfigureDialog();
 
-            parentXPathTextBox.PerformValidation = s => XPathExpression.Compile(s);
-            orderXPathTextBox.PerformValidation = s => XPathExpression.Compile(s);
+            parentXPathTextBox.PerformValidation = s => XPathExpression.Compile(s, _rootXml.MakeNamespaceManager());
+            orderXPathTextBox.PerformValidation = s => XPathExpression.Compile(s, _rootXml.MakeNamespaceManager());
 
             positionComboBox.Items.Add(ElementInsertPosition.Before);
             positionComboBox.Items.Add(ElementInsertPosition.After);

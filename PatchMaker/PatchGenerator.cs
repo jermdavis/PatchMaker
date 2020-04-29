@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace PatchMaker
@@ -48,6 +49,18 @@ namespace PatchMaker
             basePatchDoc.Root.Add(new XAttribute(XNamespace.Xmlns + "patch", Namespaces.PatchUri));
             basePatchDoc.Root.Add(new XAttribute(XNamespace.Xmlns + "set", Namespaces.SetUri));
             
+            foreach(var nsAttr in _sourceXml.Root.Attributes())
+            {
+                if(nsAttr.Value == Namespaces.PatchUri || nsAttr.Value == Namespaces.SetUri)
+                {
+                    continue;
+                }
+                if(nsAttr.Name.NamespaceName == Namespaces.XmlnsUri)
+                {
+                    basePatchDoc.Root.Add(nsAttr);
+                }
+            }
+
             return basePatchDoc;
         }
     }

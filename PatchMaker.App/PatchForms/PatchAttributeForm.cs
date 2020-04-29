@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
@@ -10,6 +12,8 @@ namespace PatchMaker.App.PatchForms
     {
         private TreeNode _treeNode;
 
+        private XDocument _rootXml => (_treeNode.Tag as XElement).Document;
+
         public PatchItem Patch { get; private set; }
 
         protected PatchAttributeForm()
@@ -18,7 +22,7 @@ namespace PatchMaker.App.PatchForms
             this.ConfigureDialog();
 
             this.nameTextBox.PerformValidation = s => new XAttribute(nameTextBox.Text, "");
-            this.elementXPathTextBox.PerformValidation = s => XPathExpression.Compile(s);
+            this.elementXPathTextBox.PerformValidation = s => XPathExpression.Compile(s, _rootXml.MakeNamespaceManager());
 
             patchTypeCombo.Items.Add(AttributePatchTypes.Patch);
             patchTypeCombo.Items.Add(AttributePatchTypes.Set);
@@ -62,7 +66,7 @@ namespace PatchMaker.App.PatchForms
 
             foreach (var attr in element.Attributes())
             {
-                if(attr.Name.Namespace.IsIgnorable())
+                if(attr.Name.Namespace.IsIgnorable(ignoreRoleAndSecurity:true))
                 {
                     continue;
                 }

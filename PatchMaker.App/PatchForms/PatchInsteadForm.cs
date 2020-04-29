@@ -10,6 +10,8 @@ namespace PatchMaker.App.PatchForms
     {
         private TreeNode _treeNode;
 
+        private XDocument _rootXml => (_treeNode.Tag as XElement).Document;
+
         public PatchItem Patch { get; private set; }
 
         protected PatchInsteadForm()
@@ -17,8 +19,8 @@ namespace PatchMaker.App.PatchForms
             InitializeComponent();
             this.ConfigureDialog();
 
-            xPathForParent.PerformValidation = s => XPathExpression.Compile(s);
-            xPathForReplacement.PerformValidation = s => XPathExpression.Compile(s);
+            xPathForParent.PerformValidation = s => XPathExpression.Compile(s, _rootXml.MakeNamespaceManager());
+            xPathForReplacement.PerformValidation = s => XPathExpression.Compile(s, _rootXml.MakeNamespaceManager());
         }
 
         public PatchInsteadForm(TreeNode node) : this()
