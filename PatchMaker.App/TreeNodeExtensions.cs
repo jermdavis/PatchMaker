@@ -43,6 +43,26 @@ namespace PatchMaker.App
             return fetchFirstAttribute(node, a => a.Value);
         }
 
+        private static string computeAppropriateName(XAttribute attr, XElement parentElement)
+        {
+            var name = attr.Name.LocalName;
+
+            if(!string.IsNullOrWhiteSpace(attr.Name.NamespaceName))
+            {
+                var root = parentElement.Document.Root;
+
+                foreach(var nsAttr in root.Attributes())
+                {
+                    if(nsAttr.Value == attr.Name.NamespaceName)
+                    {
+                        return $"{nsAttr.Name.LocalName}:{name}";
+                    }    
+                }
+            }
+
+            return name;
+        }
+
         public static string DefaultXPath(this TreeNode node)
         {
             string xPath = string.Empty;
@@ -66,7 +86,7 @@ namespace PatchMaker.App
                                 continue;
                             }
 
-                            var clause = $"@{xAttr.Name.LocalName}='{xAttr.Value}'";
+                            var clause = $"@{computeAppropriateName(xAttr, xElement)}='{xAttr.Value}'";
                             if (query.Length > 0)
                             {
                                 query += " and ";

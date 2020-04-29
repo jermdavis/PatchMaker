@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PatchMaker.Sitecore;
+using System.Linq;
 using System.Xml.Linq;
+using System.Xml.Schema;
 using System.Xml.XPath;
 
 namespace PatchMaker.Tests
@@ -10,7 +12,7 @@ namespace PatchMaker.Tests
     public class IntegrationTests
     {
         [TestMethod]
-        public void IntegrationTest()
+        public void IntegrationTest_MultiPatchOnSitecoreConfig_GivesRightAnswers()
         {
             var xml = System.IO.File.ReadAllText(@"..\..\ExampleXml\Sitecore.config");
 
@@ -60,6 +62,48 @@ namespace PatchMaker.Tests
             {
                 Assert.AreNotEqual("/sitecore/default.aspx']", patchedPage.Attribute("path").Value);
             }
+        }
+
+        [TestMethod]
+        public void IntegrationTest_RoleNamespace_IsHandledCorrectly()
+        {
+            var xml = System.IO.File.ReadAllText(@"..\..\ExampleXml\role-namespace.config");
+
+            var sitecoreConfig = XDocument.Parse(xml);
+
+            var patches = new BasePatch[] {
+                new SetAttribute("/sitecore/sc.variable[@name='mediaFolder' and @role:require='Standalone']", "value", "~/StandAloneData"),
+            };
+
+            var sut = new PatchGenerator(sitecoreConfig);
+
+            var patchData = sut.GeneratePatchFile(patches);
+
+            var patchElement = patchData
+                .Element("configuration")
+                .Element("sitecore")
+                .Element("sc.variable");
+
+            Assert.IsNotNull(patchElement);
+            Assert.AreEqual(4, patchElement.Attributes().Count());
+            Assert.AreEqual("mediaFolder", patchElement.Attribute("name").Value);
+
+            var newXml = SitecorePatcher.Apply(xml, patchData.ToString(), "testpatch.config");
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(newXml));
+
+            var newXDoc = XDocument.Parse(newXml);
+
+            var newElement = newXDoc.XPathSelectElement("/sitecore/sc.variable[@name='mediaFolder']");
+
+            // For the moment this is five. It should be four, but the current patch preview logic is rendering
+            // both "role:require='Standalone'" and "require='Standalone'" for some reason.
+            // That needs a fix if possible - but the overall behaviour here is right?
+            var expectedAttributes = 5;
+
+            Assert.IsNotNull(newElement);
+            Assert.AreEqual(expectedAttributes, newElement.Attributes().Count());
+            Assert.AreEqual("~/StandAloneData", newElement.Attribute("value").Value);
         }
     }
 

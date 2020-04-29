@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace PatchMaker.App.PatchForms
 {
@@ -15,12 +16,16 @@ namespace PatchMaker.App.PatchForms
     {
         private TreeNode _treeNode;
 
+        private XDocument _rootXml => (_treeNode.Tag as XElement).Document;
+
         public PatchItem Patch { get; private set; }
 
         public PatchNewChildForm()
         {
             InitializeComponent();
             this.ConfigureDialog();
+
+            xPathForParent.PerformValidation = s => XPathExpression.Compile(s, _rootXml.MakeNamespaceManager());
         }
 
         public PatchNewChildForm(TreeNode node) : this()

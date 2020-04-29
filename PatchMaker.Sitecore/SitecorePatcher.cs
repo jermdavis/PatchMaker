@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 
 namespace PatchMaker.Sitecore
@@ -15,7 +17,14 @@ namespace PatchMaker.Sitecore
 
             using (var xml = new StringReader(patchXml))
             {
-                patcher.ApplyPatch(xml, patchFileName);
+                try
+                {
+                    patcher.ApplyPatch(xml, patchFileName);
+                }
+                catch(Exception ex)
+                {
+                    return $"<error><!-- {ex.Message} --></error>";
+                }
             }
 
             return patcher.Document.OuterXml;
