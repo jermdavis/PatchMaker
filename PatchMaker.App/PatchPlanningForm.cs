@@ -123,7 +123,7 @@ namespace PatchMaker.App
 
         private void fileMenuToolStripItem_DropDownOpening(object sender, EventArgs e)
         {
-            bool ready = _manager.Source != null;
+            bool ready = _manager.Source != null && patchListBox.Items.Count > 0;
 
             generatePatchesToolStripMenuItem.Enabled = ready;
         }

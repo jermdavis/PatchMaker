@@ -14,6 +14,8 @@ namespace PatchMaker.App
             InitializeComponent();
             this.ConfigureDialog();
 
+            roleWarningLabel.Visible = checkIfRoleWarningRequired(patchXml);
+
             var result = SitecorePatcher.Apply(sourceXml, patchXml, "preview.patch.config");
 
             var xml = XDocument.Parse(result);
@@ -31,6 +33,16 @@ namespace PatchMaker.App
             }
 
             richTextBox.Select(0, 0);
+        }
+
+        private bool checkIfRoleWarningRequired(string patchXml)
+        {
+            return patchXml.Contains(Namespaces.RoleUri);
+        }
+
+        private void roleWarningLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            HelpSpawner.SpawnLocalFile("preview");
         }
     }
 }

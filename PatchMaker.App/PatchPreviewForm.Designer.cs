@@ -32,6 +32,7 @@
             this.okBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
+            this.roleWarningLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // okBtn
@@ -68,12 +69,27 @@
             this.richTextBox.Text = "";
             this.richTextBox.WordWrap = false;
             // 
+            // roleWarningLabel
+            // 
+            this.roleWarningLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.roleWarningLabel.AutoSize = true;
+            this.roleWarningLabel.ForeColor = System.Drawing.Color.Red;
+            this.roleWarningLabel.LinkColor = System.Drawing.Color.Red;
+            this.roleWarningLabel.Location = new System.Drawing.Point(12, 303);
+            this.roleWarningLabel.Name = "roleWarningLabel";
+            this.roleWarningLabel.Size = new System.Drawing.Size(241, 13);
+            this.roleWarningLabel.TabIndex = 4;
+            this.roleWarningLabel.TabStop = true;
+            this.roleWarningLabel.Text = "Warning: This patch includes the role namespace";
+            this.roleWarningLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.roleWarningLabel_LinkClicked);
+            // 
             // PatchPreviewForm
             // 
             this.AcceptButton = this.okBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 338);
+            this.Controls.Add(this.roleWarningLabel);
             this.Controls.Add(this.richTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.okBtn);
@@ -92,5 +108,6 @@
         private System.Windows.Forms.Button okBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBox;
+        private System.Windows.Forms.LinkLabel roleWarningLabel;
     }
 }
