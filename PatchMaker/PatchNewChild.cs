@@ -26,7 +26,8 @@ namespace PatchMaker
         public override void ApplyPatchElement(XDocument sourceXml, XDocument patchXml)
         {
             // select element
-            var targetElement = sourceXml.SafeXPathSelectElement(XPathForParent);
+            var xns = sourceXml.MakeNamespaceManager();
+            var targetElement = sourceXml.SafeXPathSelectElement(XPathForParent, xns);
 
             if (targetElement == null)
             {
