@@ -129,6 +129,11 @@
         result for you to examine. Any lines which have the <code>patch:source</code> attribute added as part of this preview operation will be highlighted in red. (Though note it highlights lines, not complete XML elements)
     </p>
     <p>
+        The way the preview is implemented at the moment means that patches which include the <code>role:require</code> attribute (or similar) in their XPath may not work correctly.
+        If you try to select an attribute to modify based on its role, you may see both <code>role:require</code> and <code>require</code> attributes in the preview output.
+        Attempts to select a target element for <code>patch:insert</code> or <code>patch:instead</code> when role attributes are involved may prevent the patch being generated.
+    </p>
+    <p>
         <b>** <u><i>NOTE:</i></u> **</b> For licensing reasons the Sitecore DLLs can't be shipped with this pre-built releases of this app. You need to drop "<code>Sitecore.Kernel.dll</code>"
         into the same folder as the "<code>PatchMaker.App.exe</code>" file, before you start the app for this feature to be enabled. The preview button will be
         disabled if this DLL is not present. The code was built against Sitecore v8.2 - so you may also need to add a version redirect
