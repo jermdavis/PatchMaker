@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PatchMaker.Sitecore;
+using System.Linq;
 using System.Xml.Linq;
+using System.Xml.Schema;
 using System.Xml.XPath;
 
 namespace PatchMaker.Tests
@@ -65,21 +67,38 @@ namespace PatchMaker.Tests
         [TestMethod]
         public void IntegrationTest_RoleNamespace_IsHandledCorrectly()
         {
-            var xml = System.IO.File.ReadAllText(@"..\..\ExampleXml\v92-Sitecore.config");
+            var xml = System.IO.File.ReadAllText(@"..\..\ExampleXml\role-namespace.config");
 
             var sitecoreConfig = XDocument.Parse(xml);
 
             var patches = new BasePatch[] {
-                new SetAttribute("/sitecore/sc.variable[@name='dataFolder' and @role:require='Standalone']", "value", "~/StandAloneData"),
+                new SetAttribute("/sitecore/sc.variable[@name='mediaFolder' and @role:require='Standalone']", "value", "~/StandAloneData"),
             };
 
             var sut = new PatchGenerator(sitecoreConfig);
 
             var patchData = sut.GeneratePatchFile(patches);
 
+            var patchElement = patchData
+                .Element("configuration")
+                .Element("sitecore")
+                .Element("sc.variable");
+
+            Assert.IsNotNull(patchElement);
+            Assert.AreEqual(3, patchElement.Attributes().Count());
+            Assert.AreEqual("mediaFolder", patchElement.Attribute("name").Value);
+
             var newXml = SitecorePatcher.Apply(xml, patchData.ToString(), "testpatch.config");
 
             Assert.IsFalse(string.IsNullOrWhiteSpace(newXml));
+
+            var newXDoc = XDocument.Parse(newXml);
+
+            var newElement = newXDoc.XPathSelectElement("/sitecore/sc.variable[@name='mediaFolder']");
+
+            Assert.IsNotNull(newElement);
+            Assert.AreEqual(4, newElement.Attributes().Count());
+            Assert.AreEqual("~/StandAloneData", newElement.Attribute("value").Value);
         }
     }
 
