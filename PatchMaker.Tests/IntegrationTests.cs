@@ -10,7 +10,7 @@ namespace PatchMaker.Tests
     public class IntegrationTests
     {
         [TestMethod]
-        public void IntegrationTest()
+        public void IntegrationTest_MultiPatchOnSitecoreConfig_GivesRightAnswers()
         {
             var xml = System.IO.File.ReadAllText(@"..\..\ExampleXml\Sitecore.config");
 
@@ -60,6 +60,26 @@ namespace PatchMaker.Tests
             {
                 Assert.AreNotEqual("/sitecore/default.aspx']", patchedPage.Attribute("path").Value);
             }
+        }
+
+        [TestMethod]
+        public void IntegrationTest_RoleNamespace_IsHandledCorrectly()
+        {
+            var xml = System.IO.File.ReadAllText(@"..\..\ExampleXml\v92-Sitecore.config");
+
+            var sitecoreConfig = XDocument.Parse(xml);
+
+            var patches = new BasePatch[] {
+                new SetAttribute("/sitecore/sc.variable[@name='dataFolder' and @role:require='Standalone']", "value", "~/StandAloneData"),
+            };
+
+            var sut = new PatchGenerator(sitecoreConfig);
+
+            var patchData = sut.GeneratePatchFile(patches);
+
+            var newXml = SitecorePatcher.Apply(xml, patchData.ToString(), "testpatch.config");
+
+            Assert.IsFalse(string.IsNullOrWhiteSpace(newXml));
         }
     }
 
