@@ -51,6 +51,8 @@ namespace PatchMaker
             var newNode = new XElement(NewElement);
             newNode.Add(new XAttribute(Namespaces.Patch + Position.ToString().ToLower(), XPathForOrder));
 
+            removeCoreNamespaces(patchXml, newNode);
+
             // append PatchXml element as child
             var currentPatchNode = base.CopyAncestorsAndSelf(targetElement, patchXml.Root);
             currentPatchNode.Add(newNode);

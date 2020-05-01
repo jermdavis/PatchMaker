@@ -110,6 +110,22 @@ namespace PatchMaker
             var ancestors = targetElement.AncestorsAndSelf().Reverse();
             return performCopy(root, ancestors);
         }
+
+        protected void removeCoreNamespaces(XDocument patchXml, XElement newNode)
+        {
+            var rootNode = patchXml.Root;
+            foreach (var attr in newNode.Attributes())
+            {
+                if (attr.Name.Namespace.NamespaceName == Namespaces.XmlnsUri)
+                {
+                    var match = rootNode.Attributes().Where(a => a.Value == attr.Value).Any();
+                    if (match)
+                    {
+                        attr.Remove();
+                    }
+                }
+            }
+        }
     }
 
 }
