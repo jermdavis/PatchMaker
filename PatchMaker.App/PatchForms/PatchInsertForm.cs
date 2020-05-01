@@ -31,6 +31,7 @@ namespace PatchMaker.App.PatchForms
         {
             _treeNode = node ?? throw new ArgumentNullException(nameof(node));
 
+            newElementTextBox.ConfigureInsertionContextMenu(_rootXml.Root);
             var rootNode = treeView.BuildTreeView(node);
 
             var xPath = rootNode.DefaultXPath();
@@ -47,6 +48,8 @@ namespace PatchMaker.App.PatchForms
         public PatchInsertForm(PatchItem patchItem) : this()
         {
             _treeNode = patchItem.RelatedTreeNode;
+
+            newElementTextBox.ConfigureInsertionContextMenu(_rootXml.Root);
             treeView.BuildTreeView(_treeNode);
 
             var patch = patchItem.Patch as PatchInsert;
