@@ -111,7 +111,7 @@ namespace PatchMaker
             return performCopy(root, ancestors);
         }
 
-        protected void removeCoreNamespaces(XDocument patchXml, XElement newNode)
+        protected void RemoveCoreNamespaces(XDocument patchXml, XElement newNode)
         {
             var rootNode = patchXml.Root;
             foreach (var attr in newNode.Attributes())

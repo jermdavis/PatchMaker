@@ -49,7 +49,7 @@ namespace PatchMaker
 
             // add new xml
             var currentPatchNode = base.CopyAncestorsAndSelf(targetElement, patchXml.Root);
-            removeCoreNamespaces(patchXml, newElement);
+            RemoveCoreNamespaces(patchXml, newElement);
             currentPatchNode.Add(newElement);
         }
 
