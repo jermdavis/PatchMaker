@@ -118,11 +118,14 @@ namespace PatchMaker
             {
                 if (attr.Name.Namespace.NamespaceName == Namespaces.XmlnsUri)
                 {
+                    // when a namespace declaration exists at the patch root, just remove it from this node
+                    // otherwise copy it to the patch root and then remove it from here.
                     var match = rootNode.Attributes().Where(a => a.Value == attr.Value).Any();
-                    if (match)
+                    if (!match)
                     {
-                        attr.Remove();
+                        patchXml.Root.Add(attr);
                     }
+                    attr.Remove();
                 }
             }
         }
