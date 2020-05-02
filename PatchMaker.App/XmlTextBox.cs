@@ -31,6 +31,7 @@ namespace PatchMaker.App
         {
             var m = new ContextMenuStrip();
 
+            // add operations to copy any namespaces declared on the root element
             foreach(var nsAttr in root.Attributes())
             {
                 if(nsAttr.Name.NamespaceName == Namespaces.XmlnsUri)
@@ -39,7 +40,20 @@ namespace PatchMaker.App
                 }
             }
 
+            // But check to ensure that role / security are always there because they're important
+            addIfMissing(m, root, "role", Namespaces.Role);
+            addIfMissing(m, root, "security", Namespaces.Security);
+
             this.ContextMenuStrip = m;
+        }
+
+        private void addIfMissing(ContextMenuStrip m, XElement root, string name, XNamespace ns)
+        {
+            var existed = root.Attributes().Where(a => a.Value == ns.NamespaceName).Any();
+            if (!existed)
+            {
+                m.Items.Add(makeMenu(name, ns));
+            }
         }
 
         private ToolStripMenuItem makeMenu(string name, string ns)
