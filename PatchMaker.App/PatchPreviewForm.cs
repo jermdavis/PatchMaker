@@ -17,7 +17,7 @@ namespace PatchMaker.App
 
             renderRoles(rolesLabel, roles);
 
-            var result = SitecorePatcher.Apply(sourceXml, patchXml, "preview.patch.config", roles);
+            var result = SitecorePatcher.ApplyWithRoles(sourceXml, patchXml, "preview.patch.config", roles);
 
             var xml = XDocument.Parse(result);
 

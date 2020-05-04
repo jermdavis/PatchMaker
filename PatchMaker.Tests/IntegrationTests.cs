@@ -41,7 +41,7 @@ namespace PatchMaker.Tests
 
             var patchData = sut.GeneratePatchFile(patches);
 
-            var newXml = SitecorePatcher.Apply(xml, patchData.ToString(), "testpatch.config");
+            var newXml = SitecorePatcher.ApplyWithoutRoles(xml, patchData.ToString(), "testpatch.config");
 
 
             var newXDoc = XDocument.Parse(newXml);
@@ -91,7 +91,7 @@ namespace PatchMaker.Tests
 
             var roles = new Dictionary<string, string>() { {"role", "Standalone" }};
 
-            var newXml = SitecorePatcher.Apply(xml, patchData.ToString(), "testpatch.config", roles);
+            var newXml = SitecorePatcher.ApplyWithRoles(xml, patchData.ToString(), "testpatch.config", roles);
 
             Assert.IsFalse(string.IsNullOrWhiteSpace(newXml));
 

@@ -11,7 +11,7 @@ namespace PatchMaker.Sitecore
 
 	public static class SitecorePatcher
     {
-        public static string Apply(string sourceXml, string patchXml, string patchFileName = null)
+        public static string ApplyWithoutRoles(string sourceXml, string patchXml, string patchFileName = null)
         {
             var sourceDoc = new XmlDocument();
             sourceDoc.LoadXml(sourceXml);
@@ -36,16 +36,23 @@ namespace PatchMaker.Sitecore
         //
         // V9 / role approach worked out from: https://github.com/benmcevoy/ConfigViewer/blob/master/ConfigView/Program.cs
         //
-        public static string Apply(string sourceXml, string patchXml, string patchFileName, Dictionary<string, string> roles)
+        public static string ApplyWithRoles(string sourceXml, string patchXml, string patchFileName, Dictionary<string, string> roles)
 		{
 			var c = new CustomConfigurator();
 
-			c.SourceXml = sourceXml;
-			c.PatchXml = patchXml;
-			c.PatchFileName = patchFileName;
-			var xml = c.Run("Sitecore|Modules|Environment|Custom", roles);	
+            try
+            {
+                c.SourceXml = sourceXml;
+                c.PatchXml = patchXml;
+                c.PatchFileName = patchFileName;
+                var xml = c.Run("Sitecore|Modules|Environment|Custom", roles);
 
-			return xml.OuterXml;
+                return xml.OuterXml;
+            }
+            catch(Exception ex)
+            {
+                return $"<error><!-- {ex.Message} --></error>";
+            }
 		}
 	}
 

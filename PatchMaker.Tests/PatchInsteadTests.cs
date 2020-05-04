@@ -156,7 +156,7 @@ namespace PatchMaker.Tests
 
             var patchXmlText = sut.GeneratePatchFile(replaces).ToString();
 
-            var resultXmlText = SitecorePatcher.Apply(sourceXmlText, patchXmlText);
+            var resultXmlText = SitecorePatcher.ApplyWithoutRoles(sourceXmlText, patchXmlText);
 
             Assert.AreEqual("<sitecore><sites><site name=\"1\" /><site name=\"2\" /></sites></sitecore>", resultXmlText);
         }
