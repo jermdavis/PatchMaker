@@ -10,14 +10,10 @@ namespace PatchMaker.App
 {
     public partial class PatchPreviewForm : Form
     {
-        public string Role { get; set; } = "Standalone";
-
         public PatchPreviewForm(string sourceXml, string patchXml, Dictionary<string,string> roles)
         {
             InitializeComponent();
             this.ConfigureDialog();
-
-            roleWarningLabel.Visible = checkIfRoleWarningRequired(patchXml);
 
             renderRoles(rolesLabel, roles);
 
@@ -51,11 +47,6 @@ namespace PatchMaker.App
                 }
                 rolesLabel.Text += role.Key + "=" + role.Value;
             }
-        }
-
-        private bool checkIfRoleWarningRequired(string patchXml)
-        {
-            return patchXml.Contains(Namespaces.RoleUri);
         }
 
         private void roleWarningLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
