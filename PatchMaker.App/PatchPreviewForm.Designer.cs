@@ -34,6 +34,7 @@
             this.richTextBox = new System.Windows.Forms.RichTextBox();
             this.roleWarningLabel = new System.Windows.Forms.LinkLabel();
             this.rolesLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // okBtn
@@ -50,7 +51,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 36);
+            this.label1.Location = new System.Drawing.Point(12, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 13);
             this.label1.TabIndex = 2;
@@ -62,10 +63,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox.Location = new System.Drawing.Point(15, 56);
+            this.richTextBox.Location = new System.Drawing.Point(15, 44);
             this.richTextBox.Name = "richTextBox";
             this.richTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBox.Size = new System.Drawing.Size(613, 232);
+            this.richTextBox.Size = new System.Drawing.Size(613, 244);
             this.richTextBox.TabIndex = 3;
             this.richTextBox.Text = "";
             this.richTextBox.WordWrap = false;
@@ -87,11 +88,20 @@
             // rolesLabel
             // 
             this.rolesLabel.AutoSize = true;
-            this.rolesLabel.Location = new System.Drawing.Point(13, 13);
+            this.rolesLabel.Location = new System.Drawing.Point(53, 9);
             this.rolesLabel.Name = "rolesLabel";
             this.rolesLabel.Size = new System.Drawing.Size(35, 13);
             this.rolesLabel.TabIndex = 5;
             this.rolesLabel.Text = "label2";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Config:";
             // 
             // PatchPreviewForm
             // 
@@ -99,6 +109,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 338);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.rolesLabel);
             this.Controls.Add(this.roleWarningLabel);
             this.Controls.Add(this.richTextBox);
@@ -121,5 +132,6 @@
         private System.Windows.Forms.RichTextBox richTextBox;
         private System.Windows.Forms.LinkLabel roleWarningLabel;
         private System.Windows.Forms.Label rolesLabel;
+        private System.Windows.Forms.Label label2;
     }
 }

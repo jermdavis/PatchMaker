@@ -12,19 +12,12 @@ namespace PatchMaker.App
     {
         public string Role { get; set; } = "Standalone";
 
-        public PatchPreviewForm(string sourceXml, string patchXml)
+        public PatchPreviewForm(string sourceXml, string patchXml, Dictionary<string,string> roles)
         {
             InitializeComponent();
             this.ConfigureDialog();
 
             roleWarningLabel.Visible = checkIfRoleWarningRequired(patchXml);
-
-            // Add this to the UI somehow
-            var roles = new Dictionary<string, string>()
-              {
-                { "role","Standalone|ContentDelivery"},
-                { "search","Solr"}
-              };
 
             renderRoles(rolesLabel, roles);
 
@@ -58,7 +51,6 @@ namespace PatchMaker.App
                 }
                 rolesLabel.Text += role.Key + "=" + role.Value;
             }
-            rolesLabel.Text = "Roles: " + rolesLabel.Text;
         }
 
         private bool checkIfRoleWarningRequired(string patchXml)

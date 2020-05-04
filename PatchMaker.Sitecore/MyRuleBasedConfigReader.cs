@@ -13,11 +13,6 @@ namespace PatchMaker.Sitecore
 		public string PatchXml { get; set; }
 		public string PatchFileName { get; set; }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:global::Sitecore.Configuration.RuleBasedConfigReader" /> class.
-		/// </summary>
-		/// <param name="includeFiles">The include files.</param>
-		/// <param name="ruleCollection">The rule collection.</param>
 		public CustomRuleBasedConfigReader(IEnumerable<string> includeFiles, NameValueCollection ruleCollection)
 			: base(includeFiles, ruleCollection)
 		{

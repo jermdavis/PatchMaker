@@ -118,7 +118,9 @@ namespace PatchMaker.App
         private void generatePatchesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var generateDialog = new PatchGenerationForm(patchListBox, _manager.Source, _manager.SourceFileName);
+            generateDialog.RoleConfig = _manager.RoleConfig;
             var dr = generateDialog.ShowDialog(this);
+            _manager.RoleConfig = generateDialog.RoleConfig;
         }
 
         private void fileMenuToolStripItem_DropDownOpening(object sender, EventArgs e)
@@ -182,12 +184,12 @@ namespace PatchMaker.App
                 createDialog = i => new PatchNewChildForm(i);
             }
 
-            var deleteDialog = createDialog(item);
-            var dr = deleteDialog.ShowDialog(this);
+            var dialog = createDialog(item);
+            var dr = dialog.ShowDialog(this);
 
             if (dr == DialogResult.OK)
             {
-                patchListBox.Items[patchListBox.SelectedIndex] = deleteDialog.Patch;
+                patchListBox.Items[patchListBox.SelectedIndex] = dialog.Patch;
             }
         }
 
