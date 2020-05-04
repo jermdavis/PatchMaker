@@ -20,7 +20,7 @@ but [write me a bug report](https://github.com/jermdavis/PatchMaker/issues) if y
    * The `PatchForms` folder contains the UI for the individual patch types
    * `PatchGenerationForm.cs` deals with showing and saving the resulting patch file.
    * And `PatchPreviewForm.cs` is the UI for seeing the effect of your patch file on the original XML file.
-* **PatchMaker.Sitecore**: A wrapper for Sitecore's internal patch processing logic - used to generate previews of what a patch file will do in tests and the UI.
+* **PatchMaker.Sitecore**: A wrapper for Sitecore's internal patch processing logic - used to generate previews of what a patch file will do in tests and the UI. Includes a chunk of code [inspired by another github repo](https://github.com/benmcevoy/ConfigViewer), to enable role-based config patching.
    * `SitecorePatcher.cs` provides a static class / method that wraps Sitecore's logic.
 * **PatchMaker.Tests**: A set of unit tests for the core classes.
 
@@ -31,7 +31,7 @@ You can download a pre-built copy from the [Release page](https://github.com/jer
 _**Note**_: For licensing reasons, these builds do not include the Sitecore DLL used for previewing the effect of your patches.
 The app will run happily without it, but the "preview" button in the patch generation UI will be disabled. If you use a pre-built
 release you can drop your own copy of `Sitecore.Kernel.dll` into the folder you run `PatchMaker.App.exe`
-from. The code is built against Sitecore V8.2 - so if you don't use this release yourself you will need a version
+from. The code is built against Sitecore V9.0 - so if you use a newer release yourself you may need a version
 redirect in the `app.config`.
 
 Take a look at [the help included](https://htmlpreview.github.io/?https://github.com/jermdavis/PatchMaker/blob/master/PatchMaker.App/PatchMaker.App.Help.html) with the app for details of how to
