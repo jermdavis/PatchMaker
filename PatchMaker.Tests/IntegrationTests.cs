@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PatchMaker.Sitecore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Schema;
@@ -40,7 +41,7 @@ namespace PatchMaker.Tests
 
             var patchData = sut.GeneratePatchFile(patches);
 
-            var newXml = SitecorePatcher.Apply(xml, patchData.ToString(), "testpatch.config");
+            var newXml = SitecorePatcher.ApplyWithoutRoles(xml, patchData.ToString(), "testpatch.config");
 
 
             var newXDoc = XDocument.Parse(newXml);
@@ -88,7 +89,9 @@ namespace PatchMaker.Tests
             Assert.AreEqual(4, patchElement.Attributes().Count());
             Assert.AreEqual("mediaFolder", patchElement.Attribute("name").Value);
 
-            var newXml = SitecorePatcher.Apply(xml, patchData.ToString(), "testpatch.config");
+            var roles = new Dictionary<string, string>() { {"role", "Standalone" }};
+
+            var newXml = SitecorePatcher.ApplyWithRoles(xml, patchData.ToString(), "testpatch.config", roles);
 
             Assert.IsFalse(string.IsNullOrWhiteSpace(newXml));
 
@@ -96,13 +99,8 @@ namespace PatchMaker.Tests
 
             var newElement = newXDoc.XPathSelectElement("/sitecore/sc.variable[@name='mediaFolder']");
 
-            // For the moment this is five. It should be four, but the current patch preview logic is rendering
-            // both "role:require='Standalone'" and "require='Standalone'" for some reason.
-            // That needs a fix if possible - but the overall behaviour here is right?
-            var expectedAttributes = 5;
-
             Assert.IsNotNull(newElement);
-            Assert.AreEqual(expectedAttributes, newElement.Attributes().Count());
+            Assert.AreEqual(3, newElement.Attributes().Count());
             Assert.AreEqual("~/StandAloneData", newElement.Attribute("value").Value);
         }
     }

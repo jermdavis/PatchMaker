@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatchMaker", "PatchMaker\Pa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0663A516-6125-4B1B-989C-A9F00F1BED5C}"
 	ProjectSection(SolutionItems) = preProject
+		Notes\MakeRelease.ps1 = Notes\MakeRelease.ps1
 		nuget.config = nuget.config
 		ReadMe.md = ReadMe.md
 	EndProjectSection

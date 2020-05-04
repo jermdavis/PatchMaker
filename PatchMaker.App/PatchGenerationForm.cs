@@ -13,6 +13,8 @@ namespace PatchMaker.App
         private XDocument _patch;
         private string _sourceFileName;
 
+        public Dictionary<string, string> RoleConfig { get; set; } = new Dictionary<string, string>();
+
         public PatchGenerationForm(ListBox patchListView, XDocument sourceXml, string sourceFileName)
         {
             InitializeComponent();
@@ -58,7 +60,7 @@ namespace PatchMaker.App
 
         private void previewBtn_Click(object sender, EventArgs e)
         {
-            var preview = new PatchPreviewForm(_sourceXml.ToString(), patchXmlEdit.Text);
+            var preview = new PatchPreviewForm(_sourceXml.ToString(), patchXmlEdit.Text, RoleConfig);
             var dr = preview.ShowDialog(this);
         }
 
@@ -85,6 +87,19 @@ namespace PatchMaker.App
         private void PatchGenerationForm_HelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
         {
             HelpSpawner.SpawnLocalFile("generate");
+        }
+
+        private void roleBtn_Click(object sender, EventArgs e)
+        {
+            var rc = new RoleConfigForm();
+            rc.Initialise(this.RoleConfig);
+
+            var dr = rc.ShowDialog(this);
+
+            if(dr == DialogResult.OK)
+            {
+                this.RoleConfig = rc.RoleConfig;
+            }
         }
     }
 }

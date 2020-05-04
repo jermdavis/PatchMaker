@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -16,6 +17,10 @@ namespace PatchMaker.App
 
         public XDocument Source => _sourceXml;
         public string SourceFileName => _sourceFileName;
+        public Dictionary<string, string> RoleConfig { get; set; } = new Dictionary<string, string>() {
+            { "role","Standalone|ContentDelivery"},
+            { "search","Solr"}
+        };
 
         public void ConfigureControls(TreeView patchTreeView, ListBox patchesList, ContextMenuStrip treeMenu)
         {

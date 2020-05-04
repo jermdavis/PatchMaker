@@ -34,6 +34,7 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.okBtn = new System.Windows.Forms.Button();
             this.previewBtn = new System.Windows.Forms.Button();
+            this.roleBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -80,7 +81,7 @@
             this.okBtn.Location = new System.Drawing.Point(510, 269);
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(75, 23);
-            this.okBtn.TabIndex = 3;
+            this.okBtn.TabIndex = 4;
             this.okBtn.Text = "Ok";
             this.okBtn.UseVisualStyleBackColor = true;
             // 
@@ -95,12 +96,24 @@
             this.previewBtn.UseVisualStyleBackColor = true;
             this.previewBtn.Click += new System.EventHandler(this.previewBtn_Click);
             // 
+            // roleBtn
+            // 
+            this.roleBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.roleBtn.Location = new System.Drawing.Point(302, 269);
+            this.roleBtn.Name = "roleBtn";
+            this.roleBtn.Size = new System.Drawing.Size(75, 23);
+            this.roleBtn.TabIndex = 3;
+            this.roleBtn.Text = "Roles";
+            this.roleBtn.UseVisualStyleBackColor = true;
+            this.roleBtn.Click += new System.EventHandler(this.roleBtn_Click);
+            // 
             // PatchGenerationForm
             // 
             this.AcceptButton = this.okBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(597, 308);
+            this.Controls.Add(this.roleBtn);
             this.Controls.Add(this.previewBtn);
             this.Controls.Add(this.okBtn);
             this.Controls.Add(this.saveBtn);
@@ -125,5 +138,6 @@
         private System.Windows.Forms.Button okBtn;
         private System.Windows.Forms.Button previewBtn;
         private XmlTextBox patchXmlEdit;
+        private System.Windows.Forms.Button roleBtn;
     }
 }

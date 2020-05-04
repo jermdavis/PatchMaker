@@ -1,4 +1,5 @@
 ﻿using PatchMaker.Sitecore;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -9,14 +10,14 @@ namespace PatchMaker.App
 {
     public partial class PatchPreviewForm : Form
     {
-        public PatchPreviewForm(string sourceXml, string patchXml)
+        public PatchPreviewForm(string sourceXml, string patchXml, Dictionary<string,string> roles)
         {
             InitializeComponent();
             this.ConfigureDialog();
 
-            roleWarningLabel.Visible = checkIfRoleWarningRequired(patchXml);
+            renderRoles(rolesLabel, roles);
 
-            var result = SitecorePatcher.Apply(sourceXml, patchXml, "preview.patch.config");
+            var result = SitecorePatcher.ApplyWithRoles(sourceXml, patchXml, "preview.patch.config", roles);
 
             var xml = XDocument.Parse(result);
 
@@ -35,9 +36,17 @@ namespace PatchMaker.App
             richTextBox.Select(0, 0);
         }
 
-        private bool checkIfRoleWarningRequired(string patchXml)
+        private void renderRoles(Label rolesLabel, Dictionary<string,string> roles)
         {
-            return patchXml.Contains(Namespaces.RoleUri);
+            rolesLabel.Text = string.Empty; 
+            foreach (var role in roles)
+            {
+                if(rolesLabel.Text.Length > 0)
+                {
+                    rolesLabel.Text += ", ";
+                }
+                rolesLabel.Text += role.Key + "=" + role.Value;
+            }
         }
 
         private void roleWarningLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
