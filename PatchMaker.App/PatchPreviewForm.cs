@@ -1,4 +1,5 @@
 ﻿using PatchMaker.Sitecore;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace PatchMaker.App
 {
     public partial class PatchPreviewForm : Form
     {
+        public string Role { get; set; } = "Standalone";
+
         public PatchPreviewForm(string sourceXml, string patchXml)
         {
             InitializeComponent();
@@ -16,7 +19,16 @@ namespace PatchMaker.App
 
             roleWarningLabel.Visible = checkIfRoleWarningRequired(patchXml);
 
-            var result = SitecorePatcher.Apply(sourceXml, patchXml, "preview.patch.config");
+            // Add this to the UI somehow
+            var roles = new Dictionary<string, string>()
+              {
+                { "role","Standalone|ContentDelivery"},
+                { "search","Solr"}
+              };
+
+            renderRoles(rolesLabel, roles);
+
+            var result = SitecorePatcher.Apply(sourceXml, patchXml, "preview.patch.config", roles);
 
             var xml = XDocument.Parse(result);
 
@@ -33,6 +45,20 @@ namespace PatchMaker.App
             }
 
             richTextBox.Select(0, 0);
+        }
+
+        private void renderRoles(Label rolesLabel, Dictionary<string,string> roles)
+        {
+            rolesLabel.Text = string.Empty; 
+            foreach (var role in roles)
+            {
+                if(rolesLabel.Text.Length > 0)
+                {
+                    rolesLabel.Text += ", ";
+                }
+                rolesLabel.Text += role.Key + "=" + role.Value;
+            }
+            rolesLabel.Text = "Roles: " + rolesLabel.Text;
         }
 
         private bool checkIfRoleWarningRequired(string patchXml)

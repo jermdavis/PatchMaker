@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Sitecore.Shell.Applications.ContentEditor;
+using Sitecore.Visualization;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Xml;
 
 namespace PatchMaker.Sitecore
 {
 
-    public static class SitecorePatcher
+	public static class SitecorePatcher
     {
         public static string Apply(string sourceXml, string patchXml, string patchFileName = null)
         {
@@ -21,7 +24,7 @@ namespace PatchMaker.Sitecore
                 {
                     patcher.ApplyPatch(xml, patchFileName);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     return $"<error><!-- {ex.Message} --></error>";
                 }
@@ -29,6 +32,21 @@ namespace PatchMaker.Sitecore
 
             return patcher.Document.OuterXml;
         }
-    }
+
+        //
+        // V9 / role approach worked out from: https://github.com/benmcevoy/ConfigViewer/blob/master/ConfigView/Program.cs
+        //
+        public static string Apply(string sourceXml, string patchXml, string patchFileName, Dictionary<string, string> roles)
+		{
+			var c = new CustomConfigurator();
+
+			c.SourceXml = sourceXml;
+			c.PatchXml = patchXml;
+			c.PatchFileName = patchFileName;
+			var xml = c.Run("Sitecore|Modules|Environment|Custom", roles);	
+
+			return xml.OuterXml;
+		}
+	}
 
 }
