@@ -81,7 +81,7 @@
             this.okBtn.Location = new System.Drawing.Point(510, 269);
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(75, 23);
-            this.okBtn.TabIndex = 3;
+            this.okBtn.TabIndex = 4;
             this.okBtn.Text = "Ok";
             this.okBtn.UseVisualStyleBackColor = true;
             // 
@@ -102,7 +102,7 @@
             this.roleBtn.Location = new System.Drawing.Point(302, 269);
             this.roleBtn.Name = "roleBtn";
             this.roleBtn.Size = new System.Drawing.Size(75, 23);
-            this.roleBtn.TabIndex = 4;
+            this.roleBtn.TabIndex = 3;
             this.roleBtn.Text = "Roles";
             this.roleBtn.UseVisualStyleBackColor = true;
             this.roleBtn.Click += new System.EventHandler(this.roleBtn_Click);

@@ -46,7 +46,7 @@
             this.OkBtn.Location = new System.Drawing.Point(385, 197);
             this.OkBtn.Name = "OkBtn";
             this.OkBtn.Size = new System.Drawing.Size(75, 23);
-            this.OkBtn.TabIndex = 0;
+            this.OkBtn.TabIndex = 7;
             this.OkBtn.Text = "Ok";
             this.OkBtn.UseVisualStyleBackColor = true;
             this.OkBtn.Click += new System.EventHandler(this.OkBtn_Click);
@@ -58,7 +58,7 @@
             this.cancelBtn.Location = new System.Drawing.Point(293, 197);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
-            this.cancelBtn.TabIndex = 1;
+            this.cancelBtn.TabIndex = 6;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             // 
@@ -73,7 +73,7 @@
             this.roleListBox.Location = new System.Drawing.Point(12, 12);
             this.roleListBox.Name = "roleListBox";
             this.roleListBox.Size = new System.Drawing.Size(356, 134);
-            this.roleListBox.TabIndex = 2;
+            this.roleListBox.TabIndex = 0;
             this.roleListBox.SelectedIndexChanged += new System.EventHandler(this.roleListBox_SelectedIndexChanged);
             // 
             // addBtn
@@ -106,7 +106,7 @@
             this.valueTextBox.Location = new System.Drawing.Point(127, 152);
             this.valueTextBox.Name = "valueTextBox";
             this.valueTextBox.Size = new System.Drawing.Size(241, 20);
-            this.valueTextBox.TabIndex = 5;
+            this.valueTextBox.TabIndex = 2;
             // 
             // updateBtn
             // 
@@ -114,7 +114,7 @@
             this.updateBtn.Location = new System.Drawing.Point(385, 150);
             this.updateBtn.Name = "updateBtn";
             this.updateBtn.Size = new System.Drawing.Size(75, 23);
-            this.updateBtn.TabIndex = 6;
+            this.updateBtn.TabIndex = 5;
             this.updateBtn.Text = "Update";
             this.updateBtn.UseVisualStyleBackColor = true;
             this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
@@ -126,7 +126,7 @@
             this.keyTextBox.Location = new System.Drawing.Point(12, 153);
             this.keyTextBox.Name = "keyTextBox";
             this.keyTextBox.Size = new System.Drawing.Size(100, 20);
-            this.keyTextBox.TabIndex = 7;
+            this.keyTextBox.TabIndex = 1;
             // 
             // RoleConfigForm
             // 
