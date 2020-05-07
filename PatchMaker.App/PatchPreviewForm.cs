@@ -53,5 +53,12 @@ namespace PatchMaker.App
         {
             HelpSpawner.SpawnLocalFile("preview");
         }
+
+        private void nextBtn_Click(object sender, System.EventArgs e)
+        {
+            int pos = richTextBox.SelectionStart + richTextBox.SelectionLength;
+            richTextBox.Find("patch:source=\"preview.patch.config\"", pos, RichTextBoxFinds.WholeWord);
+            richTextBox.ScrollToCaret();
+        }
     }
 }

@@ -34,6 +34,7 @@
             this.richTextBox = new System.Windows.Forms.RichTextBox();
             this.rolesLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.nextBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // okBtn
@@ -43,7 +44,7 @@
             this.okBtn.Location = new System.Drawing.Point(550, 303);
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(75, 23);
-            this.okBtn.TabIndex = 1;
+            this.okBtn.TabIndex = 2;
             this.okBtn.Text = "&Ok";
             this.okBtn.UseVisualStyleBackColor = true;
             // 
@@ -66,7 +67,7 @@
             this.richTextBox.Name = "richTextBox";
             this.richTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.richTextBox.Size = new System.Drawing.Size(613, 244);
-            this.richTextBox.TabIndex = 3;
+            this.richTextBox.TabIndex = 0;
             this.richTextBox.Text = "";
             this.richTextBox.WordWrap = false;
             // 
@@ -88,12 +89,23 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Config:";
             // 
+            // nextBtn
+            // 
+            this.nextBtn.Location = new System.Drawing.Point(15, 303);
+            this.nextBtn.Name = "nextBtn";
+            this.nextBtn.Size = new System.Drawing.Size(75, 23);
+            this.nextBtn.TabIndex = 1;
+            this.nextBtn.Text = "&Next";
+            this.nextBtn.UseVisualStyleBackColor = true;
+            this.nextBtn.Click += new System.EventHandler(this.nextBtn_Click);
+            // 
             // PatchPreviewForm
             // 
             this.AcceptButton = this.okBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 338);
+            this.Controls.Add(this.nextBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.rolesLabel);
             this.Controls.Add(this.richTextBox);
@@ -116,5 +128,6 @@
         private System.Windows.Forms.RichTextBox richTextBox;
         private System.Windows.Forms.Label rolesLabel;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button nextBtn;
     }
 }
