@@ -43,11 +43,11 @@
             // 
             this.OkBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.OkBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.OkBtn.Location = new System.Drawing.Point(385, 197);
+            this.OkBtn.Location = new System.Drawing.Point(309, 197);
             this.OkBtn.Name = "OkBtn";
             this.OkBtn.Size = new System.Drawing.Size(75, 23);
             this.OkBtn.TabIndex = 7;
-            this.OkBtn.Text = "Ok";
+            this.OkBtn.Text = "&Ok";
             this.OkBtn.UseVisualStyleBackColor = true;
             this.OkBtn.Click += new System.EventHandler(this.OkBtn_Click);
             // 
@@ -55,11 +55,11 @@
             // 
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelBtn.Location = new System.Drawing.Point(293, 197);
+            this.cancelBtn.Location = new System.Drawing.Point(390, 197);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 6;
-            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.Text = "&Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             // 
             // roleListBox
@@ -72,29 +72,29 @@
             this.roleListBox.IntegralHeight = false;
             this.roleListBox.Location = new System.Drawing.Point(12, 12);
             this.roleListBox.Name = "roleListBox";
-            this.roleListBox.Size = new System.Drawing.Size(356, 134);
+            this.roleListBox.Size = new System.Drawing.Size(372, 134);
             this.roleListBox.TabIndex = 0;
             this.roleListBox.SelectedIndexChanged += new System.EventHandler(this.roleListBox_SelectedIndexChanged);
             // 
             // addBtn
             // 
             this.addBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addBtn.Location = new System.Drawing.Point(385, 12);
+            this.addBtn.Location = new System.Drawing.Point(390, 12);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(75, 23);
             this.addBtn.TabIndex = 3;
-            this.addBtn.Text = "Add";
+            this.addBtn.Text = "&Add";
             this.addBtn.UseVisualStyleBackColor = true;
             this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
             // deleteBtn
             // 
             this.deleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteBtn.Location = new System.Drawing.Point(385, 41);
+            this.deleteBtn.Location = new System.Drawing.Point(390, 41);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(75, 23);
             this.deleteBtn.TabIndex = 4;
-            this.deleteBtn.Text = "Delete";
+            this.deleteBtn.Text = "&Delete";
             this.deleteBtn.UseVisualStyleBackColor = true;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
@@ -105,17 +105,17 @@
             this.valueTextBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.valueTextBox.Location = new System.Drawing.Point(127, 152);
             this.valueTextBox.Name = "valueTextBox";
-            this.valueTextBox.Size = new System.Drawing.Size(241, 20);
+            this.valueTextBox.Size = new System.Drawing.Size(257, 20);
             this.valueTextBox.TabIndex = 2;
             // 
             // updateBtn
             // 
             this.updateBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateBtn.Location = new System.Drawing.Point(385, 150);
+            this.updateBtn.Location = new System.Drawing.Point(390, 150);
             this.updateBtn.Name = "updateBtn";
             this.updateBtn.Size = new System.Drawing.Size(75, 23);
             this.updateBtn.TabIndex = 5;
-            this.updateBtn.Text = "Update";
+            this.updateBtn.Text = "&Update";
             this.updateBtn.UseVisualStyleBackColor = true;
             this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
             // 

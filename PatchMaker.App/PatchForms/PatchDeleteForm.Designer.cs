@@ -45,7 +45,7 @@
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(75, 23);
             this.okBtn.TabIndex = 2;
-            this.okBtn.Text = "Ok";
+            this.okBtn.Text = "&Ok";
             this.okBtn.UseVisualStyleBackColor = true;
             this.okBtn.Click += new System.EventHandler(this.okBtn_Click);
             // 
@@ -58,7 +58,7 @@
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 3;
-            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.Text = "&Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             // 
             // label1

@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatchGenerationForm));
             this.label1 = new System.Windows.Forms.Label();
-            this.patchXmlEdit = new PatchMaker.App.XmlTextBox();
             this.saveBtn = new System.Windows.Forms.Button();
             this.okBtn = new System.Windows.Forms.Button();
             this.previewBtn = new System.Windows.Forms.Button();
             this.roleBtn = new System.Windows.Forms.Button();
+            this.patchXmlEdit = new PatchMaker.App.XmlTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -45,6 +45,51 @@
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Patch:";
+            // 
+            // saveBtn
+            // 
+            this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.saveBtn.Location = new System.Drawing.Point(12, 269);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(75, 23);
+            this.saveBtn.TabIndex = 1;
+            this.saveBtn.Text = "&Save";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
+            // okBtn
+            // 
+            this.okBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.okBtn.CausesValidation = false;
+            this.okBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.okBtn.Location = new System.Drawing.Point(510, 269);
+            this.okBtn.Name = "okBtn";
+            this.okBtn.Size = new System.Drawing.Size(75, 23);
+            this.okBtn.TabIndex = 4;
+            this.okBtn.Text = "&Ok";
+            this.okBtn.UseVisualStyleBackColor = true;
+            // 
+            // previewBtn
+            // 
+            this.previewBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.previewBtn.Location = new System.Drawing.Point(115, 269);
+            this.previewBtn.Name = "previewBtn";
+            this.previewBtn.Size = new System.Drawing.Size(75, 23);
+            this.previewBtn.TabIndex = 2;
+            this.previewBtn.Text = "&Preview";
+            this.previewBtn.UseVisualStyleBackColor = true;
+            this.previewBtn.Click += new System.EventHandler(this.previewBtn_Click);
+            // 
+            // roleBtn
+            // 
+            this.roleBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.roleBtn.Location = new System.Drawing.Point(196, 269);
+            this.roleBtn.Name = "roleBtn";
+            this.roleBtn.Size = new System.Drawing.Size(75, 23);
+            this.roleBtn.TabIndex = 3;
+            this.roleBtn.Text = "&Roles";
+            this.roleBtn.UseVisualStyleBackColor = true;
+            this.roleBtn.Click += new System.EventHandler(this.roleBtn_Click);
             // 
             // patchXmlEdit
             // 
@@ -61,51 +106,6 @@
             this.patchXmlEdit.Size = new System.Drawing.Size(573, 229);
             this.patchXmlEdit.TabIndex = 0;
             this.patchXmlEdit.WordWrap = false;
-            // 
-            // saveBtn
-            // 
-            this.saveBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.saveBtn.Location = new System.Drawing.Point(12, 269);
-            this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(75, 23);
-            this.saveBtn.TabIndex = 1;
-            this.saveBtn.Text = "Save";
-            this.saveBtn.UseVisualStyleBackColor = true;
-            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
-            // 
-            // okBtn
-            // 
-            this.okBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.okBtn.CausesValidation = false;
-            this.okBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okBtn.Location = new System.Drawing.Point(510, 269);
-            this.okBtn.Name = "okBtn";
-            this.okBtn.Size = new System.Drawing.Size(75, 23);
-            this.okBtn.TabIndex = 4;
-            this.okBtn.Text = "Ok";
-            this.okBtn.UseVisualStyleBackColor = true;
-            // 
-            // previewBtn
-            // 
-            this.previewBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.previewBtn.Location = new System.Drawing.Point(122, 269);
-            this.previewBtn.Name = "previewBtn";
-            this.previewBtn.Size = new System.Drawing.Size(75, 23);
-            this.previewBtn.TabIndex = 2;
-            this.previewBtn.Text = "Preview";
-            this.previewBtn.UseVisualStyleBackColor = true;
-            this.previewBtn.Click += new System.EventHandler(this.previewBtn_Click);
-            // 
-            // roleBtn
-            // 
-            this.roleBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.roleBtn.Location = new System.Drawing.Point(302, 269);
-            this.roleBtn.Name = "roleBtn";
-            this.roleBtn.Size = new System.Drawing.Size(75, 23);
-            this.roleBtn.TabIndex = 3;
-            this.roleBtn.Text = "Roles";
-            this.roleBtn.UseVisualStyleBackColor = true;
-            this.roleBtn.Click += new System.EventHandler(this.roleBtn_Click);
             // 
             // PatchGenerationForm
             // 

@@ -86,7 +86,7 @@
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(75, 23);
             this.okBtn.TabIndex = 4;
-            this.okBtn.Text = "Ok";
+            this.okBtn.Text = "&Ok";
             this.okBtn.UseVisualStyleBackColor = true;
             // 
             // linkLabel1
