@@ -57,8 +57,21 @@ namespace PatchMaker.App
         private void nextBtn_Click(object sender, System.EventArgs e)
         {
             int pos = richTextBox.SelectionStart + richTextBox.SelectionLength;
-            richTextBox.Find("patch:source=\"preview.patch.config\"", pos, RichTextBoxFinds.WholeWord);
-            richTextBox.ScrollToCaret();
+            int hit = richTextBox.Find("patch:source=\"preview.patch.config\"", pos, RichTextBoxFinds.WholeWord);
+            if (hit == -1 && e != null)
+            {
+                // If no hit, go back to the start - but don't let it loop indefinitely
+                richTextBox.Select(0, 0);
+                nextBtn_Click(sender, null);
+            }
+            else
+            {
+                int idx = richTextBox.GetFirstCharIndexOfCurrentLine();
+                int pos2 = richTextBox.SelectionStart + richTextBox.SelectionLength;
+                richTextBox.SelectionStart = idx;
+                richTextBox.SelectionLength = pos2 - idx + 1;
+                richTextBox.ScrollToCaret();
+            }
         }
     }
 }
