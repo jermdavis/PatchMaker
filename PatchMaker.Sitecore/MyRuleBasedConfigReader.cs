@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Xml;
@@ -48,9 +49,16 @@ namespace PatchMaker.Sitecore
 			//ExpandIncludeFiles(xmlDocument.DocumentElement, new Hashtable());
 			//LoadIncludeFiles(xmlDocument.DocumentElement);
 
-			using (var xml = new StringReader(PatchXml))
+			try
 			{
-				cp.ApplyPatch(xml, PatchFileName);
+				using (var xml = new StringReader(PatchXml))
+				{
+					cp.ApplyPatch(xml, PatchFileName);
+				}
+			}
+			catch(Exception ex)
+			{
+				throw new RenderException($"Error processing patch file: {ex.Message}", ex);
 			}
 			
 			ReplaceGlobalVariables(xmlDocument.DocumentElement);
