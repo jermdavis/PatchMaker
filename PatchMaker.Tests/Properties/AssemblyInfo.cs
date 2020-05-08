@@ -6,8 +6,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PatchMaker.Tests")]
-[assembly: AssemblyCopyright("Copyright © Jeremy Davis 2020")]
+[assembly: AssemblyProduct(PatchMaker.Metadata.AssemblyProduct)]
+[assembly: AssemblyCopyright(PatchMaker.Metadata.AssemblyCopyright)]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -16,5 +16,5 @@ using System.Runtime.InteropServices;
 [assembly: Guid("fa65576f-e452-4a11-8952-fb8f35723d9a")]
 
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.5.0.0")]
-[assembly: AssemblyFileVersion("1.5.0.0")]
+[assembly: AssemblyVersion(PatchMaker.Metadata.AssemblyVersion)]
+[assembly: AssemblyFileVersion(PatchMaker.Metadata.AssemblyVersion)]
