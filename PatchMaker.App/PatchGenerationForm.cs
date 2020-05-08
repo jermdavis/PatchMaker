@@ -40,6 +40,13 @@ namespace PatchMaker.App
             _patch = generator.GeneratePatchFile(_patches);
             patchXmlEdit.Text = _patch.ToString();
 
+            // Generating a preview for a patch with errors can crash the Sitecore patch engine
+            // So we prevent that to avoid the confusing UI generated
+            if(patchXmlEdit.Text.Contains("<!--ERROR:"))
+            {
+                previewBtn.Enabled = false;
+            }
+
             patchXmlEdit.Select(0, 0);
         }
 

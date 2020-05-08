@@ -47,10 +47,17 @@
     <Compile Include="Configurator.cs" />
     <Compile Include="MyRuleBasedConfigReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RenderException.cs" />
     <Compile Include="SitecorePatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PatchMaker\PatchMaker.csproj">
+      <Project>{72822d72-e816-4eed-83fb-a59dae1de708}</Project>
+      <Name>PatchMaker</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

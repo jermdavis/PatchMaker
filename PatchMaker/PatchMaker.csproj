@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseAttributeChange.cs" />
+    <Compile Include="Metadata.cs" />
     <Compile Include="PatchDelete.cs" />
     <Compile Include="ElementInsertPosition.cs" />
     <Compile Include="PatchInsert.cs" />
