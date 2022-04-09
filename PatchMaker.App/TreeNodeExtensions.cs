@@ -93,7 +93,10 @@ namespace PatchMaker.App
                             }
                             query += clause;
                         }
-                        xPath += $"[{query}]";
+                        if (query.Length > 0)
+                        {
+                            xPath += $"[{query}]";
+                        }
                     }
                 }
 
