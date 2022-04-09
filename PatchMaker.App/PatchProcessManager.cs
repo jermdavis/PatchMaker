@@ -46,16 +46,21 @@ namespace PatchMaker.App
 
         private void mapTreeView()
         {
-            var xElement = _sourceXml.Root;
-            var rootNode = new TreeNode("/");
-            _patchTreeView.Nodes.Add(rootNode);
-
-            mapNode(xElement, rootNode);
+            MapTreeView(_sourceXml.Root, _patchTreeView, _treeMenu);
         }
 
-        private void mapNode(XElement element, TreeNode parentTreeNode)
+        public static void MapTreeView(XElement root, TreeView patchTreeView, ContextMenuStrip treeMenu)
         {
-            var treeNode = new HighlightableTreeNode(element, _treeMenu);
+            var xElement = root;
+            var rootNode = new TreeNode("/");
+            patchTreeView.Nodes.Add(rootNode);
+
+            mapNode(xElement, rootNode, treeMenu);
+        }
+
+        public static void mapNode(XElement element, TreeNode parentTreeNode, ContextMenuStrip treeMenu)
+        {
+            var treeNode = new HighlightableTreeNode(element, treeMenu);
             
             foreach(var attr in element.Attributes())
             {
@@ -66,7 +71,7 @@ namespace PatchMaker.App
 
             foreach(var child in element.Elements())
             {
-                mapNode(child, treeNode);
+                mapNode(child, treeNode, treeMenu);
             }
         }
 

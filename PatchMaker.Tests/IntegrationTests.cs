@@ -32,7 +32,7 @@ namespace PatchMaker.Tests
 
              var patches = new BasePatch[] {
                 new PatchInsert("/sitecore/sites", ElementInsertPosition.After, "site[@name='website']", newSite),
-                new SetAttribute("/sitecore/mediaLibrary/mediaPrefixes/prefix[@value='~/media']", "value", "~/art"),
+                 new SetAttribute("/sitecore/mediaLibrary/mediaPrefixes/prefix[@value='~/media']", "value", "~/art"),
                 new PatchInstead("/sitecore", "sc.variable[@name='dataFolder']", newDataFolder),
                 new PatchDelete("/sitecore/tracking/untrackedPages/add[@path='/sitecore/default.aspx']")
             };
