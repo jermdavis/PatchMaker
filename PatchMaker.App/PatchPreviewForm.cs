@@ -8,6 +8,7 @@ using System.Xml.Linq;
 
 namespace PatchMaker.App
 {
+
     public partial class PatchPreviewForm : Form
     {
         public PatchPreviewForm(string sourceXml, string patchXml, Dictionary<string,string> roles)
@@ -16,6 +17,12 @@ namespace PatchMaker.App
             this.ConfigureDialog();
 
             renderRoles(rolesLabel, roles);
+
+            if(XmlPreprocessingExtensions.RequiresSimplifying(sourceXml))
+            {
+                simplifyLabel.Text = "Simplified";
+                sourceXml = XmlPreprocessingExtensions.LoadAndSimplify(sourceXml).ToString();
+            }
 
             var result = SitecorePatcher.ApplyWithRoles(sourceXml, patchXml, "preview.patch.config", roles);
 

@@ -35,6 +35,7 @@
             this.rolesLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.nextBtn = new System.Windows.Forms.Button();
+            this.simplifyLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // okBtn
@@ -100,12 +101,24 @@
             this.nextBtn.UseVisualStyleBackColor = true;
             this.nextBtn.Click += new System.EventHandler(this.nextBtn_Click);
             // 
+            // simplifyLabel
+            // 
+            this.simplifyLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.simplifyLabel.Location = new System.Drawing.Point(525, 28);
+            this.simplifyLabel.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.simplifyLabel.Name = "simplifyLabel";
+            this.simplifyLabel.Size = new System.Drawing.Size(100, 13);
+            this.simplifyLabel.TabIndex = 7;
+            this.simplifyLabel.Text = "Not simplified";
+            this.simplifyLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // PatchPreviewForm
             // 
             this.AcceptButton = this.okBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 338);
+            this.Controls.Add(this.simplifyLabel);
             this.Controls.Add(this.nextBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.rolesLabel);
@@ -130,5 +143,6 @@
         private System.Windows.Forms.Label rolesLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button nextBtn;
+        private System.Windows.Forms.Label simplifyLabel;
     }
 }

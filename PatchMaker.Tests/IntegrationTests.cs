@@ -2,6 +2,7 @@
 using PatchMaker.Sitecore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml.XPath;
@@ -13,16 +14,29 @@ namespace PatchMaker.Tests
     public class IntegrationTests
     {
         [TestMethod]
+        public void IntegrationTest_SourceXmlWithConfigNode_TriggersSimplification()
+        {
+            var xml = System.IO.File.ReadAllText(@"..\..\ExampleXml\Sitecore.ContentSearch.Solr.DefaultIndexConfiguration.config");
+            var result = XmlPreprocessingExtensions.RequiresSimplifying(xml);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
         public void IntegrationTest_SourceXmlWithConfigNode_GivesRightAnswer_WithRoles()
         {
             var xml = System.IO.File.ReadAllText(@"..\..\ExampleXml\Sitecore.ContentSearch.Solr.DefaultIndexConfiguration.config");
-            var sitecoreConfig = XDocument.Parse(xml);
+            var sitecoreConfig = XmlPreprocessingExtensions.LoadAndSimplify(xml);
+            xml = sitecoreConfig.ToString();
+
+            Assert.IsTrue(sitecoreConfig.ToString().Contains("<fieldMap"));
+            Assert.IsFalse(sitecoreConfig.ToString().Contains("<xml"));
 
             var newElement = new XElement("xml");
 
             var patches = new BasePatch[] {
                 new PatchInsert(
-                    "/configuration/sitecore/contentSearch/indexConfigurations/defaultSolrIndexConfiguration[@type='Sitecore.ContentSearch.SolrProvider.SolrIndexConfiguration, Sitecore.ContentSearch.SolrProvider']", 
+                    "/sitecore/contentSearch/indexConfigurations/defaultSolrIndexConfiguration[@type='Sitecore.ContentSearch.SolrProvider.SolrIndexConfiguration, Sitecore.ContentSearch.SolrProvider']", 
                     ElementInsertPosition.Before, 
                     "initializeOnAdd", 
                     newElement)
@@ -31,11 +45,12 @@ namespace PatchMaker.Tests
             var sut = new PatchGenerator(sitecoreConfig);
 
             var patchData = sut.GeneratePatchFile(patches);
+            var patch = patchData.ToString();
+            Assert.IsFalse(patch.StartsWith("<!--ERROR"));
 
             var roles = new Dictionary<string, string>();
-            var newXml = SitecorePatcher.ApplyWithRoles(xml, patchData.ToString(), "testpatch.config", roles);
+            var newXml = SitecorePatcher.ApplyWithRoles(xml, patch, "testpatch.config", roles);
 
-            Assert.IsFalse(newXml.StartsWith("<!--ERROR"));
             Assert.IsFalse(newXml.StartsWith("<error>"));
             Assert.IsTrue(newXml.Contains("<fieldMap"));
             Assert.IsTrue(newXml.Contains("<xml"));
@@ -45,13 +60,17 @@ namespace PatchMaker.Tests
         public void IntegrationTest_SourceXmlWithConfigNode_GivesRightAnswer_WithoutRoles()
         {
             var xml = System.IO.File.ReadAllText(@"..\..\ExampleXml\Sitecore.ContentSearch.Solr.DefaultIndexConfiguration.config");
-            var sitecoreConfig = XDocument.Parse(xml);
+            var sitecoreConfig = XmlPreprocessingExtensions.LoadAndSimplify(xml);
+            xml = sitecoreConfig.ToString();
+
+            Assert.IsTrue(sitecoreConfig.ToString().Contains("<fieldMap"));
+            Assert.IsFalse(sitecoreConfig.ToString().Contains("<xml"));
 
             var newElement = new XElement("xml");
 
             var patches = new BasePatch[] {
                 new PatchInsert(
-                    "/configuration/sitecore/contentSearch/indexConfigurations/defaultSolrIndexConfiguration[@type='Sitecore.ContentSearch.SolrProvider.SolrIndexConfiguration, Sitecore.ContentSearch.SolrProvider']",
+                    "/sitecore/contentSearch/indexConfigurations/defaultSolrIndexConfiguration[@type='Sitecore.ContentSearch.SolrProvider.SolrIndexConfiguration, Sitecore.ContentSearch.SolrProvider']",
                     ElementInsertPosition.Before,
                     "initializeOnAdd",
                     newElement)
@@ -60,10 +79,11 @@ namespace PatchMaker.Tests
             var sut = new PatchGenerator(sitecoreConfig);
 
             var patchData = sut.GeneratePatchFile(patches);
+            var patch = patchData.ToString();
+            Assert.IsFalse(patch.StartsWith("<!--ERROR"));
 
-            var newXml = SitecorePatcher.ApplyWithoutRoles(xml, patchData.ToString(), "testpatch.config");
+            var newXml = SitecorePatcher.ApplyWithoutRoles(xml, patch, "testpatch.config");
 
-            Assert.IsFalse(newXml.StartsWith("<!--ERROR"));
             Assert.IsFalse(newXml.StartsWith("<error>"));
             Assert.IsTrue(newXml.Contains("<fieldMap"));
             Assert.IsTrue(newXml.Contains("<xml"));
@@ -73,7 +93,6 @@ namespace PatchMaker.Tests
         public void IntegrationTest_MultiPatchOnSitecoreConfig_GivesRightAnswers()
         {
             var xml = System.IO.File.ReadAllText(@"..\..\ExampleXml\Sitecore.config");
-
             var sitecoreConfig = XDocument.Parse(xml);
 
             var newSite = new XElement("site",
