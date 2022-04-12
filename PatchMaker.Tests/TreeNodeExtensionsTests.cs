@@ -1,7 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PatchMaker.App;
+using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace PatchMaker.Tests
 {
@@ -9,6 +11,24 @@ namespace PatchMaker.Tests
     [TestClass]
     public class TreeNodeExtensionsTests
     {
+        [TestMethod]
+        public void TreeNodeExtensions_GeneratePatchFromElementWithXpath_DoesNotFail()
+        {
+            var xml = XDocument.Parse(@"<root><e name=""1"" query=""/test[@a='b']""/></root>");
+            var tree = new TreeView();
+
+            PatchProcessManager.MapTreeView(xml.Root, tree, null);
+
+            var node = tree.Nodes[0].Nodes[0];
+
+            var xpath = TreeNodeExtensions.DefaultXPath(node);
+
+            var elements = xml.Root.XPathSelectElements(xpath);
+
+            Assert.IsNotNull(elements);
+            Assert.AreEqual(1, elements.Count());
+        }
+
         [TestMethod]
         public void TreeNodeExtensions_XpathForNamespacedNode_DoesNotIncludeEmptyIndexer()
         {
