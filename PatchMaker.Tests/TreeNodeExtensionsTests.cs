@@ -25,6 +25,8 @@ namespace PatchMaker.Tests
 
             var elements = xml.Root.XPathSelectElements(xpath);
 
+            // Avoid creating xpath attribute checks where a clause containing
+            // single quotes is itself wrapped in single quotes
             Assert.IsNotNull(elements);
             Assert.AreEqual(1, elements.Count());
         }
