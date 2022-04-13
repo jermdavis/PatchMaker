@@ -21,7 +21,7 @@ namespace PatchMaker.App
 
             _manager.ConfigureControls(sourceTreeView, patchListBox, treeMenu);
 
-            if(!File.Exists("Sitecore.Kernel.dll"))
+            if (!File.Exists("Sitecore.Kernel.dll"))
             {
                 statusStrip.Items.Add("Sitecore.Kernel.dll not found - preview disabled.");
             }
@@ -35,13 +35,14 @@ namespace PatchMaker.App
 
         private void LoadXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ofd = new OpenFileDialog() {
+            var ofd = new OpenFileDialog()
+            {
                 Filter = "Sitecore Config (*.config)|*.config|Xml Files (*.xml)|*.xml"
             };
 
             var dr = ofd.ShowDialog();
 
-            if(dr == DialogResult.OK)
+            if (dr == DialogResult.OK)
             {
                 try
                 {
@@ -49,13 +50,13 @@ namespace PatchMaker.App
                     sourceTreeView.Nodes[0].Expand();
                     this.Text = string.Format(_titleTemplate, Path.GetFileName(ofd.FileName));
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(
                         //this, 
-                        $"Exception trapped while loading \"{Path.GetFileName(ofd.FileName)}\"\n{ex.Message}", 
-                        "Unable to load that xml", 
-                        MessageBoxButtons.OK, 
+                        $"Exception trapped while loading \"{Path.GetFileName(ofd.FileName)}\"\n{ex.Message}",
+                        "Unable to load that xml",
+                        MessageBoxButtons.OK,
                         MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 }
             }
@@ -160,19 +161,19 @@ namespace PatchMaker.App
             }
 
             Func<PatchItem, IAddPatchForm> createDialog = null;
-            if(item.Patch is PatchDelete)
+            if (item.Patch is PatchDelete)
             {
                 createDialog = i => new PatchDeleteForm(i);
             }
-            if(item.Patch is PatchInsert)
+            if (item.Patch is PatchInsert)
             {
                 createDialog = i => new PatchInsertForm(i);
             }
-            if(item.Patch is PatchInstead)
+            if (item.Patch is PatchInstead)
             {
                 createDialog = i => new PatchInsteadForm(i);
             }
-            if(item.Patch is PatchAttribute)
+            if (item.Patch is PatchAttribute)
             {
                 createDialog = i => new PatchAttributeForm(i);
             }
@@ -180,7 +181,7 @@ namespace PatchMaker.App
             {
                 createDialog = i => new PatchAttributeForm(i);
             }
-            if(item.Patch is PatchNewChild)
+            if (item.Patch is PatchNewChild)
             {
                 createDialog = i => new PatchNewChildForm(i);
             }
@@ -226,7 +227,7 @@ namespace PatchMaker.App
                 sourceTreeView.SuspendLayout();
                 root.HighlightNodesRecursive(txt);
 
-                if(sourceTreeView.SelectedNode != null)
+                if (sourceTreeView.SelectedNode != null)
                 {
                     sourceTreeView.SelectedNode.EnsureVisible();
                 }

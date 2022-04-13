@@ -18,7 +18,7 @@ namespace PatchMaker.App
                 Value = "Value";
             }
 
-            public ConfigItem(KeyValuePair<string,string> source)
+            public ConfigItem(KeyValuePair<string, string> source)
             {
                 Key = source.Key;
                 Value = source.Value;
@@ -38,12 +38,12 @@ namespace PatchMaker.App
             this.ConfigureDialog();
         }
 
-        public void Initialise(Dictionary<string,string> roleConfig)
+        public void Initialise(Dictionary<string, string> roleConfig)
         {
             RoleConfig = roleConfig;
 
             roleListBox.Items.Clear();
-            foreach(var role in RoleConfig)
+            foreach (var role in RoleConfig)
             {
                 var i = new ConfigItem(role);
                 roleListBox.Items.Add(i);
@@ -97,7 +97,7 @@ namespace PatchMaker.App
         {
             var newCfg = new Dictionary<string, string>();
 
-            foreach(ConfigItem itm in roleListBox.Items)
+            foreach (ConfigItem itm in roleListBox.Items)
             {
                 newCfg.Add(itm.Key, itm.Value);
             }

@@ -125,7 +125,7 @@ namespace PatchMaker.Tests
             Assert.AreEqual("biscuits", patch2.Attribute("name").Value);
             Assert.AreEqual("2", patch2.Attribute("value").Value);
         }
-        
+
         [TestMethod]
         public void SetAttribute_PatchGenerator_Accepts_MultipleSetAttribute_OnDifferentElements()
         {
@@ -160,7 +160,7 @@ namespace PatchMaker.Tests
             Assert.AreEqual("cheese", patch2.Attribute("name").Value);
             Assert.AreEqual("2", patch2.Attribute("value").Value);
         }
-        
+
         [TestMethod]
         public void SetAttribute_GivesCorrectResult_ComparedToSitecore()
         {

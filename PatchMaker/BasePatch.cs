@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Xml.Linq;
-using System.Xml.XPath;
 
 namespace PatchMaker
 {
@@ -14,7 +10,7 @@ namespace PatchMaker
 
         private bool RequiresAttributeCopy(XElement node)
         {
-            if(node != null && node.Parent != null)
+            if (node != null && node.Parent != null)
             {
                 var nodeName = node.Name;
 
@@ -28,21 +24,21 @@ namespace PatchMaker
 
         private XElement MatchElement(XElement node, XElement ancestor, bool copyAttrs)
         {
-            if(copyAttrs)
+            if (copyAttrs)
             {
                 var nodes = node.Elements(ancestor.Name);
 
-                if(nodes.Count() == 0)
+                if (nodes.Count() == 0)
                 {
                     return null;
                 }
 
-                foreach(var possibleNode in nodes)
+                foreach (var possibleNode in nodes)
                 {
-                    foreach(var attr in possibleNode.Attributes())
+                    foreach (var attr in possibleNode.Attributes())
                     {
                         var ancestorAttr = ancestor.Attribute(attr.Name);
-                        if(ancestorAttr == null || ancestorAttr.Value != attr.Value)
+                        if (ancestorAttr == null || ancestorAttr.Value != attr.Value)
                         {
                             return null;
                         }
@@ -79,7 +75,7 @@ namespace PatchMaker
                             foreach (var attr in ancestor.Attributes())
                             {
                                 // don't copy patch:source attributes!
-                                if(attr.Name.Namespace.IsIgnorable())
+                                if (attr.Name.Namespace.IsIgnorable())
                                 {
                                     continue;
                                 }

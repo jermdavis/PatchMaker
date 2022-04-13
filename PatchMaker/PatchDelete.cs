@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Xml.Linq;
 
 namespace PatchMaker
@@ -11,7 +10,7 @@ namespace PatchMaker
 
         public PatchDelete(string xPathForElement)
         {
-            if(string.IsNullOrWhiteSpace(xPathForElement))
+            if (string.IsNullOrWhiteSpace(xPathForElement))
             {
                 throw new ArgumentNullException(nameof(xPathForElement));
             }
@@ -32,10 +31,10 @@ namespace PatchMaker
 
             // copy element with attributes
             var newTargetElement = new XElement(targetElement.Name);
-            foreach(var attr in targetElement.Attributes())
+            foreach (var attr in targetElement.Attributes())
             {
                 // don't copy anything from the patch namespace!
-                if(attr.Name.Namespace.IsIgnorable())
+                if (attr.Name.Namespace.IsIgnorable())
                 {
                     continue;
                 }

@@ -1,8 +1,6 @@
 ﻿using PatchMaker.Sitecore;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -11,14 +9,14 @@ namespace PatchMaker.App
 
     public partial class PatchPreviewForm : Form
     {
-        public PatchPreviewForm(string sourceXml, string patchXml, Dictionary<string,string> roles)
+        public PatchPreviewForm(string sourceXml, string patchXml, Dictionary<string, string> roles)
         {
             InitializeComponent();
             this.ConfigureDialog();
 
             RenderRoles(rolesLabel, roles);
 
-            if(XmlPreprocessingExtensions.RequiresSimplifying(sourceXml))
+            if (XmlPreprocessingExtensions.RequiresSimplifying(sourceXml))
             {
                 simplifyLabel.Text = "Simplified";
                 sourceXml = XmlPreprocessingExtensions.LoadAndSimplify(sourceXml).ToString();
@@ -30,9 +28,9 @@ namespace PatchMaker.App
 
             richTextBox.Text = xml.ToString();
 
-            foreach(var line in richTextBox.Lines)
+            foreach (var line in richTextBox.Lines)
             {
-                if(line.Contains("preview.patch.config"))
+                if (line.Contains("preview.patch.config"))
                 {
                     int idx = richTextBox.Find(line);
                     richTextBox.Select(idx, line.Length);
@@ -43,12 +41,12 @@ namespace PatchMaker.App
             richTextBox.Select(0, 0);
         }
 
-        private void RenderRoles(Label rolesLabel, Dictionary<string,string> roles)
+        private void RenderRoles(Label rolesLabel, Dictionary<string, string> roles)
         {
-            rolesLabel.Text = string.Empty; 
+            rolesLabel.Text = string.Empty;
             foreach (var role in roles)
             {
-                if(rolesLabel.Text.Length > 0)
+                if (rolesLabel.Text.Length > 0)
                 {
                     rolesLabel.Text += ", ";
                 }

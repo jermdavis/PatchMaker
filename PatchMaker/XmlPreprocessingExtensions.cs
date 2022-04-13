@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace PatchMaker
 {
-    
+
     public static class XmlPreprocessingExtensions
     {
         private static readonly Regex ns = new Regex(@"xmlns:(?<name>\w*)="".*?""", RegexOptions.Compiled | RegexOptions.IgnoreCase);
@@ -11,12 +11,12 @@ namespace PatchMaker
         public static bool RequiresSimplifying(string xml)
         {
             var config = XDocument.Parse(xml);
-            if(config != null && config.Root.Name.LocalName == "configuration")
+            if (config != null && config.Root.Name.LocalName == "configuration")
             {
                 return true;
             }
 
-            if(xml.Contains("patch:") && !xml.Contains("patch:source"))
+            if (xml.Contains("patch:") && !xml.Contains("patch:source"))
             {
                 return true;
             }

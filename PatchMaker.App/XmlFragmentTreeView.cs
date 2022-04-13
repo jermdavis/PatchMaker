@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace PatchMaker.App
 {
@@ -32,7 +31,7 @@ namespace PatchMaker.App
         private void SelectLeafNode(TreeNode rootNode)
         {
             var node = rootNode;
-            while(node.Nodes.Count > 0)
+            while (node.Nodes.Count > 0)
             {
                 node = node.FirstNode;
             }

@@ -101,4 +101,4 @@ namespace PatchMaker.App
         }
     }
 
-}   
+}

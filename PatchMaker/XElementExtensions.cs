@@ -7,26 +7,26 @@ namespace PatchMaker
     {
         public static bool ShallowEquals(this XElement a, XElement b)
         {
-            if(a.Name != b.Name)
+            if (a.Name != b.Name)
             {
                 return false;
             }
 
-            foreach(var attrA in a.Attributes())
+            foreach (var attrA in a.Attributes())
             {
-                if(attrA.Name.Namespace.IsIgnorable())
+                if (attrA.Name.Namespace.IsIgnorable())
                 {
                     continue;
                 }
 
                 var attrB = b.Attribute(attrA.Name);
 
-                if(attrB == null)
+                if (attrB == null)
                 {
                     return false;
                 }
 
-                if(attrA.Value != attrB.Value)
+                if (attrA.Value != attrB.Value)
                 {
                     return false;
                 }
@@ -39,7 +39,7 @@ namespace PatchMaker
         {
             var fragment = xPath.Substring(0, dividerIndex);
 
-            if(string.IsNullOrWhiteSpace(fragment))
+            if (string.IsNullOrWhiteSpace(fragment))
             {
                 return "/";
             }

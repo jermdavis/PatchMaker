@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -45,16 +44,16 @@ namespace PatchMaker.App
         {
             var name = attr.Name.LocalName;
 
-            if(!string.IsNullOrWhiteSpace(attr.Name.NamespaceName))
+            if (!string.IsNullOrWhiteSpace(attr.Name.NamespaceName))
             {
                 var root = parentElement.Document.Root;
 
-                foreach(var nsAttr in root.Attributes())
+                foreach (var nsAttr in root.Attributes())
                 {
-                    if(nsAttr.Value == attr.Name.NamespaceName)
+                    if (nsAttr.Value == attr.Name.NamespaceName)
                     {
                         return $"{nsAttr.Name.LocalName}:{name}";
-                    }    
+                    }
                 }
             }
 
@@ -78,7 +77,7 @@ namespace PatchMaker.App
                         var query = string.Empty;
                         foreach (var xAttr in xElement.Attributes())
                         {
-                            if(xAttr.IsIgnorable())
+                            if (xAttr.IsIgnorable())
                             {
                                 // we never want to query on the patch namespace, if it's in the source file?
                                 continue;
@@ -117,7 +116,7 @@ namespace PatchMaker.App
 
         public static void ExpandAncestors(this TreeNode node)
         {
-            while(node != null)
+            while (node != null)
             {
                 node.Expand();
                 node = node.Parent;
@@ -126,7 +125,7 @@ namespace PatchMaker.App
 
         public static void HighlightNodesRecursive(this TreeNode node, string textToFind)
         {
-            if(node == null)
+            if (node == null)
             {
                 return;
             }
@@ -147,7 +146,7 @@ namespace PatchMaker.App
                 }
             }
 
-            foreach(TreeNode child in node.Nodes)
+            foreach (TreeNode child in node.Nodes)
             {
                 HighlightNodesRecursive(child, textToFind);
             }

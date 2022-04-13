@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace PatchMaker
+﻿namespace PatchMaker
 {
     public static class Metadata
     {

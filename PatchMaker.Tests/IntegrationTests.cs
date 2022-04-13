@@ -2,9 +2,7 @@
 using PatchMaker.Sitecore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Xml.Linq;
-using System.Xml.Schema;
 using System.Xml.XPath;
 
 namespace PatchMaker.Tests
@@ -36,9 +34,9 @@ namespace PatchMaker.Tests
 
             var patches = new BasePatch[] {
                 new PatchInsert(
-                    "/sitecore/contentSearch/indexConfigurations/defaultSolrIndexConfiguration[@type='Sitecore.ContentSearch.SolrProvider.SolrIndexConfiguration, Sitecore.ContentSearch.SolrProvider']", 
-                    ElementInsertPosition.Before, 
-                    "initializeOnAdd", 
+                    "/sitecore/contentSearch/indexConfigurations/defaultSolrIndexConfiguration[@type='Sitecore.ContentSearch.SolrProvider.SolrIndexConfiguration, Sitecore.ContentSearch.SolrProvider']",
+                    ElementInsertPosition.Before,
+                    "initializeOnAdd",
                     newElement)
             };
 
@@ -106,7 +104,7 @@ namespace PatchMaker.Tests
                 new XAttribute("value", "/sitedata")
             );
 
-             var patches = new BasePatch[] {
+            var patches = new BasePatch[] {
                 new PatchInsert("/sitecore/sites", ElementInsertPosition.After, "site[@name='website']", newSite),
                  new SetAttribute("/sitecore/mediaLibrary/mediaPrefixes/prefix[@value='~/media']", "value", "~/art"),
                 new PatchInstead("/sitecore", "sc.variable[@name='dataFolder']", newDataFolder),
@@ -135,7 +133,7 @@ namespace PatchMaker.Tests
             Assert.AreEqual("/sitedata", patchedVariable.Attribute("value").Value);
 
             var patchedPages = newXDoc.XPathSelectElements("/sitecore/tracking/untrackedPages/add");
-            foreach(var patchedPage in patchedPages)
+            foreach (var patchedPage in patchedPages)
             {
                 Assert.AreNotEqual("/sitecore/default.aspx']", patchedPage.Attribute("path").Value);
             }
@@ -165,7 +163,7 @@ namespace PatchMaker.Tests
             Assert.AreEqual(4, patchElement.Attributes().Count());
             Assert.AreEqual("mediaFolder", patchElement.Attribute("name").Value);
 
-            var roles = new Dictionary<string, string>() { {"role", "Standalone" }};
+            var roles = new Dictionary<string, string>() { { "role", "Standalone" } };
 
             var newXml = SitecorePatcher.ApplyWithRoles(xml, patchData.ToString(), "testpatch.config", roles);
 

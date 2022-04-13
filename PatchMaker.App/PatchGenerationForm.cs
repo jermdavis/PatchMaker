@@ -20,12 +20,12 @@ namespace PatchMaker.App
             InitializeComponent();
             this.ConfigureDialog();
 
-            if(!File.Exists("Sitecore.Kernel.dll"))
+            if (!File.Exists("Sitecore.Kernel.dll"))
             {
                 previewBtn.Enabled = false;
             }
 
-            if(patchListView == null)
+            if (patchListView == null)
             {
                 throw new ArgumentNullException(nameof(patchListView));
             }
@@ -42,7 +42,7 @@ namespace PatchMaker.App
 
             // Generating a preview for a patch with errors can crash the Sitecore patch engine
             // So we prevent that to avoid the confusing UI generated
-            if(patchXmlEdit.Text.Contains("<!--ERROR:"))
+            if (patchXmlEdit.Text.Contains("<!--ERROR:"))
             {
                 previewBtn.Enabled = false;
             }
@@ -54,9 +54,9 @@ namespace PatchMaker.App
         {
             var patches = new List<BasePatch>();
 
-            foreach(PatchItem patchListItem in listView.Items)
+            foreach (PatchItem patchListItem in listView.Items)
             {
-                if(patchListItem != null)
+                if (patchListItem != null)
                 {
                     patches.Add(patchListItem.Patch);
                 }
@@ -78,14 +78,15 @@ namespace PatchMaker.App
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            var sfd = new SaveFileDialog() { 
+            var sfd = new SaveFileDialog()
+            {
                 Filter = "Sitecore Config Patch (*.config)|*.config",
                 OverwritePrompt = true,
                 FileName = MakeNewFilename(_sourceFileName)
             };
             var dr = sfd.ShowDialog(this);
 
-            if(dr == DialogResult.OK)
+            if (dr == DialogResult.OK)
             {
                 _patch.Save(sfd.FileName);
             }
@@ -103,7 +104,7 @@ namespace PatchMaker.App
 
             var dr = rc.ShowDialog(this);
 
-            if(dr == DialogResult.OK)
+            if (dr == DialogResult.OK)
             {
                 this.RoleConfig = rc.RoleConfig;
             }

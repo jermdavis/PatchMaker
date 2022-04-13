@@ -9,7 +9,7 @@ namespace PatchMaker.App.PatchForms
     public partial class PatchDeleteForm : Form, IAddPatchForm
     {
         private readonly TreeNode _treeNode;
-        
+
         private XDocument RootXml => (_treeNode.Tag as XElement).Document;
 
         public PatchItem Patch { get; private set; }

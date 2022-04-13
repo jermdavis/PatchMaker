@@ -2,20 +2,20 @@
 
 namespace PatchMaker
 {
-    
+
     public static class XNamespaceExtensions
     {
         public static bool IsIgnorable(this XNamespace ns, bool ignoreRoleAndSecurity = false)
         {
-            if(ignoreRoleAndSecurity)
+            if (ignoreRoleAndSecurity)
             {
-                if(ns == Namespaces.Security || ns == Namespaces.Role)
+                if (ns == Namespaces.Security || ns == Namespaces.Role)
                 {
                     return true;
                 }
             }
 
-            if(ns == "http://www.w3.org/2000/xmlns/" || ns == Namespaces.Set || ns == Namespaces.Patch)
+            if (ns == "http://www.w3.org/2000/xmlns/" || ns == Namespaces.Set || ns == Namespaces.Patch)
             {
                 return true;
             }
@@ -24,15 +24,15 @@ namespace PatchMaker
         }
         public static bool IsIgnorable(this XAttribute attr, bool ignoreRoleAndSecurity = false)
         {
-            if(ignoreRoleAndSecurity)
+            if (ignoreRoleAndSecurity)
             {
-                if(attr.Value == Namespaces.RoleUri || attr.Value == Namespaces.SecurityUri)
+                if (attr.Value == Namespaces.RoleUri || attr.Value == Namespaces.SecurityUri)
                 {
                     return true;
                 }
             }
 
-            if(attr.Value == Namespaces.PatchUri || attr.Value == Namespaces.SetUri)
+            if (attr.Value == Namespaces.PatchUri || attr.Value == Namespaces.SetUri)
             {
                 return true;
             }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -16,7 +12,8 @@ namespace PatchMaker.App
         {
             this.Multiline = true;
             this.AcceptsReturn = true;
-            PerformValidation = s => {
+            PerformValidation = s =>
+            {
                 var xml = XDocument.Parse(s);
             };
         }
@@ -32,9 +29,9 @@ namespace PatchMaker.App
             var m = new ContextMenuStrip();
 
             // add operations to copy any namespaces declared on the root element
-            foreach(var nsAttr in root.Attributes())
+            foreach (var nsAttr in root.Attributes())
             {
-                if(nsAttr.Name.NamespaceName == Namespaces.XmlnsUri)
+                if (nsAttr.Name.NamespaceName == Namespaces.XmlnsUri)
                 {
                     m.Items.Add(MakeMenu(nsAttr.Name.LocalName, nsAttr.Value));
                 }
@@ -74,4 +71,4 @@ namespace PatchMaker.App
         }
     }
 
-}   
+}

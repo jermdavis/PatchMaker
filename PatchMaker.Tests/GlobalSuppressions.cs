@@ -5,4 +5,4 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value")]
+[assembly: SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value")] 

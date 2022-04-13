@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -31,7 +30,7 @@ namespace PatchMaker.App
 
         public void Initialise(string sourceXmlPath)
         {
-            if(string.IsNullOrWhiteSpace(sourceXmlPath))
+            if (string.IsNullOrWhiteSpace(sourceXmlPath))
             {
                 throw new ArgumentNullException(sourceXmlPath);
             }
@@ -61,15 +60,15 @@ namespace PatchMaker.App
         public static void MapNode(XElement element, TreeNode parentTreeNode, ContextMenuStrip treeMenu)
         {
             var treeNode = new HighlightableTreeNode(element, treeMenu);
-            
-            foreach(var attr in element.Attributes())
+
+            foreach (var attr in element.Attributes())
             {
                 treeNode.Text += $" {attr.Name}='{attr.Value}'";
             }
-            
+
             parentTreeNode.Nodes.Add(treeNode);
 
-            foreach(var child in element.Elements())
+            foreach (var child in element.Elements())
             {
                 MapNode(child, treeNode, treeMenu);
             }

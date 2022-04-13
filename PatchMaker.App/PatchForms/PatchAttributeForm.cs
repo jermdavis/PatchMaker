@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
@@ -66,7 +64,7 @@ namespace PatchMaker.App.PatchForms
 
             foreach (var attr in element.Attributes())
             {
-                if(attr.Name.Namespace.IsIgnorable(ignoreRoleAndSecurity:true))
+                if (attr.Name.Namespace.IsIgnorable(ignoreRoleAndSecurity: true))
                 {
                     continue;
                 }
@@ -79,7 +77,7 @@ namespace PatchMaker.App.PatchForms
         private void OkBtn_Click(object sender, EventArgs e)
         {
             bool isValid = ValidateChildren();
-            if(!isValid)
+            if (!isValid)
             {
                 // Prevent closing the dialog if we've not got valid fields.
                 // necessary because the name attribute name field starts empty - and hence doesn't get validated by default
@@ -93,7 +91,7 @@ namespace PatchMaker.App.PatchForms
 
             BasePatch patch;
 
-            if( (AttributePatchTypes)patchTypeCombo.SelectedItem == AttributePatchTypes.Patch)
+            if ((AttributePatchTypes)patchTypeCombo.SelectedItem == AttributePatchTypes.Patch)
             {
                 patch = new PatchAttribute(elementXPathTextBox.Text, nameTextBox.Text, valueTextBox.Text);
             }
@@ -107,7 +105,7 @@ namespace PatchMaker.App.PatchForms
 
         private void ApplyDefaultBtn_Click(object sender, EventArgs e)
         {
-            if(defaultComboBox.SelectedItem != null)
+            if (defaultComboBox.SelectedItem != null)
             {
                 var attr = defaultComboBox.SelectedItem as XAttribute;
                 nameTextBox.Text = attr.Name.ToString();
