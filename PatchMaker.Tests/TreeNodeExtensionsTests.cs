@@ -7,7 +7,7 @@ using System.Xml.XPath;
 
 namespace PatchMaker.Tests
 {
-    
+
     [TestClass]
     public class TreeNodeExtensionsTests
     {
