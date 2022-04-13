@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
@@ -10,9 +8,9 @@ namespace PatchMaker.App.PatchForms
 
     public partial class PatchAttributeForm : Form, IAddPatchForm
     {
-        private TreeNode _treeNode;
+        private readonly TreeNode _treeNode;
 
-        private XDocument _rootXml => (_treeNode.Tag as XElement).Document;
+        private XDocument RootXml => (_treeNode.Tag as XElement).Document;
 
         public PatchItem Patch { get; private set; }
 
@@ -22,7 +20,7 @@ namespace PatchMaker.App.PatchForms
             this.ConfigureDialog();
 
             this.nameTextBox.PerformValidation = s => new XAttribute(nameTextBox.Text, "");
-            this.elementXPathTextBox.PerformValidation = s => XPathExpression.Compile(s, _rootXml.MakeNamespaceManager());
+            this.elementXPathTextBox.PerformValidation = s => XPathExpression.Compile(s, RootXml.MakeNamespaceManager());
 
             patchTypeCombo.Items.Add(AttributePatchTypes.Patch);
             patchTypeCombo.Items.Add(AttributePatchTypes.Set);
@@ -33,7 +31,7 @@ namespace PatchMaker.App.PatchForms
         {
             _treeNode = node ?? throw new ArgumentNullException(nameof(node));
 
-            configureDefaultDropdown(_treeNode);
+            ConfigureDefaultDropdown(_treeNode);
 
             var rootNode = treeView.BuildTreeView(node);
             var xPath = rootNode.DefaultXPath();
@@ -48,7 +46,7 @@ namespace PatchMaker.App.PatchForms
         {
             _treeNode = patchItem.RelatedTreeNode;
 
-            configureDefaultDropdown(_treeNode);
+            ConfigureDefaultDropdown(_treeNode);
 
             treeView.BuildTreeView(_treeNode);
 
@@ -60,13 +58,13 @@ namespace PatchMaker.App.PatchForms
             valueTextBox.Text = patch.AttributeValue;
         }
 
-        private void configureDefaultDropdown(TreeNode node)
+        private void ConfigureDefaultDropdown(TreeNode node)
         {
             var element = node.Tag as XElement;
 
             foreach (var attr in element.Attributes())
             {
-                if(attr.Name.Namespace.IsIgnorable(ignoreRoleAndSecurity:true))
+                if (attr.Name.Namespace.IsIgnorable(ignoreRoleAndSecurity: true))
                 {
                     continue;
                 }
@@ -76,10 +74,10 @@ namespace PatchMaker.App.PatchForms
             defaultComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
-        private void okBtn_Click(object sender, EventArgs e)
+        private void OkBtn_Click(object sender, EventArgs e)
         {
             bool isValid = ValidateChildren();
-            if(!isValid)
+            if (!isValid)
             {
                 // Prevent closing the dialog if we've not got valid fields.
                 // necessary because the name attribute name field starts empty - and hence doesn't get validated by default
@@ -93,7 +91,7 @@ namespace PatchMaker.App.PatchForms
 
             BasePatch patch;
 
-            if( (AttributePatchTypes)patchTypeCombo.SelectedItem == AttributePatchTypes.Patch)
+            if ((AttributePatchTypes)patchTypeCombo.SelectedItem == AttributePatchTypes.Patch)
             {
                 patch = new PatchAttribute(elementXPathTextBox.Text, nameTextBox.Text, valueTextBox.Text);
             }
@@ -105,9 +103,9 @@ namespace PatchMaker.App.PatchForms
             Patch = new PatchItem(patch, _treeNode);
         }
 
-        private void applyDefaultBtn_Click(object sender, EventArgs e)
+        private void ApplyDefaultBtn_Click(object sender, EventArgs e)
         {
-            if(defaultComboBox.SelectedItem != null)
+            if (defaultComboBox.SelectedItem != null)
             {
                 var attr = defaultComboBox.SelectedItem as XAttribute;
                 nameTextBox.Text = attr.Name.ToString();

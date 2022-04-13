@@ -10,7 +10,7 @@ namespace PatchMaker
         {
         }
 
-        protected override void applyPatch(XElement currentPatchNode)
+        protected override void ApplyPatch(XElement currentPatchNode)
         {
             // append set:attribute
             currentPatchNode.Add(new XAttribute(Namespaces.Set + AttributeName, AttributeValue));

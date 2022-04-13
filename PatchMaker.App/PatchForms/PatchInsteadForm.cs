@@ -8,9 +8,9 @@ namespace PatchMaker.App.PatchForms
 
     public partial class PatchInsteadForm : Form, IAddPatchForm
     {
-        private TreeNode _treeNode;
+        private readonly TreeNode _treeNode;
 
-        private XDocument _rootXml => (_treeNode.Tag as XElement).Document;
+        private XDocument RootXml => (_treeNode.Tag as XElement).Document;
 
         public PatchItem Patch { get; private set; }
 
@@ -19,15 +19,15 @@ namespace PatchMaker.App.PatchForms
             InitializeComponent();
             this.ConfigureDialog();
 
-            xPathForParent.PerformValidation = s => XPathExpression.Compile(s, _rootXml.MakeNamespaceManager());
-            xPathForReplacement.PerformValidation = s => XPathExpression.Compile(s, _rootXml.MakeNamespaceManager());
+            xPathForParent.PerformValidation = s => XPathExpression.Compile(s, RootXml.MakeNamespaceManager());
+            xPathForReplacement.PerformValidation = s => XPathExpression.Compile(s, RootXml.MakeNamespaceManager());
         }
 
         public PatchInsteadForm(TreeNode node) : this()
         {
             _treeNode = node ?? throw new ArgumentNullException(nameof(node));
 
-            newElementTextBox.ConfigureInsertionContextMenu(_rootXml.Root);
+            newElementTextBox.ConfigureInsertionContextMenu(RootXml.Root);
             var rootNode = treeView.BuildTreeView(node);
 
             var xPath = rootNode.DefaultXPath();
@@ -44,7 +44,7 @@ namespace PatchMaker.App.PatchForms
         {
             _treeNode = patchItem.RelatedTreeNode;
 
-            newElementTextBox.ConfigureInsertionContextMenu(_rootXml.Root);
+            newElementTextBox.ConfigureInsertionContextMenu(RootXml.Root);
             treeView.BuildTreeView(_treeNode);
 
             var patch = patchItem.Patch as PatchInstead;
@@ -54,7 +54,7 @@ namespace PatchMaker.App.PatchForms
             newElementTextBox.Text = patch.Replacement.ToString();
         }
 
-        private void okBtn_Click(object sender, EventArgs e)
+        private void OkBtn_Click(object sender, EventArgs e)
         {
             var xml = XElement.Parse(newElementTextBox.Text);
             var patchInstead = new PatchInstead(xPathForParent.Text, xPathForReplacement.Text, xml);

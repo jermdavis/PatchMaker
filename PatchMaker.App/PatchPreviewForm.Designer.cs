@@ -99,7 +99,7 @@
             this.nextBtn.TabIndex = 1;
             this.nextBtn.Text = "&Next";
             this.nextBtn.UseVisualStyleBackColor = true;
-            this.nextBtn.Click += new System.EventHandler(this.nextBtn_Click);
+            this.nextBtn.Click += new System.EventHandler(this.NextBtn_Click);
             // 
             // simplifyLabel
             // 

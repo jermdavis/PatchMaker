@@ -36,7 +36,7 @@ namespace PatchMaker.App
 
         public void OnExpand()
         {
-            if(_highlighted)
+            if (_highlighted)
             {
                 ImageIndex = 3;
                 SelectedImageIndex = 3;
@@ -50,7 +50,7 @@ namespace PatchMaker.App
 
         public void OnCollapse()
         {
-            if(_highlighted)
+            if (_highlighted)
             {
                 ImageIndex = 2;
                 SelectedImageIndex = 2;

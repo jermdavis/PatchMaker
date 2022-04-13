@@ -24,14 +24,10 @@ namespace PatchMaker
             }
             AttributeName = attributeName;
 
-            if (attributeValue == null)
-            {
-                throw new ArgumentNullException(nameof(attributeValue));
-            }
-            AttributeValue = attributeValue;
+            AttributeValue = attributeValue ?? throw new ArgumentNullException(nameof(attributeValue));
         }
 
-        protected abstract void applyPatch(XElement currentPatchNode);
+        protected abstract void ApplyPatch(XElement currentPatchNode);
 
         public override void ApplyPatchElement(XDocument sourceXml, XDocument patchXml)
         {
@@ -71,7 +67,7 @@ namespace PatchMaker
             foreach (var attr in targetElement.Attributes())
             {
                 // don't copy existing patch stuff
-                if(attr.Name.Namespace.IsIgnorable())
+                if (attr.Name.Namespace.IsIgnorable())
                 {
                     continue;
                 }
@@ -82,7 +78,7 @@ namespace PatchMaker
                 }
             }
 
-            applyPatch(currentPatchNode);
+            ApplyPatch(currentPatchNode);
         }
     }
 

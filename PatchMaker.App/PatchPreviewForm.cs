@@ -1,8 +1,6 @@
 ﻿using PatchMaker.Sitecore;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -11,14 +9,14 @@ namespace PatchMaker.App
 
     public partial class PatchPreviewForm : Form
     {
-        public PatchPreviewForm(string sourceXml, string patchXml, Dictionary<string,string> roles)
+        public PatchPreviewForm(string sourceXml, string patchXml, Dictionary<string, string> roles)
         {
             InitializeComponent();
             this.ConfigureDialog();
 
-            renderRoles(rolesLabel, roles);
+            RenderRoles(rolesLabel, roles);
 
-            if(XmlPreprocessingExtensions.RequiresSimplifying(sourceXml))
+            if (XmlPreprocessingExtensions.RequiresSimplifying(sourceXml))
             {
                 simplifyLabel.Text = "Simplified";
                 sourceXml = XmlPreprocessingExtensions.LoadAndSimplify(sourceXml).ToString();
@@ -30,9 +28,9 @@ namespace PatchMaker.App
 
             richTextBox.Text = xml.ToString();
 
-            foreach(var line in richTextBox.Lines)
+            foreach (var line in richTextBox.Lines)
             {
-                if(line.Contains("preview.patch.config"))
+                if (line.Contains("preview.patch.config"))
                 {
                     int idx = richTextBox.Find(line);
                     richTextBox.Select(idx, line.Length);
@@ -43,12 +41,12 @@ namespace PatchMaker.App
             richTextBox.Select(0, 0);
         }
 
-        private void renderRoles(Label rolesLabel, Dictionary<string,string> roles)
+        private void RenderRoles(Label rolesLabel, Dictionary<string, string> roles)
         {
-            rolesLabel.Text = string.Empty; 
+            rolesLabel.Text = string.Empty;
             foreach (var role in roles)
             {
-                if(rolesLabel.Text.Length > 0)
+                if (rolesLabel.Text.Length > 0)
                 {
                     rolesLabel.Text += ", ";
                 }
@@ -56,12 +54,12 @@ namespace PatchMaker.App
             }
         }
 
-        private void roleWarningLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void RoleWarningLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             HelpSpawner.SpawnLocalFile("preview");
         }
 
-        private void nextBtn_Click(object sender, System.EventArgs e)
+        private void NextBtn_Click(object sender, System.EventArgs e)
         {
             int pos = richTextBox.SelectionStart + richTextBox.SelectionLength;
             int hit = richTextBox.Find("patch:source=\"preview.patch.config\"", pos, RichTextBoxFinds.WholeWord);
@@ -69,7 +67,7 @@ namespace PatchMaker.App
             {
                 // If no hit, go back to the start - but don't let it loop indefinitely
                 richTextBox.Select(0, 0);
-                nextBtn_Click(sender, null);
+                NextBtn_Click(sender, null);
             }
             else
             {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -31,20 +30,20 @@ namespace PatchMaker.App
 
         public void Initialise(string sourceXmlPath)
         {
-            if(string.IsNullOrWhiteSpace(sourceXmlPath))
+            if (string.IsNullOrWhiteSpace(sourceXmlPath))
             {
                 throw new ArgumentNullException(sourceXmlPath);
             }
             _sourceFileName = sourceXmlPath;
 
             _patchTreeView.SuspendLayout();
-            clearControls();
-            loadXml(sourceXmlPath);
-            mapTreeView();
+            ClearControls();
+            LoadXml(sourceXmlPath);
+            MapTreeView();
             _patchTreeView.ResumeLayout();
         }
 
-        private void mapTreeView()
+        private void MapTreeView()
         {
             MapTreeView(_sourceXml.Root, _patchTreeView, _treeMenu);
         }
@@ -55,32 +54,32 @@ namespace PatchMaker.App
             var rootNode = new TreeNode("/");
             patchTreeView.Nodes.Add(rootNode);
 
-            mapNode(xElement, rootNode, treeMenu);
+            MapNode(xElement, rootNode, treeMenu);
         }
 
-        public static void mapNode(XElement element, TreeNode parentTreeNode, ContextMenuStrip treeMenu)
+        public static void MapNode(XElement element, TreeNode parentTreeNode, ContextMenuStrip treeMenu)
         {
             var treeNode = new HighlightableTreeNode(element, treeMenu);
-            
-            foreach(var attr in element.Attributes())
+
+            foreach (var attr in element.Attributes())
             {
                 treeNode.Text += $" {attr.Name}='{attr.Value}'";
             }
-            
+
             parentTreeNode.Nodes.Add(treeNode);
 
-            foreach(var child in element.Elements())
+            foreach (var child in element.Elements())
             {
-                mapNode(child, treeNode, treeMenu);
+                MapNode(child, treeNode, treeMenu);
             }
         }
 
-        private void loadXml(string file)
+        private void LoadXml(string file)
         {
             _sourceXml = XDocument.Load(file);
         }
 
-        private void clearControls()
+        private void ClearControls()
         {
             _patchTreeView.Nodes.Clear();
             _patchesList.Items.Clear();

@@ -36,11 +36,11 @@ namespace PatchMaker.App
 
             if (e.Node is HighlightableTreeNode)
             {
-                var node = e.Node as HighlightableTreeNode;              
+                var node = e.Node as HighlightableTreeNode;
 
-                if(e.Node == e.Node.TreeView.SelectedNode)
+                if (e.Node == e.Node.TreeView.SelectedNode)
                 {
-                    if(node.Highlighted)
+                    if (node.Highlighted)
                     {
                         backColour = Brushes.Red;
                     }

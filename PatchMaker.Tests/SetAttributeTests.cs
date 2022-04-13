@@ -96,7 +96,7 @@ namespace PatchMaker.Tests
         [TestMethod]
         public void SetAttribute_PatchGenerator_Accepts_MultipleSetAttribute_OnSameElement()
         {
-            var sets = new BasePatch[] { 
+            var sets = new BasePatch[] {
                 new SetAttribute("/sitecore/sites/site[@name='a']", "cheese", "1"),
                 new SetAttribute("/sitecore/sites/site[@name='a']", "biscuits", "2")
             };

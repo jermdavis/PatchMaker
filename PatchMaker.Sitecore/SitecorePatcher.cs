@@ -1,15 +1,12 @@
-﻿using Sitecore.Shell.Applications.ContentEditor;
-using Sitecore.Visualization;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Xml;
 
 namespace PatchMaker.Sitecore
 {
 
-	public static class SitecorePatcher
+    public static class SitecorePatcher
     {
         public static string ApplyWithoutRoles(string sourceXml, string patchXml, string patchFileName = null)
         {
@@ -37,8 +34,8 @@ namespace PatchMaker.Sitecore
         // V9 / role approach worked out from: https://github.com/benmcevoy/ConfigViewer/blob/master/ConfigView/Program.cs
         //
         public static string ApplyWithRoles(string sourceXml, string patchXml, string patchFileName, Dictionary<string, string> roles)
-		{
-			var c = new CustomConfigurator();
+        {
+            var c = new CustomConfigurator();
 
             try
             {
@@ -49,11 +46,11 @@ namespace PatchMaker.Sitecore
 
                 return xml.OuterXml;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return $"<error><!-- {ex.Message} --></error>";
             }
-		}
-	}
+        }
+    }
 
 }

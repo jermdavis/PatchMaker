@@ -106,14 +106,14 @@
             this.fileMenuToolStripItem.Name = "fileMenuToolStripItem";
             this.fileMenuToolStripItem.Size = new System.Drawing.Size(37, 20);
             this.fileMenuToolStripItem.Text = "&File";
-            this.fileMenuToolStripItem.DropDownOpening += new System.EventHandler(this.fileMenuToolStripItem_DropDownOpening);
+            this.fileMenuToolStripItem.DropDownOpening += new System.EventHandler(this.FileMenuToolStripItem_DropDownOpening);
             // 
             // loadXmlToolStripMenuItem
             // 
             this.loadXmlToolStripMenuItem.Name = "loadXmlToolStripMenuItem";
             this.loadXmlToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.loadXmlToolStripMenuItem.Text = "&Load Xml";
-            this.loadXmlToolStripMenuItem.Click += new System.EventHandler(this.loadXmlToolStripMenuItem_Click);
+            this.loadXmlToolStripMenuItem.Click += new System.EventHandler(this.LoadXmlToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -125,7 +125,7 @@
             this.generatePatchesToolStripMenuItem.Name = "generatePatchesToolStripMenuItem";
             this.generatePatchesToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.generatePatchesToolStripMenuItem.Text = "&Generate Patches";
-            this.generatePatchesToolStripMenuItem.Click += new System.EventHandler(this.generatePatchesToolStripMenuItem_Click);
+            this.generatePatchesToolStripMenuItem.Click += new System.EventHandler(this.GeneratePatchesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -137,7 +137,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -155,14 +155,14 @@
             this.openHelpToolStripMenuItem.Name = "openHelpToolStripMenuItem";
             this.openHelpToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openHelpToolStripMenuItem.Text = "&Open Help";
-            this.openHelpToolStripMenuItem.Click += new System.EventHandler(this.openHelpToolStripMenuItem_Click);
+            this.openHelpToolStripMenuItem.Click += new System.EventHandler(this.OpenHelpToolStripMenuItem_Click);
             // 
             // foundABugToolStripMenuItem
             // 
             this.foundABugToolStripMenuItem.Name = "foundABugToolStripMenuItem";
             this.foundABugToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.foundABugToolStripMenuItem.Text = "Found a bug?";
-            this.foundABugToolStripMenuItem.Click += new System.EventHandler(this.foundABugToolStripMenuItem_Click);
+            this.foundABugToolStripMenuItem.Click += new System.EventHandler(this.FoundABugToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
@@ -174,7 +174,7 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.aboutToolStripMenuItem.Text = "&About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -208,8 +208,8 @@
             this.sourceTreeView.SelectedImageIndex = 0;
             this.sourceTreeView.Size = new System.Drawing.Size(400, 406);
             this.sourceTreeView.TabIndex = 2;
-            this.sourceTreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.sourceTreeView_BeforeCollapse);
-            this.sourceTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.sourceTreeView_BeforeExpand);
+            this.sourceTreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.SourceTreeView_BeforeCollapse);
+            this.sourceTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.SourceTreeView_BeforeExpand);
             // 
             // treeImageList
             // 
@@ -240,7 +240,7 @@
             this.collapseBtn.Size = new System.Drawing.Size(25, 23);
             this.collapseBtn.TabIndex = 2;
             this.collapseBtn.UseVisualStyleBackColor = true;
-            this.collapseBtn.Click += new System.EventHandler(this.collapseBtn_Click);
+            this.collapseBtn.Click += new System.EventHandler(this.CollapseBtn_Click);
             // 
             // filterBtn
             // 
@@ -251,7 +251,7 @@
             this.filterBtn.Size = new System.Drawing.Size(25, 23);
             this.filterBtn.TabIndex = 1;
             this.filterBtn.UseVisualStyleBackColor = true;
-            this.filterBtn.Click += new System.EventHandler(this.filterBtn_Click);
+            this.filterBtn.Click += new System.EventHandler(this.FilterBtn_Click);
             // 
             // filterTextBox
             // 
@@ -261,7 +261,7 @@
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(327, 20);
             this.filterTextBox.TabIndex = 0;
-            this.filterTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.filterTextBox_KeyPress);
+            this.filterTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FilterTextBox_KeyPress);
             // 
             // patchListBox
             // 
@@ -273,7 +273,7 @@
             this.patchListBox.Name = "patchListBox";
             this.patchListBox.Size = new System.Drawing.Size(338, 406);
             this.patchListBox.TabIndex = 3;
-            this.patchListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.patchListBox_MouseDoubleClick);
+            this.patchListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PatchListBox_MouseDoubleClick);
             // 
             // patchMenu
             // 
@@ -285,21 +285,21 @@
             this.moveDownToolStripMenuItem});
             this.patchMenu.Name = "patchMenu";
             this.patchMenu.Size = new System.Drawing.Size(141, 98);
-            this.patchMenu.Opening += new System.ComponentModel.CancelEventHandler(this.patchMenu_Opening);
+            this.patchMenu.Opening += new System.ComponentModel.CancelEventHandler(this.PatchMenu_Opening);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.editToolStripMenuItem.Text = "Edit patch";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.EditToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.deleteToolStripMenuItem.Text = "Delete patch";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
@@ -311,14 +311,14 @@
             this.moveUpToolStripMenuItem.Name = "moveUpToolStripMenuItem";
             this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.moveUpToolStripMenuItem.Text = "Move up";
-            this.moveUpToolStripMenuItem.Click += new System.EventHandler(this.moveUpToolStripMenuItem_Click);
+            this.moveUpToolStripMenuItem.Click += new System.EventHandler(this.MoveUpToolStripMenuItem_Click);
             // 
             // moveDownToolStripMenuItem
             // 
             this.moveDownToolStripMenuItem.Name = "moveDownToolStripMenuItem";
             this.moveDownToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.moveDownToolStripMenuItem.Text = "Move down";
-            this.moveDownToolStripMenuItem.Click += new System.EventHandler(this.moveDownToolStripMenuItem_Click);
+            this.moveDownToolStripMenuItem.Click += new System.EventHandler(this.MoveDownToolStripMenuItem_Click);
             // 
             // panel2
             // 
@@ -340,14 +340,14 @@
             this.addAChildToolStripMenuItem});
             this.treeMenu.Name = "treeMenu";
             this.treeMenu.Size = new System.Drawing.Size(181, 148);
-            this.treeMenu.Opening += new System.ComponentModel.CancelEventHandler(this.treeMenu_Opening);
+            this.treeMenu.Opening += new System.ComponentModel.CancelEventHandler(this.TreeMenu_Opening);
             // 
             // attributeToolStripMenuItem
             // 
             this.attributeToolStripMenuItem.Name = "attributeToolStripMenuItem";
             this.attributeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.attributeToolStripMenuItem.Text = "Change Attribute";
-            this.attributeToolStripMenuItem.Click += new System.EventHandler(this.attributeToolStripMenuItem_Click);
+            this.attributeToolStripMenuItem.Click += new System.EventHandler(this.AttributeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -359,28 +359,28 @@
             this.patchDeleteToolStripMenuItem.Name = "patchDeleteToolStripMenuItem";
             this.patchDeleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.patchDeleteToolStripMenuItem.Text = "Delete Element";
-            this.patchDeleteToolStripMenuItem.Click += new System.EventHandler(this.patchDeleteToolStripMenuItem_Click);
+            this.patchDeleteToolStripMenuItem.Click += new System.EventHandler(this.PatchDeleteToolStripMenuItem_Click);
             // 
             // patchInsertToolStripMenuItem
             // 
             this.patchInsertToolStripMenuItem.Name = "patchInsertToolStripMenuItem";
             this.patchInsertToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.patchInsertToolStripMenuItem.Text = "Insert Element";
-            this.patchInsertToolStripMenuItem.Click += new System.EventHandler(this.patchInsertToolStripMenuItem_Click);
+            this.patchInsertToolStripMenuItem.Click += new System.EventHandler(this.PatchInsertToolStripMenuItem_Click);
             // 
             // patchInsteadToolStripMenuItem
             // 
             this.patchInsteadToolStripMenuItem.Name = "patchInsteadToolStripMenuItem";
             this.patchInsteadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.patchInsteadToolStripMenuItem.Text = "Replace Element";
-            this.patchInsteadToolStripMenuItem.Click += new System.EventHandler(this.patchInsteadToolStripMenuItem_Click);
+            this.patchInsteadToolStripMenuItem.Click += new System.EventHandler(this.PatchInsteadToolStripMenuItem_Click);
             // 
             // addAChildToolStripMenuItem
             // 
             this.addAChildToolStripMenuItem.Name = "addAChildToolStripMenuItem";
             this.addAChildToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addAChildToolStripMenuItem.Text = "Add a child";
-            this.addAChildToolStripMenuItem.Click += new System.EventHandler(this.addAChildToolStripMenuItem_Click);
+            this.addAChildToolStripMenuItem.Click += new System.EventHandler(this.AddAChildToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 

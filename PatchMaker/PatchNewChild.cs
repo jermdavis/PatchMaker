@@ -16,11 +16,7 @@ namespace PatchMaker
             }
             XPathForParent = xPathForParent;
 
-            if (childXml == null)
-            {
-                throw new ArgumentNullException(nameof(childXml));
-            }
-            ChildXml = childXml;
+            ChildXml = childXml ?? throw new ArgumentNullException(nameof(childXml));
         }
 
         public override void ApplyPatchElement(XDocument sourceXml, XDocument patchXml)

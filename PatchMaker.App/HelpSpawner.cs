@@ -18,7 +18,7 @@ namespace PatchMaker.App
             {
                 var value = (string)registrykey.GetValue(null, null);
 
-                if(string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ConfigurationErrorsException($"Cannot retrieve a path to a web browser. Fallback '{_oldInternetIconRegKey}' reg key returned null.");
                 }
@@ -33,7 +33,7 @@ namespace PatchMaker.App
             {
                 var browserProgId = (string)registrykey.GetValue("ProgId", null);
 
-                if(string.IsNullOrWhiteSpace(browserProgId))
+                if (string.IsNullOrWhiteSpace(browserProgId))
                 {
                     browserProgId = FallbackBrowserPath();
                 }
@@ -49,13 +49,13 @@ namespace PatchMaker.App
             {
                 var cmd = (string)registrykey.GetValue(null, null);
 
-                if(string.IsNullOrWhiteSpace(cmd))
+                if (string.IsNullOrWhiteSpace(cmd))
                 {
                     throw new ConfigurationErrorsException($"Cannot read executable path for browser ProgId '{progId}'");
                 }
 
                 return cmd.Split('"')[1];
-            }            
+            }
         }
 
         // This hack is necessary because Process.Start() doesn't like urls with "#" in them,
@@ -65,7 +65,7 @@ namespace PatchMaker.App
         private static string GetDefaultBrowserPath()
         {
             var defaultBrowserProgId = FetchBrowserProgId();
-            
+
             return FetchBrowserPath(defaultBrowserProgId);
         }
 
@@ -88,7 +88,8 @@ namespace PatchMaker.App
 
         public static void SpawnUrl(string url)
         {
-            ProcessStartInfo sInfo = new ProcessStartInfo() { 
+            ProcessStartInfo sInfo = new ProcessStartInfo()
+            {
                 FileName = url
             };
             Process.Start(sInfo);

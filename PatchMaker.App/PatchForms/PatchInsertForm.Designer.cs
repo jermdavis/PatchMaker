@@ -64,7 +64,7 @@
             this.okButton.TabIndex = 5;
             this.okButton.Text = "&Ok";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // label1
             // 

@@ -2,7 +2,7 @@
 
 namespace PatchMaker.Tests
 {
-    
+
     [TestClass]
     public class XElementExtensionsTests
     {

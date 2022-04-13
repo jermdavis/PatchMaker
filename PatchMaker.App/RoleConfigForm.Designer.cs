@@ -74,7 +74,7 @@
             this.roleListBox.Name = "roleListBox";
             this.roleListBox.Size = new System.Drawing.Size(372, 134);
             this.roleListBox.TabIndex = 0;
-            this.roleListBox.SelectedIndexChanged += new System.EventHandler(this.roleListBox_SelectedIndexChanged);
+            this.roleListBox.SelectedIndexChanged += new System.EventHandler(this.RoleListBox_SelectedIndexChanged);
             // 
             // addBtn
             // 
@@ -85,7 +85,7 @@
             this.addBtn.TabIndex = 3;
             this.addBtn.Text = "&Add";
             this.addBtn.UseVisualStyleBackColor = true;
-            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
+            this.addBtn.Click += new System.EventHandler(this.AddBtn_Click);
             // 
             // deleteBtn
             // 
@@ -96,7 +96,7 @@
             this.deleteBtn.TabIndex = 4;
             this.deleteBtn.Text = "&Delete";
             this.deleteBtn.UseVisualStyleBackColor = true;
-            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
+            this.deleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
             // 
             // valueTextBox
             // 
@@ -117,7 +117,7 @@
             this.updateBtn.TabIndex = 5;
             this.updateBtn.Text = "&Update";
             this.updateBtn.UseVisualStyleBackColor = true;
-            this.updateBtn.Click += new System.EventHandler(this.updateBtn_Click);
+            this.updateBtn.Click += new System.EventHandler(this.UpdateBtn_Click);
             // 
             // keyTextBox
             // 

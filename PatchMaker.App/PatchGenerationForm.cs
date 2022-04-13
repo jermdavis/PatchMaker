@@ -8,10 +8,10 @@ namespace PatchMaker.App
 {
     public partial class PatchGenerationForm : Form
     {
-        private IEnumerable<BasePatch> _patches;
-        private XDocument _sourceXml;
-        private XDocument _patch;
-        private string _sourceFileName;
+        private readonly IEnumerable<BasePatch> _patches;
+        private readonly XDocument _sourceXml;
+        private readonly XDocument _patch;
+        private readonly string _sourceFileName;
 
         public Dictionary<string, string> RoleConfig { get; set; } = new Dictionary<string, string>();
 
@@ -20,12 +20,12 @@ namespace PatchMaker.App
             InitializeComponent();
             this.ConfigureDialog();
 
-            if(!File.Exists("Sitecore.Kernel.dll"))
+            if (!File.Exists("Sitecore.Kernel.dll"))
             {
                 previewBtn.Enabled = false;
             }
 
-            if(patchListView == null)
+            if (patchListView == null)
             {
                 throw new ArgumentNullException(nameof(patchListView));
             }
@@ -34,7 +34,7 @@ namespace PatchMaker.App
 
             _sourceFileName = sourceFileName;
 
-            _patches = extractPatches(patchListView);
+            _patches = ExtractPatches(patchListView);
 
             var generator = new PatchGenerator(_sourceXml);
             _patch = generator.GeneratePatchFile(_patches);
@@ -42,7 +42,7 @@ namespace PatchMaker.App
 
             // Generating a preview for a patch with errors can crash the Sitecore patch engine
             // So we prevent that to avoid the confusing UI generated
-            if(patchXmlEdit.Text.Contains("<!--ERROR:"))
+            if (patchXmlEdit.Text.Contains("<!--ERROR:"))
             {
                 previewBtn.Enabled = false;
             }
@@ -50,13 +50,13 @@ namespace PatchMaker.App
             patchXmlEdit.Select(0, 0);
         }
 
-        private IEnumerable<BasePatch> extractPatches(ListBox listView)
+        private IEnumerable<BasePatch> ExtractPatches(ListBox listView)
         {
             var patches = new List<BasePatch>();
 
-            foreach(PatchItem patchListItem in listView.Items)
+            foreach (PatchItem patchListItem in listView.Items)
             {
-                if(patchListItem != null)
+                if (patchListItem != null)
                 {
                     patches.Add(patchListItem.Patch);
                 }
@@ -65,27 +65,28 @@ namespace PatchMaker.App
             return patches;
         }
 
-        private void previewBtn_Click(object sender, EventArgs e)
+        private void PreviewBtn_Click(object sender, EventArgs e)
         {
             var preview = new PatchPreviewForm(_sourceXml.ToString(), patchXmlEdit.Text, RoleConfig);
-            var dr = preview.ShowDialog(this);
+            preview.ShowDialog(this);
         }
 
-        private string makeNewFilename(string fileName)
+        private string MakeNewFilename(string fileName)
         {
             return $"{Path.GetFileNameWithoutExtension(fileName)}-patch";
         }
 
-        private void saveBtn_Click(object sender, EventArgs e)
+        private void SaveBtn_Click(object sender, EventArgs e)
         {
-            var sfd = new SaveFileDialog() { 
+            var sfd = new SaveFileDialog()
+            {
                 Filter = "Sitecore Config Patch (*.config)|*.config",
                 OverwritePrompt = true,
-                FileName = makeNewFilename(_sourceFileName)
+                FileName = MakeNewFilename(_sourceFileName)
             };
             var dr = sfd.ShowDialog(this);
 
-            if(dr == DialogResult.OK)
+            if (dr == DialogResult.OK)
             {
                 _patch.Save(sfd.FileName);
             }
@@ -96,14 +97,14 @@ namespace PatchMaker.App
             HelpSpawner.SpawnLocalFile("generate");
         }
 
-        private void roleBtn_Click(object sender, EventArgs e)
+        private void RoleBtn_Click(object sender, EventArgs e)
         {
             var rc = new RoleConfigForm();
             rc.Initialise(this.RoleConfig);
 
             var dr = rc.ShowDialog(this);
 
-            if(dr == DialogResult.OK)
+            if (dr == DialogResult.OK)
             {
                 this.RoleConfig = rc.RoleConfig;
             }

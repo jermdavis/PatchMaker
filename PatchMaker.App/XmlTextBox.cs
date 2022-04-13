@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
@@ -16,12 +12,13 @@ namespace PatchMaker.App
         {
             this.Multiline = true;
             this.AcceptsReturn = true;
-            PerformValidation = s => {
+            PerformValidation = s =>
+            {
                 var xml = XDocument.Parse(s);
             };
         }
 
-        private void inject(object sender, EventArgs e)
+        private void Inject(object sender, EventArgs e)
         {
             var menu = sender as ToolStripMenuItem;
             this.Paste($" {menu.Tag} ");
@@ -32,45 +29,46 @@ namespace PatchMaker.App
             var m = new ContextMenuStrip();
 
             // add operations to copy any namespaces declared on the root element
-            foreach(var nsAttr in root.Attributes())
+            foreach (var nsAttr in root.Attributes())
             {
-                if(nsAttr.Name.NamespaceName == Namespaces.XmlnsUri)
+                if (nsAttr.Name.NamespaceName == Namespaces.XmlnsUri)
                 {
-                    m.Items.Add(makeMenu(nsAttr.Name.LocalName, nsAttr.Value));
+                    m.Items.Add(MakeMenu(nsAttr.Name.LocalName, nsAttr.Value));
                 }
             }
 
             // But check to ensure that role / security are always there because they're important
-            addIfMissing(m, root, "role", Namespaces.Role);
-            addIfMissing(m, root, "security", Namespaces.Security);
+            AddIfMissing(m, root, "role", Namespaces.Role);
+            AddIfMissing(m, root, "security", Namespaces.Security);
 
             this.ContextMenuStrip = m;
         }
 
-        private void addIfMissing(ContextMenuStrip m, XElement root, string name, XNamespace ns)
+        private void AddIfMissing(ContextMenuStrip m, XElement root, string name, XNamespace ns)
         {
             var existed = root.Attributes().Where(a => a.Value == ns.NamespaceName).Any();
             if (!existed)
             {
-                m.Items.Add(makeMenu(name, ns));
+                m.Items.Add(MakeMenu(name, ns));
             }
         }
 
-        private ToolStripMenuItem makeMenu(string name, string ns)
+        private ToolStripMenuItem MakeMenu(string name, string ns)
         {
-            var menu = new ToolStripMenuItem();
-
-            menu.Text = $"Add '{name}' namespace";
-            menu.Tag = $"xmlns:{name}='{ns}'";
-            menu.Click += inject;
+            var menu = new ToolStripMenuItem
+            {
+                Text = $"Add '{name}' namespace",
+                Tag = $"xmlns:{name}='{ns}'"
+            };
+            menu.Click += Inject;
 
             return menu;
         }
 
-        private ToolStripMenuItem makeMenu(string name, XNamespace ns)
+        private ToolStripMenuItem MakeMenu(string name, XNamespace ns)
         {
-            return makeMenu(name, ns.NamespaceName);
+            return MakeMenu(name, ns.NamespaceName);
         }
     }
 
-}   
+}

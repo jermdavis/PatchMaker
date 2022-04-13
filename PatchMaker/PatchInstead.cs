@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Xml.Linq;
 
 namespace PatchMaker
@@ -12,7 +11,7 @@ namespace PatchMaker
 
         public PatchInstead(string xPathForParent, string xPathForReplacement, XElement replacement)
         {
-            if(string.IsNullOrWhiteSpace(xPathForParent))
+            if (string.IsNullOrWhiteSpace(xPathForParent))
             {
                 throw new ArgumentNullException(nameof(xPathForParent));
             }
@@ -24,11 +23,7 @@ namespace PatchMaker
             }
             XPathForReplacement = xPathForReplacement;
 
-            if (replacement == null)
-            {
-                throw new ArgumentNullException(nameof(replacement));
-            }
-            Replacement = replacement;
+            Replacement = replacement ?? throw new ArgumentNullException(nameof(replacement));
         }
 
         public override void ApplyPatchElement(XDocument sourceXml, XDocument patchXml)

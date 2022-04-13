@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Xml.Linq;
 
 namespace PatchMaker
@@ -14,7 +13,7 @@ namespace PatchMaker
 
         public PatchInsert(string xPathForParent, ElementInsertPosition position, string xPathForOrder, XElement newElement)
         {
-            if(string.IsNullOrWhiteSpace(xPathForParent))
+            if (string.IsNullOrWhiteSpace(xPathForParent))
             {
                 throw new ArgumentNullException(nameof(xPathForParent));
             }
@@ -22,17 +21,13 @@ namespace PatchMaker
 
             Position = position;
 
-            if(string.IsNullOrWhiteSpace(xPathForOrder))
+            if (string.IsNullOrWhiteSpace(xPathForOrder))
             {
                 throw new ArgumentNullException(nameof(xPathForOrder));
             }
             XPathForOrder = xPathForOrder;
 
-            if(newElement == null)
-            {
-                throw new ArgumentNullException(nameof(newElement));
-            }
-            NewElement = newElement;
+            NewElement = newElement ?? throw new ArgumentNullException(nameof(newElement));
         }
 
         public override void ApplyPatchElement(XDocument sourceXml, XDocument patchXml)
