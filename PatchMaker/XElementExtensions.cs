@@ -62,21 +62,21 @@ namespace PatchMaker
             }
 
             var idx = xPath.Length - 1;
-            var inClause = false;
+            var clauseDepth = 0;
 
             while (idx >= 0)
             {
                 var ch = xPath[idx];
                 if (ch == ']')
                 {
-                    inClause = true;
+                    clauseDepth -= 1;
                 }
                 if (ch == '[')
                 {
-                    inClause = false;
+                    clauseDepth += 1;
                 }
 
-                if (!inClause && ch == '/')
+                if (clauseDepth == 0 && ch == '/')
                 {
                     return idx;
                 }

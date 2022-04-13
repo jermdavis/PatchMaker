@@ -86,13 +86,24 @@ namespace PatchMaker.App
                                 continue;
                             }
 
-                            var clause = $"@{computeAppropriateName(xAttr, xElement)}='{xAttr.Value}'";
+                            var attrVal = xAttr.Value;
+                            var quoteChar = '\'';
+
+                            // if the attribute value we're testing for contains a single quote char,
+                            // make sure the surrounding xpath clause does not use single quotes itself
+                            if (attrVal.Contains("'"))
+                            {
+                                quoteChar = '"';
+                            }
+
+                            var clause = $"@{computeAppropriateName(xAttr, xElement)}={quoteChar}{attrVal}{quoteChar}";
                             if (query.Length > 0)
                             {
                                 query += " and ";
                             }
                             query += clause;
                         }
+
                         if (query.Length > 0)
                         {
                             xPath += $"[{query}]";
