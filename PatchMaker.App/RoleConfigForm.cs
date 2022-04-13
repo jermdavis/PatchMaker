@@ -55,7 +55,7 @@ namespace PatchMaker.App
             HelpSpawner.SpawnLocalFile("roleconfig");
         }
 
-        private void roleListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void RoleListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (roleListBox.SelectedIndex != -1)
             {
@@ -65,14 +65,14 @@ namespace PatchMaker.App
             }
         }
 
-        private void addBtn_Click(object sender, EventArgs e)
+        private void AddBtn_Click(object sender, EventArgs e)
         {
             var newItm = new ConfigItem();
             roleListBox.Items.Add(newItm);
             roleListBox.SelectedItem = newItm;
         }
 
-        private void deleteBtn_Click(object sender, EventArgs e)
+        private void DeleteBtn_Click(object sender, EventArgs e)
         {
             if (roleListBox.SelectedIndex != -1)
             {
@@ -80,7 +80,7 @@ namespace PatchMaker.App
             }
         }
 
-        private void updateBtn_Click(object sender, EventArgs e)
+        private void UpdateBtn_Click(object sender, EventArgs e)
         {
             if (roleListBox.SelectedIndex != -1)
             {

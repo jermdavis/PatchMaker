@@ -24,11 +24,7 @@ namespace PatchMaker
             }
             XPathForReplacement = xPathForReplacement;
 
-            if (replacement == null)
-            {
-                throw new ArgumentNullException(nameof(replacement));
-            }
-            Replacement = replacement;
+            Replacement = replacement ?? throw new ArgumentNullException(nameof(replacement));
         }
 
         public override void ApplyPatchElement(XDocument sourceXml, XDocument patchXml)

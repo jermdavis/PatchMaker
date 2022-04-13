@@ -55,7 +55,7 @@
             this.saveBtn.TabIndex = 1;
             this.saveBtn.Text = "&Save";
             this.saveBtn.UseVisualStyleBackColor = true;
-            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            this.saveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // okBtn
             // 
@@ -78,7 +78,7 @@
             this.previewBtn.TabIndex = 2;
             this.previewBtn.Text = "&Preview";
             this.previewBtn.UseVisualStyleBackColor = true;
-            this.previewBtn.Click += new System.EventHandler(this.previewBtn_Click);
+            this.previewBtn.Click += new System.EventHandler(this.PreviewBtn_Click);
             // 
             // roleBtn
             // 
@@ -89,7 +89,7 @@
             this.roleBtn.TabIndex = 3;
             this.roleBtn.Text = "&Roles";
             this.roleBtn.UseVisualStyleBackColor = true;
-            this.roleBtn.Click += new System.EventHandler(this.roleBtn_Click);
+            this.roleBtn.Click += new System.EventHandler(this.RoleBtn_Click);
             // 
             // patchXmlEdit
             // 

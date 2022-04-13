@@ -24,14 +24,10 @@ namespace PatchMaker
             }
             AttributeName = attributeName;
 
-            if (attributeValue == null)
-            {
-                throw new ArgumentNullException(nameof(attributeValue));
-            }
-            AttributeValue = attributeValue;
+            AttributeValue = attributeValue ?? throw new ArgumentNullException(nameof(attributeValue));
         }
 
-        protected abstract void applyPatch(XElement currentPatchNode);
+        protected abstract void ApplyPatch(XElement currentPatchNode);
 
         public override void ApplyPatchElement(XDocument sourceXml, XDocument patchXml)
         {
@@ -82,7 +78,7 @@ namespace PatchMaker
                 }
             }
 
-            applyPatch(currentPatchNode);
+            ApplyPatch(currentPatchNode);
         }
     }
 

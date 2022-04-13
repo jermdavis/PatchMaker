@@ -9,11 +9,9 @@ namespace PatchMaker.App
 
     public static class TreeNodeExtensions
     {
-        private static string fetchFirstAttribute(TreeNode node, Func<XAttribute, string> func)
+        private static string FetchFirstAttribute(TreeNode node, Func<XAttribute, string> func)
         {
-            var element = node.Tag as XElement;
-
-            if (element == null)
+            if (!(node.Tag is XElement element))
             {
                 return string.Empty;
             }
@@ -35,15 +33,15 @@ namespace PatchMaker.App
 
         public static string FirstAttributeName(this TreeNode node)
         {
-            return fetchFirstAttribute(node, a => a.Name.ToString());
+            return FetchFirstAttribute(node, a => a.Name.ToString());
         }
 
         public static string FirstAttributeValue(this TreeNode node)
         {
-            return fetchFirstAttribute(node, a => a.Value);
+            return FetchFirstAttribute(node, a => a.Value);
         }
 
-        private static string computeAppropriateName(XAttribute attr, XElement parentElement)
+        private static string ComputeAppropriateName(XAttribute attr, XElement parentElement)
         {
             var name = attr.Name.LocalName;
 
@@ -96,7 +94,7 @@ namespace PatchMaker.App
                                 quoteChar = '"';
                             }
 
-                            var clause = $"@{computeAppropriateName(xAttr, xElement)}={quoteChar}{attrVal}{quoteChar}";
+                            var clause = $"@{ComputeAppropriateName(xAttr, xElement)}={quoteChar}{attrVal}{quoteChar}";
                             if (query.Length > 0)
                             {
                                 query += " and ";

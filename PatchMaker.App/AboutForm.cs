@@ -16,12 +16,12 @@ namespace PatchMaker.App
             versionLabel.Text = $"v{version.Major}.{version.Minor}";
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             HelpSpawner.SpawnUrl("https://twitter.com/jermdavis");
         }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             HelpSpawner.SpawnUrl("https://github.com/jermdavis/PatchMaker");
         }

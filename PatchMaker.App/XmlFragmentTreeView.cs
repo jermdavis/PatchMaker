@@ -13,7 +13,7 @@ namespace PatchMaker.App
 
         public TreeNode BuildTreeView(TreeNode node)
         {
-            var nodes = buildNodes(node);
+            var nodes = BuildNodes(node);
 
             var rootNode = nodes;
             while (rootNode.Parent != null)
@@ -24,12 +24,12 @@ namespace PatchMaker.App
             this.Nodes.Add(rootNode);
             this.ExpandAll();
 
-            selectLeafNode(rootNode);
+            SelectLeafNode(rootNode);
 
             return rootNode;
         }
 
-        private void selectLeafNode(TreeNode rootNode)
+        private void SelectLeafNode(TreeNode rootNode)
         {
             var node = rootNode;
             while(node.Nodes.Count > 0)
@@ -40,7 +40,7 @@ namespace PatchMaker.App
             this.SelectedNode = node;
         }
 
-        private TreeNode buildNodes(TreeNode sourceNode)
+        private TreeNode BuildNodes(TreeNode sourceNode)
         {
             if (sourceNode.Parent == null)
             {
@@ -49,7 +49,7 @@ namespace PatchMaker.App
             }
             else
             {
-                var parent = buildNodes(sourceNode.Parent);
+                var parent = BuildNodes(sourceNode.Parent);
                 var newNode = new TreeNode()
                 {
                     Text = sourceNode.Text,

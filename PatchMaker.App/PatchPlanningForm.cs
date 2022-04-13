@@ -8,8 +8,8 @@ namespace PatchMaker.App
 {
     public partial class PatchPlanningForm : Form
     {
-        private string _titleTemplate = "PatchMaker: [{0}]";
-        private PatchProcessManager _manager = new PatchProcessManager();
+        private readonly string _titleTemplate = "PatchMaker: [{0}]";
+        private readonly PatchProcessManager _manager = new PatchProcessManager();
 
         public PatchPlanningForm()
         {
@@ -33,7 +33,7 @@ namespace PatchMaker.App
             this.Text = string.Format(_titleTemplate, "-no file-");
         }
 
-        private void loadXmlToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var ofd = new OpenFileDialog() {
                 Filter = "Sitecore Config (*.config)|*.config|Xml Files (*.xml)|*.xml"
@@ -61,7 +61,7 @@ namespace PatchMaker.App
             }
         }
 
-        private void showAddDialog(Func<TreeNode, IAddPatchForm> createForm)
+        private void ShowAddDialog(Func<TreeNode, IAddPatchForm> createForm)
         {
             var node = sourceTreeView.SelectedNode;
             if (node == null)
@@ -78,7 +78,7 @@ namespace PatchMaker.App
             }
         }
 
-        private void treeMenu_Opening(object sender, CancelEventArgs e)
+        private void TreeMenu_Opening(object sender, CancelEventArgs e)
         {
             if (sourceTreeView.SelectedNode == null)
             {
@@ -90,52 +90,54 @@ namespace PatchMaker.App
             addAChildToolStripMenuItem.Enabled = hasChildren;
         }
 
-        private void addAChildToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AddAChildToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            showAddDialog(n => new PatchNewChildForm(n));
+            ShowAddDialog(n => new PatchNewChildForm(n));
         }
 
-        private void patchDeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PatchDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            showAddDialog(n => new PatchDeleteForm(n));
+            ShowAddDialog(n => new PatchDeleteForm(n));
         }
 
-        private void patchInsertToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PatchInsertToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            showAddDialog(n => new PatchInsertForm(n));
+            ShowAddDialog(n => new PatchInsertForm(n));
         }
 
-        private void patchInsteadToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PatchInsteadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            showAddDialog(n => new PatchInsteadForm(n));
+            ShowAddDialog(n => new PatchInsteadForm(n));
         }
 
-        private void attributeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AttributeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            showAddDialog(n => new PatchAttributeForm(n, AttributePatchTypes.Patch));
+            ShowAddDialog(n => new PatchAttributeForm(n, AttributePatchTypes.Patch));
         }
 
-        private void generatePatchesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void GeneratePatchesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var generateDialog = new PatchGenerationForm(patchListBox, _manager.Source, _manager.SourceFileName);
-            generateDialog.RoleConfig = _manager.RoleConfig;
-            var dr = generateDialog.ShowDialog(this);
+            var generateDialog = new PatchGenerationForm(patchListBox, _manager.Source, _manager.SourceFileName)
+            {
+                RoleConfig = _manager.RoleConfig
+            };
+            generateDialog.ShowDialog(this);
             _manager.RoleConfig = generateDialog.RoleConfig;
         }
 
-        private void fileMenuToolStripItem_DropDownOpening(object sender, EventArgs e)
+        private void FileMenuToolStripItem_DropDownOpening(object sender, EventArgs e)
         {
             bool ready = _manager.Source != null && patchListBox.Items.Count > 0;
 
             generatePatchesToolStripMenuItem.Enabled = ready;
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void patchMenu_Opening(object sender, CancelEventArgs e)
+        private void PatchMenu_Opening(object sender, CancelEventArgs e)
         {
             deleteToolStripMenuItem.Enabled = patchListBox.SelectedIndex != -1;
             editToolStripMenuItem.Enabled = patchListBox.SelectedIndex != -1;
@@ -144,16 +146,15 @@ namespace PatchMaker.App
             moveDownToolStripMenuItem.Enabled = patchListBox.SelectedIndex > -1 && patchListBox.SelectedIndex < patchListBox.Items.Count - 1;
         }
 
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var item = patchListBox.SelectedItem;
             patchListBox.Items.Remove(item);
         }
 
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var item = patchListBox.SelectedItem as PatchItem;
-            if (item == null)
+            if (!(patchListBox.SelectedItem is PatchItem item))
             {
                 return;
             }
@@ -193,28 +194,28 @@ namespace PatchMaker.App
             }
         }
 
-        private void patchListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void PatchListBox_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            editToolStripMenuItem_Click(sender, e);
+            EditToolStripMenuItem_Click(sender, e);
         }
 
-        private void openHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HelpSpawner.SpawnLocalFile(null);
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var af = new AboutForm();
             af.ShowDialog(this);
         }
 
-        private void foundABugToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FoundABugToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HelpSpawner.SpawnUrl("https://github.com/jermdavis/PatchMaker/issues");
         }
 
-        private void filterBtn_Click(object sender, EventArgs e)
+        private void FilterBtn_Click(object sender, EventArgs e)
         {
             var txt = filterTextBox.Text;
 
@@ -234,7 +235,7 @@ namespace PatchMaker.App
             }
         }
 
-        private void sourceTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
+        private void SourceTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
             if (e.Node is HighlightableTreeNode)
             {
@@ -242,7 +243,7 @@ namespace PatchMaker.App
             }
         }
 
-        private void sourceTreeView_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
+        private void SourceTreeView_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
         {
             if (e.Node is HighlightableTreeNode)
             {
@@ -250,15 +251,15 @@ namespace PatchMaker.App
             }
         }
 
-        private void filterTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void FilterTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '\r')
             {
-                filterBtn_Click(sender, e);
+                FilterBtn_Click(sender, e);
             }
         }
 
-        private void collapseBtn_Click(object sender, EventArgs e)
+        private void CollapseBtn_Click(object sender, EventArgs e)
         {
             if (sourceTreeView.Nodes.Count > 0)
             {
@@ -274,12 +275,12 @@ namespace PatchMaker.App
             sourceTreeView.DrawMode = TreeViewDrawMode.Normal;
         }
 
-        private void moveUpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MoveUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             patchListBox.MoveUp();
         }
 
-        private void moveDownToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MoveDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
             patchListBox.MoveDown();
         }

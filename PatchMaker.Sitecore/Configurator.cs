@@ -38,19 +38,18 @@ namespace PatchMaker.Sitecore
 		/// </returns>
 		protected virtual XmlDocument GetRuleBasedConfiguration(System.Collections.Specialized.NameValueCollection ruleCollection, string layers)
 		{
-			var layers2 = layers.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
-			
 			// Don't actually want to do layer processing here
 			// We're only doing in-memory patching of two files...
 			var includeFiles = new List<string>(); //GetIncludeFiles(layers2);
-			
-			var ruleBasedConfigReader = new CustomRuleBasedConfigReader(includeFiles, ruleCollection);
 
-			ruleBasedConfigReader.SourceXml = SourceXml;
-			ruleBasedConfigReader.PatchXml = PatchXml;
-			ruleBasedConfigReader.PatchFileName = PatchFileName;
+            var ruleBasedConfigReader = new CustomRuleBasedConfigReader(includeFiles, ruleCollection)
+            {
+                SourceXml = SourceXml,
+                PatchXml = PatchXml,
+                PatchFileName = PatchFileName
+            };
 
-			return ruleBasedConfigReader.DoGetConfiguration();
+            return ruleBasedConfigReader.DoGetConfiguration();
 		}
 
 		/// <summary>

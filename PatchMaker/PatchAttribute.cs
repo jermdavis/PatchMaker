@@ -10,7 +10,7 @@ namespace PatchMaker
         {
         }
 
-        protected override void applyPatch(XElement currentPatchNode)
+        protected override void ApplyPatch(XElement currentPatchNode)
         {
             // append patch:attribute element
             currentPatchNode.Add(

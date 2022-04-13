@@ -27,12 +27,8 @@ namespace PatchMaker
                 throw new ArgumentNullException(nameof(xPathForOrder));
             }
             XPathForOrder = xPathForOrder;
-
-            if(newElement == null)
-            {
-                throw new ArgumentNullException(nameof(newElement));
-            }
-            NewElement = newElement;
+            
+            NewElement = newElement ?? throw new ArgumentNullException(nameof(newElement));
         }
 
         public override void ApplyPatchElement(XDocument sourceXml, XDocument patchXml)

@@ -8,7 +8,7 @@ namespace PatchMaker
 
     public class PatchGenerator
     {
-        private XDocument _sourceXml;
+        private readonly XDocument _sourceXml;
 
         public PatchGenerator(XDocument sourceXml)
         {
@@ -27,7 +27,7 @@ namespace PatchMaker
                 throw new ArgumentNullException(nameof(patches));
             }
 
-            var patchDocument = generateBasePatchData();
+            var patchDocument = GenerateBasePatchData();
 
             foreach(var patch in patches)
             {
@@ -37,7 +37,7 @@ namespace PatchMaker
             return patchDocument;
         }
 
-        private XDocument generateBasePatchData()
+        private XDocument GenerateBasePatchData()
         {
             XDocument basePatchDoc = new XDocument();
 

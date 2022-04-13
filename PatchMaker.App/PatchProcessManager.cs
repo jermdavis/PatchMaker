@@ -38,13 +38,13 @@ namespace PatchMaker.App
             _sourceFileName = sourceXmlPath;
 
             _patchTreeView.SuspendLayout();
-            clearControls();
-            loadXml(sourceXmlPath);
-            mapTreeView();
+            ClearControls();
+            LoadXml(sourceXmlPath);
+            MapTreeView();
             _patchTreeView.ResumeLayout();
         }
 
-        private void mapTreeView()
+        private void MapTreeView()
         {
             MapTreeView(_sourceXml.Root, _patchTreeView, _treeMenu);
         }
@@ -55,10 +55,10 @@ namespace PatchMaker.App
             var rootNode = new TreeNode("/");
             patchTreeView.Nodes.Add(rootNode);
 
-            mapNode(xElement, rootNode, treeMenu);
+            MapNode(xElement, rootNode, treeMenu);
         }
 
-        public static void mapNode(XElement element, TreeNode parentTreeNode, ContextMenuStrip treeMenu)
+        public static void MapNode(XElement element, TreeNode parentTreeNode, ContextMenuStrip treeMenu)
         {
             var treeNode = new HighlightableTreeNode(element, treeMenu);
             
@@ -71,16 +71,16 @@ namespace PatchMaker.App
 
             foreach(var child in element.Elements())
             {
-                mapNode(child, treeNode, treeMenu);
+                MapNode(child, treeNode, treeMenu);
             }
         }
 
-        private void loadXml(string file)
+        private void LoadXml(string file)
         {
             _sourceXml = XDocument.Load(file);
         }
 
-        private void clearControls()
+        private void ClearControls()
         {
             _patchTreeView.Nodes.Clear();
             _patchesList.Items.Clear();

@@ -68,7 +68,7 @@
             this.okBtn.TabIndex = 5;
             this.okBtn.Text = "&Ok";
             this.okBtn.UseVisualStyleBackColor = true;
-            this.okBtn.Click += new System.EventHandler(this.okBtn_Click);
+            this.okBtn.Click += new System.EventHandler(this.OkBtn_Click);
             // 
             // label1
             // 
@@ -173,7 +173,7 @@
             this.applyDefaultBtn.TabIndex = 16;
             this.applyDefaultBtn.Text = "<<";
             this.applyDefaultBtn.UseVisualStyleBackColor = true;
-            this.applyDefaultBtn.Click += new System.EventHandler(this.applyDefaultBtn_Click);
+            this.applyDefaultBtn.Click += new System.EventHandler(this.ApplyDefaultBtn_Click);
             // 
             // nameTextBox
             // 

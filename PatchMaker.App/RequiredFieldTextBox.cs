@@ -32,7 +32,7 @@ namespace PatchMaker.App
             {
                 e.Cancel = true;
                 _errorState = true;
-                addValidationError(EmptyFieldValidationMessage);
+                AddValidationError(EmptyFieldValidationMessage);
                 this.Invalidate(true); // needed to ensure validation message shown if "ok" clicked
                 return;
             }
@@ -47,29 +47,31 @@ namespace PatchMaker.App
                 {
                     e.Cancel = true;
                     _errorState = true;
-                    addValidationError(ex.Message);
+                    AddValidationError(ex.Message);
                     this.Invalidate(true); // needed to ensure validation message shown if "ok" clicked
                     return;
                 }
             }
 
             _errorState = false;
-            removeValidationError();
+            RemoveValidationError();
         }
 
         // https://stackoverflow.com/a/8511075/847953
-        private void addValidationError(string message)
+        private void AddValidationError(string message)
         {
             var p = new Point(15, this.Height - 10);
 
-            _toolTip = new ToolTip();
-            _toolTip.InitialDelay = 0;
-            _toolTip.IsBalloon = true;
+            _toolTip = new ToolTip
+            {
+                InitialDelay = 0,
+                IsBalloon = true
+            };
             _toolTip.Show(string.Empty, this, p);
             _toolTip.Show(message, this, p);
         }
 
-        private void removeValidationError()
+        private void RemoveValidationError()
         {
             if (_toolTip != null)
             {

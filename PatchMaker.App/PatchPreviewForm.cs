@@ -16,7 +16,7 @@ namespace PatchMaker.App
             InitializeComponent();
             this.ConfigureDialog();
 
-            renderRoles(rolesLabel, roles);
+            RenderRoles(rolesLabel, roles);
 
             if(XmlPreprocessingExtensions.RequiresSimplifying(sourceXml))
             {
@@ -43,7 +43,7 @@ namespace PatchMaker.App
             richTextBox.Select(0, 0);
         }
 
-        private void renderRoles(Label rolesLabel, Dictionary<string,string> roles)
+        private void RenderRoles(Label rolesLabel, Dictionary<string,string> roles)
         {
             rolesLabel.Text = string.Empty; 
             foreach (var role in roles)
@@ -56,12 +56,12 @@ namespace PatchMaker.App
             }
         }
 
-        private void roleWarningLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void RoleWarningLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             HelpSpawner.SpawnLocalFile("preview");
         }
 
-        private void nextBtn_Click(object sender, System.EventArgs e)
+        private void NextBtn_Click(object sender, System.EventArgs e)
         {
             int pos = richTextBox.SelectionStart + richTextBox.SelectionLength;
             int hit = richTextBox.Find("patch:source=\"preview.patch.config\"", pos, RichTextBoxFinds.WholeWord);
@@ -69,7 +69,7 @@ namespace PatchMaker.App
             {
                 // If no hit, go back to the start - but don't let it loop indefinitely
                 richTextBox.Select(0, 0);
-                nextBtn_Click(sender, null);
+                NextBtn_Click(sender, null);
             }
             else
             {

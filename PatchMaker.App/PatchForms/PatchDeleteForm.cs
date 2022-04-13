@@ -8,9 +8,9 @@ namespace PatchMaker.App.PatchForms
 
     public partial class PatchDeleteForm : Form, IAddPatchForm
     {
-        private TreeNode _treeNode;
+        private readonly TreeNode _treeNode;
         
-        private XDocument _rootXml => (_treeNode.Tag as XElement).Document;
+        private XDocument RootXml => (_treeNode.Tag as XElement).Document;
 
         public PatchItem Patch { get; private set; }
 
@@ -19,7 +19,7 @@ namespace PatchMaker.App.PatchForms
             InitializeComponent();
             this.ConfigureDialog();
 
-            xPathTextBox.PerformValidation = s => XPathExpression.Compile(s, _rootXml.MakeNamespaceManager());
+            xPathTextBox.PerformValidation = s => XPathExpression.Compile(s, RootXml.MakeNamespaceManager());
         }
 
         public PatchDeleteForm(TreeNode node) : this()
@@ -40,7 +40,7 @@ namespace PatchMaker.App.PatchForms
             xPathTextBox.Text = delete.XPathForElement;
         }
 
-        private void okBtn_Click(object sender, EventArgs e)
+        private void OkBtn_Click(object sender, EventArgs e)
         {
             var patchDelete = new PatchDelete(xPathTextBox.Text);
             Patch = new PatchItem(patchDelete, _treeNode);
