@@ -7,14 +7,17 @@ namespace PatchMaker
     public class PatchDelete : BasePatch
     {
         public string XPathForElement { get; }
+        public string[] RoleBasedRules { get; }
 
-        public PatchDelete(string xPathForElement)
+        public PatchDelete(string xPathForElement, string[] roleBasedRules = null)
         {
             if (string.IsNullOrWhiteSpace(xPathForElement))
             {
                 throw new ArgumentNullException(nameof(xPathForElement));
             }
             XPathForElement = xPathForElement;
+
+            //RoleBasedRules = roleBasedRules;
         }
 
         public override void ApplyPatchElement(XDocument sourceXml, XDocument patchXml)
@@ -45,6 +48,10 @@ namespace PatchMaker
 
             // add child element for delete
             var deleteElement = new XElement(Namespaces.Patch + "delete");
+            if(RoleBasedRules != null)
+            {
+
+            }
             newTargetElement.Add(deleteElement);
         }
 
