@@ -73,7 +73,8 @@ namespace PatchMaker.App.PatchForms
 
         private void UpdateButton()
         {
-            RBC_Btn.Text = $"Rules ({_rules.Length})";
+            var len = _rules == null ? 0 : _rules.Length;
+            RBC_Btn.Text = $"Rules ({len})";
         }
     }
 

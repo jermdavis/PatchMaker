@@ -66,7 +66,7 @@ namespace PatchMaker.Tests
         [TestMethod]
         public void PatchDelete_PatchGenerator_Accepts_Delete_WithRBC()
         {
-            var de = new PatchDelete("/sitecore/sites/site[@name='a']", new ConfigRule[] { new ConfigRule("role", "require","Standalone") });
+            var de = new PatchDelete("/sitecore/sites/site[@name='a']", new ConfigRule[] { new ConfigRule("https://x/role/", "require","Standalone") });
             var xml = XDocument.Parse("<sitecore><sites><site name=\"a\"/><site name=\"b\"/></sites></sitecore>");
 
             var sut = new PatchGenerator(xml);
@@ -82,7 +82,7 @@ namespace PatchMaker.Tests
 
             Assert.IsNotNull(patch);
 
-            XNamespace ns = "role";
+            XNamespace ns = "https://x/role/";
             var p = patch.Attribute(ns + "require");
             
             Assert.IsNotNull(p);
