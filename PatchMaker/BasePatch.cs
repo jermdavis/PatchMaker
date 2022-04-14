@@ -6,6 +6,13 @@ namespace PatchMaker
 {
     public abstract class BasePatch
     {
+        public ConfigRule[] RoleBasedRules { get; }
+
+        public BasePatch(ConfigRule[] roleBasedRules = null)
+        {
+            RoleBasedRules = roleBasedRules;
+        }
+
         public abstract void ApplyPatchElement(XDocument sourceXml, XDocument patchXml);
 
         private bool RequiresAttributeCopy(XElement node)

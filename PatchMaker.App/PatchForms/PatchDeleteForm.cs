@@ -9,6 +9,7 @@ namespace PatchMaker.App.PatchForms
     public partial class PatchDeleteForm : Form, IAddPatchForm
     {
         private readonly TreeNode _treeNode;
+        private ConfigRule[] _rules = null;
 
         private XDocument RootXml => (_treeNode.Tag as XElement).Document;
 
@@ -28,6 +29,8 @@ namespace PatchMaker.App.PatchForms
 
             var rootNode = treeView.BuildTreeView(node);
             xPathTextBox.Text = rootNode.DefaultXPath();
+
+            UpdateButton();
         }
 
         public PatchDeleteForm(PatchItem patchItem) : this()
@@ -38,17 +41,39 @@ namespace PatchMaker.App.PatchForms
 
             var delete = patchItem.Patch as PatchDelete;
             xPathTextBox.Text = delete.XPathForElement;
+            _rules = delete.RoleBasedRules;
+
+            UpdateButton();
         }
 
         private void OkBtn_Click(object sender, EventArgs e)
         {
-            var patchDelete = new PatchDelete(xPathTextBox.Text);
+            var patchDelete = new PatchDelete(xPathTextBox.Text, _rules);
             Patch = new PatchItem(patchDelete, _treeNode);
         }
 
         private void PatchDeleteForm_HelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
         {
             HelpSpawner.SpawnLocalFile("delete");
+        }
+
+        private void RBC_Btn_Click(object sender, EventArgs e)
+        {
+            // populate rule dialog
+            // launch rule dialog
+
+            // assign dialog data to rule data
+            _rules = new ConfigRule[] { 
+                new ConfigRule("http://www.sitecore.net/xmlconfig/localenv/", "require", "qa"),
+                new ConfigRule("http://www.sitecore.net/xmlconfig/role/", "require", "ContentManagement")
+            };
+
+            UpdateButton();
+        }
+
+        private void UpdateButton()
+        {
+            RBC_Btn.Text = $"Rules ({_rules.Length})";
         }
     }
 
