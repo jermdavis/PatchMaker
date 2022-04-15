@@ -9,6 +9,7 @@ namespace PatchMaker.App.PatchForms
     public partial class PatchInsertForm : Form, IAddPatchForm
     {
         private readonly TreeNode _treeNode;
+        private ConfigRule[] _rules = null;
 
         private XDocument RootXml => (_treeNode.Tag as XElement).Document;
 
@@ -43,6 +44,8 @@ namespace PatchMaker.App.PatchForms
             orderXPathTextBox.Text = order;
             positionComboBox.SelectedIndex = 0;
             newElementTextBox.Text = "<xml/>";
+
+            UpdateButton();
         }
 
         public PatchInsertForm(PatchItem patchItem) : this()
@@ -58,6 +61,9 @@ namespace PatchMaker.App.PatchForms
             orderXPathTextBox.Text = patch.XPathForOrder;
             positionComboBox.SelectedItem = patch.Position;
             newElementTextBox.Text = patch.NewElement.ToString();
+            _rules = patch.RoleBasedRules;
+
+            UpdateButton();
         }
 
         private void OkButton_Click(object sender, EventArgs e)
@@ -68,7 +74,8 @@ namespace PatchMaker.App.PatchForms
                 parentXPathTextBox.Text,
                 (ElementInsertPosition)positionComboBox.SelectedItem,
                 orderXPathTextBox.Text,
-                xml
+                xml,
+                _rules
             );
 
             Patch = new PatchItem(patchInsert, _treeNode);
@@ -77,6 +84,29 @@ namespace PatchMaker.App.PatchForms
         private void PatchInsertForm_HelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
         {
             HelpSpawner.SpawnLocalFile("insert");
+        }
+
+        private void UpdateButton()
+        {
+            var len = _rules == null ? 0 : _rules.Length;
+            RBC_Btn.Text = $"Rules ({len})";
+        }
+
+        private void RBC_Btn_Click(object sender, EventArgs e)
+        {
+            // populate rule dialog
+            // launch rule dialog
+
+            // docs need updating for the rules dialog, and all the diagrams of patch dialogs, to add new button
+            // This should be v1.6.0
+
+            // assign dialog data to rule data
+            _rules = new ConfigRule[] {
+                new ConfigRule("http://www.sitecore.net/xmlconfig/localenv/", "require", "qa"),
+                new ConfigRule("http://www.sitecore.net/xmlconfig/role/", "require", "ContentManagement")
+            };
+
+            UpdateButton();
         }
     }
 }

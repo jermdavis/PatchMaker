@@ -39,6 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.RBC_Btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // treeView
@@ -148,6 +149,17 @@
             this.label3.TabIndex = 14;
             this.label3.Text = "Element:";
             // 
+            // RBC_Btn
+            // 
+            this.RBC_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.RBC_Btn.Location = new System.Drawing.Point(60, 308);
+            this.RBC_Btn.Name = "RBC_Btn";
+            this.RBC_Btn.Size = new System.Drawing.Size(75, 23);
+            this.RBC_Btn.TabIndex = 15;
+            this.RBC_Btn.Text = "Rules (x)";
+            this.RBC_Btn.UseVisualStyleBackColor = true;
+            this.RBC_Btn.Click += new System.EventHandler(this.RBC_Btn_Click);
+            // 
             // PatchInsteadForm
             // 
             this.AcceptButton = this.okBtn;
@@ -155,6 +167,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelBtn;
             this.ClientSize = new System.Drawing.Size(696, 343);
+            this.Controls.Add(this.RBC_Btn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
@@ -187,5 +200,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private XmlTextBox newElementTextBox;
+        private System.Windows.Forms.Button RBC_Btn;
     }
 }

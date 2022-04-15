@@ -38,6 +38,18 @@ namespace PatchMaker.Tests
         }
 
         [TestMethod]
+        public void PatchNewChild_Constructor_WithRBC_Works()
+        {
+            var newElement = new XElement("test");
+
+            var sut = new PatchNewChild("/sites/site", newElement, new ConfigRule[] { new ConfigRule("role", "require", "Standalone") });
+
+            Assert.AreEqual(1, sut.RoleBasedRules.Length);
+            Assert.AreEqual("require", sut.RoleBasedRules[0].Name);
+            Assert.AreEqual("Standalone", sut.RoleBasedRules[0].Value);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void PatchNewChild_Constructor_NullPatchXml_Throws()
         {
@@ -79,6 +91,40 @@ namespace PatchMaker.Tests
 
             Assert.IsNotNull(newSite);
             Assert.AreEqual("c", newSite.Attribute("name").Value);
+        }
+
+        [TestMethod]
+        public void PatchNewChild_PatchGenerator_Accepts_Insert_WithRBC()
+        {
+            var ins = new PatchNewChild("/sitecore/sites", new XElement("site", new XAttribute("name", "c")), new ConfigRule[] { new ConfigRule("https://x/role/", "require", "Standalone") });
+            var xml = XDocument.Parse("<sitecore><sites/></sitecore>");
+
+            var sut = new PatchGenerator(xml);
+
+            var result = sut.GeneratePatchFile(new BasePatch[] { ins });
+
+            var sites = result
+                .Element("configuration")
+                .Element("sitecore")
+                .Element("sites")
+                .Elements("site");
+
+            Assert.AreEqual(1, sites.Count());
+
+            var newSite = result
+                .Element("configuration")
+                .Element("sitecore")
+                .Element("sites")
+                .Element("site");
+
+            Assert.IsNotNull(newSite);
+            Assert.AreEqual("c", newSite.Attribute("name").Value);
+
+            XNamespace ns = "https://x/role/";
+            var p = newSite.Attribute(ns + "require");
+
+            Assert.IsNotNull(p);
+            Assert.AreEqual("Standalone", p.Value);
         }
 
         [TestMethod]

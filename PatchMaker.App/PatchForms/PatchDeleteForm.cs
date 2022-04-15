@@ -61,6 +61,9 @@ namespace PatchMaker.App.PatchForms
         {
             // populate rule dialog
             // launch rule dialog
+            
+            // docs need updating for the rules dialog, and all the diagrams of patch dialogs, to add new button
+            // This should be v1.6.0
 
             // assign dialog data to rule data
             _rules = new ConfigRule[] { 

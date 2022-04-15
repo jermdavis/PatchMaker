@@ -41,6 +41,7 @@
             this.defaultComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.applyDefaultBtn = new System.Windows.Forms.Button();
+            this.RBC_Btn = new System.Windows.Forms.Button();
             this.nameTextBox = new PatchMaker.App.RequiredFieldTextBox();
             this.elementXPathTextBox = new PatchMaker.App.RequiredFieldTextBox();
             this.treeView = new PatchMaker.App.XmlFragmentTreeView();
@@ -175,6 +176,17 @@
             this.applyDefaultBtn.UseVisualStyleBackColor = true;
             this.applyDefaultBtn.Click += new System.EventHandler(this.ApplyDefaultBtn_Click);
             // 
+            // RBC_Btn
+            // 
+            this.RBC_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.RBC_Btn.Location = new System.Drawing.Point(60, 224);
+            this.RBC_Btn.Name = "RBC_Btn";
+            this.RBC_Btn.Size = new System.Drawing.Size(75, 23);
+            this.RBC_Btn.TabIndex = 17;
+            this.RBC_Btn.Text = "Rules (x)";
+            this.RBC_Btn.UseVisualStyleBackColor = true;
+            this.RBC_Btn.Click += new System.EventHandler(this.RBC_Btn_Click);
+            // 
             // nameTextBox
             // 
             this.nameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -215,6 +227,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelBtn;
             this.ClientSize = new System.Drawing.Size(696, 259);
+            this.Controls.Add(this.RBC_Btn);
             this.Controls.Add(this.applyDefaultBtn);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.defaultComboBox);
@@ -257,5 +270,6 @@
         private System.Windows.Forms.ComboBox defaultComboBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button applyDefaultBtn;
+        private System.Windows.Forms.Button RBC_Btn;
     }
 }
