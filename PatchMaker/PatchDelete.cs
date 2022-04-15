@@ -45,30 +45,10 @@ namespace PatchMaker
 
             // add child element for delete
             var deleteElement = new XElement(Namespaces.Patch + "delete");
-            if(RoleBasedRules != null)
-            {
-                foreach(var rule in RoleBasedRules)
-                {
-                    // Do we need to add the namespace for this rule?
-                    var nsName = GetLastPart(rule.Namespace.NamespaceName);
-                    if (patchXml.Root.Attribute(XNamespace.Xmlns + nsName) == null)
-                    {
-                        var ns = new XAttribute(XNamespace.Xmlns + nsName, rule.Namespace.NamespaceName);
-                        patchXml.Root.Add(ns);
-                    }
 
-                    // Add the rule
-                    deleteElement.Add(new XAttribute(rule.Namespace + rule.Name, rule.Value));
-                }
-            }
+            ApplyRuleBasedConfig(patchXml, deleteElement);
+
             newTargetElement.Add(deleteElement);
-        }
-
-        private string GetLastPart(string url)
-        {
-            var uri = new Uri(url);
-
-            return uri.Segments[uri.Segments.Length-1].Replace("/","");
         }
 
         public override string ToString()

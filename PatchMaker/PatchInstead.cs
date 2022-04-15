@@ -9,7 +9,7 @@ namespace PatchMaker
         public string XPathForReplacement { get; }
         public XElement Replacement { get; }
 
-        public PatchInstead(string xPathForParent, string xPathForReplacement, XElement replacement)
+        public PatchInstead(string xPathForParent, string xPathForReplacement, XElement replacement, ConfigRule[] roleBasedRules = null) : base(roleBasedRules)
         {
             if (string.IsNullOrWhiteSpace(xPathForParent))
             {
@@ -45,12 +45,14 @@ namespace PatchMaker
             // add new xml
             var currentPatchNode = base.CopyAncestorsAndSelf(targetElement, patchXml.Root);
             RemoveCoreNamespaces(patchXml, newElement);
+            ApplyRuleBasedConfig(patchXml, newElement);
             currentPatchNode.Add(newElement);
         }
 
         public override string ToString()
         {
-            return $"INSTEAD: {XPathForParent} {XPathForReplacement}";
+            var rules = RoleBasedRules == null ? string.Empty : $" [Rules: {RoleBasedRules.Length}]";
+            return $"INSTEAD: {XPathForParent} {XPathForReplacement}{rules}";
         }
     }
 

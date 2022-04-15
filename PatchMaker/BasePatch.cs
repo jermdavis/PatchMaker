@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -131,6 +132,33 @@ namespace PatchMaker
                     attr.Remove();
                 }
             }
+        }
+
+        protected void ApplyRuleBasedConfig(XDocument patchXml, XElement patchElement)
+        {          
+            if (RoleBasedRules != null)
+            {
+                foreach (var rule in RoleBasedRules)
+                {
+                    // Do we need to add the namespace for this rule?
+                    var nsName = GetLastPart(rule.Namespace.NamespaceName);
+                    if (patchXml.Root.Attribute(XNamespace.Xmlns + nsName) == null)
+                    {
+                        var ns = new XAttribute(XNamespace.Xmlns + nsName, rule.Namespace.NamespaceName);
+                        patchXml.Root.Add(ns);
+                    }
+
+                    // Add the rule
+                    patchElement.Add(new XAttribute(rule.Namespace + rule.Name, rule.Value));
+                }
+            }
+        }
+
+        private string GetLastPart(string url)
+        {
+            var uri = new Uri(url);
+
+            return uri.Segments[uri.Segments.Length - 1].Replace("/", "");
         }
     }
 

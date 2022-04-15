@@ -11,7 +11,7 @@ namespace PatchMaker
         public ElementInsertPosition Position { get; }
         public XElement NewElement { get; }
 
-        public PatchInsert(string xPathForParent, ElementInsertPosition position, string xPathForOrder, XElement newElement)
+        public PatchInsert(string xPathForParent, ElementInsertPosition position, string xPathForOrder, XElement newElement, ConfigRule[] roleBasedRules = null) : base(roleBasedRules)
         {
             if (string.IsNullOrWhiteSpace(xPathForParent))
             {
@@ -48,6 +48,8 @@ namespace PatchMaker
 
             RemoveCoreNamespaces(patchXml, newNode);
 
+            ApplyRuleBasedConfig(patchXml, newNode);
+
             // append PatchXml element as child
             var currentPatchNode = base.CopyAncestorsAndSelf(targetElement, patchXml.Root);
             currentPatchNode.Add(newNode);
@@ -55,7 +57,8 @@ namespace PatchMaker
 
         public override string ToString()
         {
-            return $"INSERT: {Position} {XPathForOrder}";
+            var rules = RoleBasedRules == null ? string.Empty : $" [Rules: {RoleBasedRules.Length}]";
+            return $"INSERT: {Position} {XPathForOrder}{rules}";
         }
     }
 
