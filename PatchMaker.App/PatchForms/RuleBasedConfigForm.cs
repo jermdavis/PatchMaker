@@ -139,5 +139,10 @@ namespace PatchMaker.App.PatchForms
         {
             InEditing();
         }
+
+        private void RuleBasedConfigForm_HelpButtonClicked(object sender, CancelEventArgs e)
+        {
+            HelpSpawner.SpawnLocalFile("rbc");
+        }
     }
 }

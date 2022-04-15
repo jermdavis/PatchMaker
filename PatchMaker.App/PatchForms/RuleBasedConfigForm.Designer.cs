@@ -207,9 +207,11 @@
             this.Controls.Add(this.NameEdit);
             this.Controls.Add(this.RuleEdit);
             this.Controls.Add(this.RuleList);
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RuleBasedConfigForm";
             this.Text = "Rule based config";
+            this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.RuleBasedConfigForm_HelpButtonClicked);
             this.ResumeLayout(false);
             this.PerformLayout();
 
