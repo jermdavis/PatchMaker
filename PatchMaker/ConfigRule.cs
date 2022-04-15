@@ -15,6 +15,16 @@ namespace PatchMaker
             Name = name;
             Value = value;
         }
+
+        public override string ToString()
+        {
+            var ns = "";
+            if (!string.IsNullOrWhiteSpace(Namespace.NamespaceName))
+            {
+                ns = Namespace.NamespaceName.GetLastPart();
+            }
+            return $"{ns}:{Name}='{Value}'";
+        }
     }
 
 }

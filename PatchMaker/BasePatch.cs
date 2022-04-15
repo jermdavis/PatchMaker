@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -141,7 +140,7 @@ namespace PatchMaker
                 foreach (var rule in RoleBasedRules)
                 {
                     // Do we need to add the namespace for this rule?
-                    var nsName = GetLastPart(rule.Namespace.NamespaceName);
+                    var nsName = rule.Namespace.NamespaceName.GetLastPart();
                     if (patchXml.Root.Attribute(XNamespace.Xmlns + nsName) == null)
                     {
                         var ns = new XAttribute(XNamespace.Xmlns + nsName, rule.Namespace.NamespaceName);
@@ -154,12 +153,7 @@ namespace PatchMaker
             }
         }
 
-        private string GetLastPart(string url)
-        {
-            var uri = new Uri(url);
-
-            return uri.Segments[uri.Segments.Length - 1].Replace("/", "");
-        }
+        
     }
 
 }

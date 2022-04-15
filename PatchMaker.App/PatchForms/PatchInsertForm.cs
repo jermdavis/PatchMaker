@@ -94,19 +94,16 @@ namespace PatchMaker.App.PatchForms
 
         private void RBC_Btn_Click(object sender, EventArgs e)
         {
-            // populate rule dialog
-            // launch rule dialog
+            var rbc = new RuleBasedConfigForm();
+            rbc.InitialiseRuleList(_rules);
+            rbc.Owner = this;
+            var dr = rbc.ShowDialog();
 
-            // docs need updating for the rules dialog, and all the diagrams of patch dialogs, to add new button
-            // This should be v1.6.0
-
-            // assign dialog data to rule data
-            _rules = new ConfigRule[] {
-                new ConfigRule("http://www.sitecore.net/xmlconfig/localenv/", "require", "qa"),
-                new ConfigRule("http://www.sitecore.net/xmlconfig/role/", "require", "ContentManagement")
-            };
-
-            UpdateButton();
+            if (dr == DialogResult.OK)
+            {
+                _rules = rbc.FetchRuleList();
+                UpdateButton();
+            }
         }
     }
 }
