@@ -5,23 +5,27 @@ namespace PatchMaker
 
     public class PatchAttribute : BaseAttributeChange
     {
-        public PatchAttribute(string xPathForElement, string attributeName, string attributeValue)
-            : base(xPathForElement, attributeName, attributeValue)
+        public PatchAttribute(string xPathForElement, string attributeName, string attributeValue, ConfigRule[] roleBasedRules = null)
+            : base(xPathForElement, attributeName, attributeValue, roleBasedRules)
         {
         }
 
-        protected override void ApplyPatch(XElement currentPatchNode)
+        protected override XElement ApplyPatch(XElement currentPatchNode)
         {
-            // append patch:attribute element
-            currentPatchNode.Add(
-                new XElement(Namespaces.Patch + "attribute",
+            var child = new XElement(Namespaces.Patch + "attribute",
                     new XAttribute("name", AttributeName),
-                    new XAttribute("value", AttributeValue)));
+                    new XAttribute("value", AttributeValue));
+
+            // append patch:attribute element
+            currentPatchNode.Add(child);
+
+            return child;
         }
 
         public override string ToString()
         {
-            return $"ATTR: (PATCH) {XPathForElement} {AttributeName}";
+            var rules = RoleBasedRules == null ? string.Empty : $" [Rules: {RoleBasedRules.Length}]";
+            return $"ATTR: (PATCH) {XPathForElement} {AttributeName}{rules}";
         }
     }
 

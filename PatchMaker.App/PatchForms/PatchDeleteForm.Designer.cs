@@ -35,13 +35,14 @@
             this.xPathTextBox = new PatchMaker.App.RequiredFieldTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.treeView = new PatchMaker.App.XmlFragmentTreeView();
+            this.RBC_Btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // okBtn
             // 
             this.okBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okBtn.Location = new System.Drawing.Point(377, 156);
+            this.okBtn.Location = new System.Drawing.Point(363, 137);
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(75, 23);
             this.okBtn.TabIndex = 2;
@@ -54,7 +55,7 @@
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelBtn.CausesValidation = false;
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelBtn.Location = new System.Drawing.Point(458, 156);
+            this.cancelBtn.Location = new System.Drawing.Point(444, 137);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 3;
@@ -66,7 +67,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 125);
+            this.label1.Location = new System.Drawing.Point(12, 106);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 13);
             this.label1.TabIndex = 2;
@@ -78,9 +79,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.xPathTextBox.EmptyFieldValidationMessage = "Field can\'t be empty";
             this.xPathTextBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xPathTextBox.Location = new System.Drawing.Point(60, 122);
+            this.xPathTextBox.Location = new System.Drawing.Point(60, 103);
             this.xPathTextBox.Name = "xPathTextBox";
-            this.xPathTextBox.Size = new System.Drawing.Size(478, 20);
+            this.xPathTextBox.Size = new System.Drawing.Size(464, 20);
             this.xPathTextBox.TabIndex = 1;
             // 
             // label2
@@ -100,8 +101,19 @@
             this.treeView.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView.Location = new System.Drawing.Point(60, 12);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(478, 102);
+            this.treeView.Size = new System.Drawing.Size(464, 83);
             this.treeView.TabIndex = 0;
+            // 
+            // RBC_Btn
+            // 
+            this.RBC_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.RBC_Btn.Location = new System.Drawing.Point(60, 137);
+            this.RBC_Btn.Name = "RBC_Btn";
+            this.RBC_Btn.Size = new System.Drawing.Size(75, 23);
+            this.RBC_Btn.TabIndex = 5;
+            this.RBC_Btn.Text = "Rules (x)";
+            this.RBC_Btn.UseVisualStyleBackColor = true;
+            this.RBC_Btn.Click += new System.EventHandler(this.RBC_Btn_Click);
             // 
             // PatchDeleteForm
             // 
@@ -109,7 +121,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelBtn;
-            this.ClientSize = new System.Drawing.Size(545, 191);
+            this.ClientSize = new System.Drawing.Size(531, 172);
+            this.Controls.Add(this.RBC_Btn);
             this.Controls.Add(this.treeView);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.xPathTextBox);
@@ -139,5 +152,6 @@
         private RequiredFieldTextBox xPathTextBox;
         private System.Windows.Forms.Label label2;
         private XmlFragmentTreeView treeView;
+        private System.Windows.Forms.Button RBC_Btn;
     }
 }

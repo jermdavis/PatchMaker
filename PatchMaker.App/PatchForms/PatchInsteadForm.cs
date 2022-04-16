@@ -9,6 +9,7 @@ namespace PatchMaker.App.PatchForms
     public partial class PatchInsteadForm : Form, IAddPatchForm
     {
         private readonly TreeNode _treeNode;
+        private ConfigRule[] _rules = null;
 
         private XDocument RootXml => (_treeNode.Tag as XElement).Document;
 
@@ -38,6 +39,8 @@ namespace PatchMaker.App.PatchForms
             xPathForParent.Text = parent;
             xPathForReplacement.Text = order;
             newElementTextBox.Text = "<xml/>";
+
+            UpdateButton();
         }
 
         public PatchInsteadForm(PatchItem patchItem) : this()
@@ -52,18 +55,41 @@ namespace PatchMaker.App.PatchForms
             xPathForParent.Text = patch.XPathForParent;
             xPathForReplacement.Text = patch.XPathForReplacement;
             newElementTextBox.Text = patch.Replacement.ToString();
+            _rules = patch.RoleBasedRules;
+
+            UpdateButton();
         }
 
         private void OkBtn_Click(object sender, EventArgs e)
         {
             var xml = XElement.Parse(newElementTextBox.Text);
-            var patchInstead = new PatchInstead(xPathForParent.Text, xPathForReplacement.Text, xml);
+            var patchInstead = new PatchInstead(xPathForParent.Text, xPathForReplacement.Text, xml, _rules);
             Patch = new PatchItem(patchInstead, _treeNode);
         }
 
         private void PatchInsteadForm_HelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
         {
             HelpSpawner.SpawnLocalFile("replace");
+        }
+
+        private void UpdateButton()
+        {
+            var len = _rules == null ? 0 : _rules.Length;
+            RBC_Btn.Text = $"Rules ({len})";
+        }
+
+        private void RBC_Btn_Click(object sender, EventArgs e)
+        {
+            var rbc = new RuleBasedConfigForm();
+            rbc.InitialiseRuleList(_rules);
+            rbc.Owner = this;
+            var dr = rbc.ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+                _rules = rbc.FetchRuleList();
+                UpdateButton();
+            }
         }
     }
 

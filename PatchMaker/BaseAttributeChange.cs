@@ -10,7 +10,7 @@ namespace PatchMaker
         public string AttributeName { get; }
         public string AttributeValue { get; }
 
-        public BaseAttributeChange(string xPathForElement, string attributeName, string attributeValue)
+        public BaseAttributeChange(string xPathForElement, string attributeName, string attributeValue, ConfigRule[] roleBasedRules = null) : base(roleBasedRules)
         {
             if (string.IsNullOrWhiteSpace(xPathForElement))
             {
@@ -27,7 +27,7 @@ namespace PatchMaker
             AttributeValue = attributeValue ?? throw new ArgumentNullException(nameof(attributeValue));
         }
 
-        protected abstract void ApplyPatch(XElement currentPatchNode);
+        protected abstract XElement ApplyPatch(XElement currentPatchNode);
 
         public override void ApplyPatchElement(XDocument sourceXml, XDocument patchXml)
         {
@@ -78,7 +78,9 @@ namespace PatchMaker
                 }
             }
 
-            ApplyPatch(currentPatchNode);
+            var appliedChild = ApplyPatch(currentPatchNode);
+
+            ApplyRuleBasedConfig(patchXml, appliedChild);
         }
     }
 

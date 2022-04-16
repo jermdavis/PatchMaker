@@ -40,6 +40,7 @@
             this.newElementTextBox = new PatchMaker.App.XmlTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.treeView = new PatchMaker.App.XmlFragmentTreeView();
+            this.RBC_Btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cancelBtn
@@ -47,7 +48,7 @@
             this.cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelBtn.CausesValidation = false;
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelBtn.Location = new System.Drawing.Point(605, 308);
+            this.cancelBtn.Location = new System.Drawing.Point(614, 314);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 6;
@@ -58,7 +59,7 @@
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(524, 308);
+            this.okButton.Location = new System.Drawing.Point(533, 314);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 5;
@@ -83,7 +84,7 @@
             this.parentXPathTextBox.Font = new System.Drawing.Font("Consolas", 8.25F);
             this.parentXPathTextBox.Location = new System.Drawing.Point(60, 115);
             this.parentXPathTextBox.Name = "parentXPathTextBox";
-            this.parentXPathTextBox.Size = new System.Drawing.Size(620, 20);
+            this.parentXPathTextBox.Size = new System.Drawing.Size(629, 20);
             this.parentXPathTextBox.TabIndex = 1;
             // 
             // label2
@@ -112,7 +113,7 @@
             this.orderXPathTextBox.Font = new System.Drawing.Font("Consolas", 8.25F);
             this.orderXPathTextBox.Location = new System.Drawing.Point(60, 168);
             this.orderXPathTextBox.Name = "orderXPathTextBox";
-            this.orderXPathTextBox.Size = new System.Drawing.Size(620, 20);
+            this.orderXPathTextBox.Size = new System.Drawing.Size(629, 20);
             this.orderXPathTextBox.TabIndex = 3;
             // 
             // positionComboBox
@@ -136,7 +137,7 @@
             this.newElementTextBox.Multiline = true;
             this.newElementTextBox.Name = "newElementTextBox";
             this.newElementTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.newElementTextBox.Size = new System.Drawing.Size(620, 108);
+            this.newElementTextBox.Size = new System.Drawing.Size(629, 114);
             this.newElementTextBox.TabIndex = 4;
             // 
             // label5
@@ -155,15 +156,27 @@
             this.treeView.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView.Location = new System.Drawing.Point(60, 12);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(620, 97);
+            this.treeView.Size = new System.Drawing.Size(629, 97);
             this.treeView.TabIndex = 0;
+            // 
+            // RBC_Btn
+            // 
+            this.RBC_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.RBC_Btn.Location = new System.Drawing.Point(60, 314);
+            this.RBC_Btn.Name = "RBC_Btn";
+            this.RBC_Btn.Size = new System.Drawing.Size(75, 23);
+            this.RBC_Btn.TabIndex = 12;
+            this.RBC_Btn.Text = "Rules (x)";
+            this.RBC_Btn.UseVisualStyleBackColor = true;
+            this.RBC_Btn.Click += new System.EventHandler(this.RBC_Btn_Click);
             // 
             // PatchInsertForm
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(696, 343);
+            this.ClientSize = new System.Drawing.Size(705, 349);
+            this.Controls.Add(this.RBC_Btn);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.newElementTextBox);
             this.Controls.Add(this.positionComboBox);
@@ -202,5 +215,6 @@
         private System.Windows.Forms.ComboBox positionComboBox;
         private System.Windows.Forms.Label label5;
         private XmlTextBox newElementTextBox;
+        private System.Windows.Forms.Button RBC_Btn;
     }
 }

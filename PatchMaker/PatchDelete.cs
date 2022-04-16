@@ -8,7 +8,7 @@ namespace PatchMaker
     {
         public string XPathForElement { get; }
 
-        public PatchDelete(string xPathForElement)
+        public PatchDelete(string xPathForElement, ConfigRule[] roleBasedRules = null) : base(roleBasedRules)
         {
             if (string.IsNullOrWhiteSpace(xPathForElement))
             {
@@ -45,12 +45,16 @@ namespace PatchMaker
 
             // add child element for delete
             var deleteElement = new XElement(Namespaces.Patch + "delete");
+
+            ApplyRuleBasedConfig(patchXml, deleteElement);
+
             newTargetElement.Add(deleteElement);
         }
 
         public override string ToString()
         {
-            return $"DELETE: {XPathForElement}";
+            var rules = RoleBasedRules == null ? string.Empty : $" [Rules: {RoleBasedRules.Length}]";
+            return $"DELETE: {XPathForElement}{rules}";
         }
     }
 

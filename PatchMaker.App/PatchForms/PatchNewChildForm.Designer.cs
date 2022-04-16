@@ -37,6 +37,7 @@
             this.newElementTextBox = new PatchMaker.App.XmlTextBox();
             this.xPathForParent = new PatchMaker.App.RequiredFieldTextBox();
             this.treeView = new PatchMaker.App.XmlFragmentTreeView();
+            this.RBC_Btn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label5
@@ -126,6 +127,17 @@
             this.treeView.Size = new System.Drawing.Size(624, 97);
             this.treeView.TabIndex = 14;
             // 
+            // RBC_Btn
+            // 
+            this.RBC_Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.RBC_Btn.Location = new System.Drawing.Point(60, 282);
+            this.RBC_Btn.Name = "RBC_Btn";
+            this.RBC_Btn.Size = new System.Drawing.Size(75, 23);
+            this.RBC_Btn.TabIndex = 22;
+            this.RBC_Btn.Text = "Rules (x)";
+            this.RBC_Btn.UseVisualStyleBackColor = true;
+            this.RBC_Btn.Click += new System.EventHandler(this.RBC_Btn_Click);
+            // 
             // PatchNewChildForm
             // 
             this.AcceptButton = this.okBtn;
@@ -133,6 +145,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelBtn;
             this.ClientSize = new System.Drawing.Size(696, 317);
+            this.Controls.Add(this.RBC_Btn);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.newElementTextBox);
@@ -162,5 +175,6 @@
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Button okBtn;
         private XmlFragmentTreeView treeView;
+        private System.Windows.Forms.Button RBC_Btn;
     }
 }

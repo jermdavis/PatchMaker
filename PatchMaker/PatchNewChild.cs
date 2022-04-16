@@ -8,7 +8,7 @@ namespace PatchMaker
         public string XPathForParent { get; }
         public XElement ChildXml { get; }
 
-        public PatchNewChild(string xPathForParent, XElement childXml)
+        public PatchNewChild(string xPathForParent, XElement childXml, ConfigRule[] roleBasedRules = null) : base(roleBasedRules)
         {
             if (string.IsNullOrWhiteSpace(xPathForParent))
             {
@@ -32,6 +32,7 @@ namespace PatchMaker
             }
 
             var newNode = new XElement(ChildXml);
+            ApplyRuleBasedConfig(patchXml, newNode);
 
             var currentPatchNode = base.CopyAncestorsAndSelf(targetElement, patchXml.Root);
             currentPatchNode.Add(newNode);
@@ -39,7 +40,8 @@ namespace PatchMaker
 
         public override string ToString()
         {
-            return $"CHILD: {XPathForParent}";
+            var rules = RoleBasedRules == null ? string.Empty : $" [Rules: {RoleBasedRules.Length}]";
+            return $"CHILD: {XPathForParent}{rules}";
         }
     }
 

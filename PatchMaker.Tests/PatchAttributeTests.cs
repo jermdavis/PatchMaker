@@ -33,6 +33,16 @@ namespace PatchMaker.Tests
         }
 
         [TestMethod]
+        public void PatchAttribute_Constructor_WithRBC_Works()
+        {
+            var sut = new PatchAttribute("/sites/site", "test", "a", new ConfigRule[] { new ConfigRule("role", "require", "Standalone") });
+
+            Assert.AreEqual(1, sut.RoleBasedRules.Length);
+            Assert.AreEqual("require", sut.RoleBasedRules[0].Name);
+            Assert.AreEqual("Standalone", sut.RoleBasedRules[0].Value);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void PatchAttribute_Constructor_NullAttrName_Throws()
         {
@@ -93,6 +103,35 @@ namespace PatchMaker.Tests
             Assert.AreEqual("1", patch.Attribute("value").Value);
         }
 
+        [TestMethod]
+        public void PatchAttribute_PatchGenerator_Accepts_PatchAttribute_WithRBC()
+        {
+            var pa = new PatchAttribute("/sitecore/sites/site[@name='a']", "cheese", "1", new ConfigRule[] { new ConfigRule("https://x/role/", "require", "Standalone") });
+            var xml = XDocument.Parse("<sitecore><sites><site name=\"a\"/></sites></sitecore>");
+
+            var sut = new PatchGenerator(xml);
+
+            var result = sut.GeneratePatchFile(new BasePatch[] { pa });
+
+            var el = result
+                .Element("configuration")
+                .Element("sitecore")
+                .Element("sites")
+                .Element("site");
+
+            Assert.IsNotNull(el);
+
+            var patch = el.Element(Namespaces.Patch + "attribute");
+            Assert.IsNotNull(patch);
+            Assert.AreEqual("cheese", patch.Attribute("name").Value);
+            Assert.AreEqual("1", patch.Attribute("value").Value);
+
+            XNamespace ns = "https://x/role/";
+            var p = patch.Attribute(ns + "require");
+
+            Assert.IsNotNull(p);
+            Assert.AreEqual("Standalone", p.Value);
+        }
 
         [TestMethod]
         public void PatchAttribute_PatchGenerator_Accepts_MultiplePatchAttribute_OnSameElement()

@@ -6,6 +6,13 @@ namespace PatchMaker
 {
     public abstract class BasePatch
     {
+        public ConfigRule[] RoleBasedRules { get; }
+
+        public BasePatch(ConfigRule[] roleBasedRules = null)
+        {
+            RoleBasedRules = roleBasedRules;
+        }
+
         public abstract void ApplyPatchElement(XDocument sourceXml, XDocument patchXml);
 
         private bool RequiresAttributeCopy(XElement node)
@@ -125,6 +132,28 @@ namespace PatchMaker
                 }
             }
         }
+
+        protected void ApplyRuleBasedConfig(XDocument patchXml, XElement patchElement)
+        {          
+            if (RoleBasedRules != null)
+            {
+                foreach (var rule in RoleBasedRules)
+                {
+                    // Do we need to add the namespace for this rule?
+                    var nsName = rule.Namespace.NamespaceName.GetLastPart();
+                    if (patchXml.Root.Attribute(XNamespace.Xmlns + nsName) == null)
+                    {
+                        var ns = new XAttribute(XNamespace.Xmlns + nsName, rule.Namespace.NamespaceName);
+                        patchXml.Root.Add(ns);
+                    }
+
+                    // Add the rule
+                    patchElement.Add(new XAttribute(rule.Namespace + rule.Name, rule.Value));
+                }
+            }
+        }
+
+        
     }
 
 }

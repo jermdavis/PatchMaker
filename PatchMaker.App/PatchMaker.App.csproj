@@ -88,6 +88,12 @@
     <Compile Include="PatchForms\PatchNewChildForm.Designer.cs">
       <DependentUpon>PatchNewChildForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PatchForms\RuleBasedConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatchForms\RuleBasedConfigForm.Designer.cs">
+      <DependentUpon>RuleBasedConfigForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PatchGenerationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PatchForms\PatchNewChildForm.resx">
       <DependentUpon>PatchNewChildForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatchForms\RuleBasedConfigForm.resx">
+      <DependentUpon>RuleBasedConfigForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PatchGenerationForm.resx">
       <DependentUpon>PatchGenerationForm.cs</DependentUpon>

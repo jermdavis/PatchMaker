@@ -34,6 +34,16 @@ namespace PatchMaker.Tests
         }
 
         [TestMethod]
+        public void SetAttribute_Constructor_WithRBC_Works()
+        {
+            var sut = new SetAttribute("/sites/site", "test", "a", new ConfigRule[] { new ConfigRule("role", "require", "Standalone") });
+
+            Assert.AreEqual(1, sut.RoleBasedRules.Length);
+            Assert.AreEqual("require", sut.RoleBasedRules[0].Name);
+            Assert.AreEqual("Standalone", sut.RoleBasedRules[0].Value);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetAttribute_Constructor_NullAttrName_Throws()
         {
@@ -91,6 +101,35 @@ namespace PatchMaker.Tests
             var attr = patch.Attribute(Namespaces.Set + "cheese");
             Assert.IsNotNull(attr);
             Assert.AreEqual("1", attr.Value);
+        }
+
+        [TestMethod]
+        public void SetAttribute_PatchGenerator_Accepts_SetAttribute_WithRBC()
+        {
+            var sa = new SetAttribute("/sitecore/sites/site[@name='a']", "cheese", "1", new ConfigRule[] { new ConfigRule("https://x/role/", "require", "Standalone") });
+            var xml = XDocument.Parse("<sitecore><sites><site name=\"a\"/></sites></sitecore>");
+
+            var sut = new PatchGenerator(xml);
+
+            var result = sut.GeneratePatchFile(new BasePatch[] { sa });
+
+            var patch = result
+                .Element("configuration")
+                .Element("sitecore")
+                .Element("sites")
+                .Element("site");
+
+            Assert.IsNotNull(patch);
+
+            var attr = patch.Attribute(Namespaces.Set + "cheese");
+            Assert.IsNotNull(attr);
+            Assert.AreEqual("1", attr.Value);
+
+            XNamespace ns = "https://x/role/";
+            var p = patch.Attribute(ns + "require");
+
+            Assert.IsNotNull(p);
+            Assert.AreEqual("Standalone", p.Value);
         }
 
         [TestMethod]

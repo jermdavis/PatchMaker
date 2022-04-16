@@ -9,6 +9,7 @@ namespace PatchMaker.App.PatchForms
     public partial class PatchAttributeForm : Form, IAddPatchForm
     {
         private readonly TreeNode _treeNode;
+        private ConfigRule[] _rules = null;
 
         private XDocument RootXml => (_treeNode.Tag as XElement).Document;
 
@@ -40,6 +41,8 @@ namespace PatchMaker.App.PatchForms
             nameTextBox.Text = string.Empty;
             valueTextBox.Text = string.Empty;
             patchTypeCombo.SelectedItem = patchType;
+
+            UpdateButton();
         }
 
         public PatchAttributeForm(PatchItem patchItem) : this()
@@ -56,6 +59,9 @@ namespace PatchMaker.App.PatchForms
             elementXPathTextBox.Text = patch.XPathForElement;
             nameTextBox.Text = patch.AttributeName;
             valueTextBox.Text = patch.AttributeValue;
+            _rules = patch.RoleBasedRules;
+
+            UpdateButton();
         }
 
         private void ConfigureDefaultDropdown(TreeNode node)
@@ -93,11 +99,11 @@ namespace PatchMaker.App.PatchForms
 
             if ((AttributePatchTypes)patchTypeCombo.SelectedItem == AttributePatchTypes.Patch)
             {
-                patch = new PatchAttribute(elementXPathTextBox.Text, nameTextBox.Text, valueTextBox.Text);
+                patch = new PatchAttribute(elementXPathTextBox.Text, nameTextBox.Text, valueTextBox.Text, _rules);
             }
             else
             {
-                patch = new SetAttribute(elementXPathTextBox.Text, nameTextBox.Text, valueTextBox.Text);
+                patch = new SetAttribute(elementXPathTextBox.Text, nameTextBox.Text, valueTextBox.Text, _rules);
             }
 
             Patch = new PatchItem(patch, _treeNode);
@@ -116,6 +122,26 @@ namespace PatchMaker.App.PatchForms
         private void PatchAttributeForm_HelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
         {
             HelpSpawner.SpawnLocalFile("attributes");
+        }
+
+        private void UpdateButton()
+        {
+            var len = _rules == null ? 0 : _rules.Length;
+            RBC_Btn.Text = $"Rules ({len})";
+        }
+
+        private void RBC_Btn_Click(object sender, EventArgs e)
+        {
+            var rbc = new RuleBasedConfigForm();
+            rbc.InitialiseRuleList(_rules);
+            rbc.Owner = this;
+            var dr = rbc.ShowDialog();
+
+            if(dr == DialogResult.OK)
+            {
+                _rules = rbc.FetchRuleList();
+                UpdateButton();
+            }
         }
     }
 

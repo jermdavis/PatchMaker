@@ -34,6 +34,16 @@ namespace PatchMaker.Tests
         }
 
         [TestMethod]
+        public void PatchDelete_Constructor_WithRBC_Works()
+        {
+            var sut = new PatchDelete("/sites/site", new ConfigRule[] { new ConfigRule("role", "require", "Standalone") });
+
+            Assert.AreEqual(1, sut.RoleBasedRules.Length);
+            Assert.AreEqual("require", sut.RoleBasedRules[0].Name);
+            Assert.AreEqual("Standalone", sut.RoleBasedRules[0].Value);
+        }
+
+        [TestMethod]
         public void PatchDelete_PatchGenerator_Accepts_Delete()
         {
             var de = new PatchDelete("/sitecore/sites/site[@name='a']");
@@ -51,6 +61,32 @@ namespace PatchMaker.Tests
                 .Element(Namespaces.Patch + "delete");
 
             Assert.IsNotNull(patch);
+        }
+
+        [TestMethod]
+        public void PatchDelete_PatchGenerator_Accepts_Delete_WithRBC()
+        {
+            var de = new PatchDelete("/sitecore/sites/site[@name='a']", new ConfigRule[] { new ConfigRule("https://x/role/", "require","Standalone") });
+            var xml = XDocument.Parse("<sitecore><sites><site name=\"a\"/><site name=\"b\"/></sites></sitecore>");
+
+            var sut = new PatchGenerator(xml);
+
+            var result = sut.GeneratePatchFile(new BasePatch[] { de });
+
+            var patch = result
+                .Element("configuration")
+                .Element("sitecore")
+                .Element("sites")
+                .Element("site")
+                .Element(Namespaces.Patch + "delete");
+
+            Assert.IsNotNull(patch);
+
+            XNamespace ns = "https://x/role/";
+            var p = patch.Attribute(ns + "require");
+            
+            Assert.IsNotNull(p);
+            Assert.AreEqual("Standalone", p.Value);
         }
 
         [TestMethod]
