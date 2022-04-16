@@ -22,6 +22,7 @@ but [write me a bug report](https://github.com/jermdavis/PatchMaker/issues) if y
    * And `PatchPreviewForm.cs` is the UI for seeing the effect of your patch file on the original XML file.
 * **PatchMaker.Sitecore**: A wrapper for Sitecore's internal patch processing logic - used to generate previews of what a patch file will do in tests and the UI. Includes a chunk of code [inspired by another github repo](https://github.com/benmcevoy/ConfigViewer), to enable role-based config patching.
    * `SitecorePatcher.cs` provides a static class / method that wraps Sitecore's logic.
+   * `NugetDownloadWrapper.cs` implements logic to aquire the Sitecore kernel DLL from Nuget.
 * **PatchMaker.Tests**: A set of unit tests for the core classes.
 
 ## Running it
@@ -29,10 +30,7 @@ but [write me a bug report](https://github.com/jermdavis/PatchMaker/issues) if y
 You can download a pre-built copy from the [Release page](https://github.com/jermdavis/PatchMaker/releases).
 
 _**Note**_: For licensing reasons, these builds do not include the Sitecore DLL used for previewing the effect of your patches.
-The app will run happily without it, but the "preview" button in the patch generation UI will be disabled. If you use a pre-built
-release you can drop your own copy of `Sitecore.Kernel.dll` into the folder you run `PatchMaker.App.exe`
-from. The code is built against Sitecore V9.0 - so if you use a newer release yourself you may need a version
-redirect in the `app.config`.
+The app will run happily without it, but the "preview" button in the patch generation UI will be disabled. If you are licensed to run Sitecore, the file menu includes an option to download this file from Nuget. Doing that and restarting the app will enable the preview feature. Or you can drop your own copy of the `Sitecore.Kernel.dll` file into the same folder as the app. It's built against Sitecore v9. If you supply a different version of the DLL you will need to provide a version redirect in the app config file.
 
 Take a look at [the help included](https://htmlpreview.github.io/?https://github.com/jermdavis/PatchMaker/blob/master/PatchMaker.App/PatchMaker.App.Help.html) with the app for details of how to
 use it.
