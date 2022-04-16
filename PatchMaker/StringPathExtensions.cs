@@ -7,9 +7,13 @@ namespace PatchMaker
     {
         public static string GetLastPart(this string url)
         {
-            var uri = new Uri(url);
+            if(Uri.TryCreate(url, UriKind.Absolute, out var uri))
+            {
+                return uri.Segments[uri.Segments.Length - 1].Replace("/", "");
+            }
 
-            return uri.Segments[uri.Segments.Length - 1].Replace("/", "");
+            return url;
+            
         }
     }
 
