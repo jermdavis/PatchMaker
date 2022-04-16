@@ -306,7 +306,7 @@ namespace PatchMaker.App
             {
                 using (new CenterWinDialog(this))
                 {
-                    MessageBox.Show("The kernel dll has been downloaded.\nYou will need to restart the application so it can be loaded.", "Download done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("The kernel dll has been downloaded.\nYou will need to restart the application so it can be loaded.", "Download has completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 Application.Exit();
             }
@@ -314,7 +314,7 @@ namespace PatchMaker.App
             {
                 using (new CenterWinDialog(this))
                 {
-                    MessageBox.Show("It was not possible to download the kernel.", "Download failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("It was not possible to download the kernel.", "Download has failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
