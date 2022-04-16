@@ -64,8 +64,9 @@
             this.patchDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patchInsertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patchInsteadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addAChildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
+            this.addAChildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.installSitecoreDllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -100,6 +101,7 @@
             this.fileMenuToolStripItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadXmlToolStripMenuItem,
             this.toolStripMenuItem2,
+            this.installSitecoreDllToolStripMenuItem,
             this.generatePatchesToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
@@ -111,31 +113,31 @@
             // loadXmlToolStripMenuItem
             // 
             this.loadXmlToolStripMenuItem.Name = "loadXmlToolStripMenuItem";
-            this.loadXmlToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.loadXmlToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadXmlToolStripMenuItem.Text = "&Load Xml";
             this.loadXmlToolStripMenuItem.Click += new System.EventHandler(this.LoadXmlToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(162, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
             // 
             // generatePatchesToolStripMenuItem
             // 
             this.generatePatchesToolStripMenuItem.Name = "generatePatchesToolStripMenuItem";
-            this.generatePatchesToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.generatePatchesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.generatePatchesToolStripMenuItem.Text = "&Generate Patches";
             this.generatePatchesToolStripMenuItem.Click += new System.EventHandler(this.GeneratePatchesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(162, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -153,26 +155,26 @@
             // openHelpToolStripMenuItem
             // 
             this.openHelpToolStripMenuItem.Name = "openHelpToolStripMenuItem";
-            this.openHelpToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.openHelpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openHelpToolStripMenuItem.Text = "&Open Help";
             this.openHelpToolStripMenuItem.Click += new System.EventHandler(this.OpenHelpToolStripMenuItem_Click);
             // 
             // foundABugToolStripMenuItem
             // 
             this.foundABugToolStripMenuItem.Name = "foundABugToolStripMenuItem";
-            this.foundABugToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.foundABugToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.foundABugToolStripMenuItem.Text = "Found a bug?";
             this.foundABugToolStripMenuItem.Click += new System.EventHandler(this.FoundABugToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(143, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
@@ -339,53 +341,60 @@
             this.toolStripMenuItem6,
             this.addAChildToolStripMenuItem});
             this.treeMenu.Name = "treeMenu";
-            this.treeMenu.Size = new System.Drawing.Size(181, 148);
+            this.treeMenu.Size = new System.Drawing.Size(166, 126);
             this.treeMenu.Opening += new System.ComponentModel.CancelEventHandler(this.TreeMenu_Opening);
             // 
             // attributeToolStripMenuItem
             // 
             this.attributeToolStripMenuItem.Name = "attributeToolStripMenuItem";
-            this.attributeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.attributeToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.attributeToolStripMenuItem.Text = "Change Attribute";
             this.attributeToolStripMenuItem.Click += new System.EventHandler(this.AttributeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(162, 6);
             // 
             // patchDeleteToolStripMenuItem
             // 
             this.patchDeleteToolStripMenuItem.Name = "patchDeleteToolStripMenuItem";
-            this.patchDeleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.patchDeleteToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.patchDeleteToolStripMenuItem.Text = "Delete Element";
             this.patchDeleteToolStripMenuItem.Click += new System.EventHandler(this.PatchDeleteToolStripMenuItem_Click);
             // 
             // patchInsertToolStripMenuItem
             // 
             this.patchInsertToolStripMenuItem.Name = "patchInsertToolStripMenuItem";
-            this.patchInsertToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.patchInsertToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.patchInsertToolStripMenuItem.Text = "Insert Element";
             this.patchInsertToolStripMenuItem.Click += new System.EventHandler(this.PatchInsertToolStripMenuItem_Click);
             // 
             // patchInsteadToolStripMenuItem
             // 
             this.patchInsteadToolStripMenuItem.Name = "patchInsteadToolStripMenuItem";
-            this.patchInsteadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.patchInsteadToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.patchInsteadToolStripMenuItem.Text = "Replace Element";
             this.patchInsteadToolStripMenuItem.Click += new System.EventHandler(this.PatchInsteadToolStripMenuItem_Click);
-            // 
-            // addAChildToolStripMenuItem
-            // 
-            this.addAChildToolStripMenuItem.Name = "addAChildToolStripMenuItem";
-            this.addAChildToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addAChildToolStripMenuItem.Text = "Add a child";
-            this.addAChildToolStripMenuItem.Click += new System.EventHandler(this.AddAChildToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(162, 6);
+            // 
+            // addAChildToolStripMenuItem
+            // 
+            this.addAChildToolStripMenuItem.Name = "addAChildToolStripMenuItem";
+            this.addAChildToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.addAChildToolStripMenuItem.Text = "Add a child";
+            this.addAChildToolStripMenuItem.Click += new System.EventHandler(this.AddAChildToolStripMenuItem_Click);
+            // 
+            // installSitecoreDllToolStripMenuItem
+            // 
+            this.installSitecoreDllToolStripMenuItem.Name = "installSitecoreDllToolStripMenuItem";
+            this.installSitecoreDllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.installSitecoreDllToolStripMenuItem.Text = "Install Sitecore dll";
+            this.installSitecoreDllToolStripMenuItem.Click += new System.EventHandler(this.installSitecoreDllToolStripMenuItem_Click);
             // 
             // PatchPlanningForm
             // 
@@ -454,6 +463,7 @@
         private System.Windows.Forms.ListBox patchListBox;
         private System.Windows.Forms.ToolStripMenuItem addAChildToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem installSitecoreDllToolStripMenuItem;
     }
 }
 

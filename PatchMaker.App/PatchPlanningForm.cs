@@ -1,4 +1,5 @@
 ﻿using PatchMaker.App.PatchForms;
+using PatchMaker.Sitecore;
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -21,13 +22,15 @@ namespace PatchMaker.App
 
             _manager.ConfigureControls(sourceTreeView, patchListBox, treeMenu);
 
-            if (!File.Exists("Sitecore.Kernel.dll"))
+            if (NugetDownloadWrapper.DownloadRequired())
             {
                 statusStrip.Items.Add("Sitecore.Kernel.dll not found - preview disabled.");
+                installSitecoreDllToolStripMenuItem.Enabled = true;
             }
             else
             {
                 statusStrip.Items.Add("Preview enabled.");
+                installSitecoreDllToolStripMenuItem.Enabled= false;
             }
 
             this.Text = string.Format(_titleTemplate, "-no file-");
@@ -284,6 +287,36 @@ namespace PatchMaker.App
         private void MoveDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
             patchListBox.MoveDown();
+        }
+
+        private void installSitecoreDllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dr;
+            using (new CenterWinDialog(this))
+            {
+                dr = MessageBox.Show(this, "Do you have a Sitecore license?\nDo not use this feature if you are not licensed.", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+
+            if(dr == DialogResult.No)
+            {
+                return;
+            }
+
+            if (NugetDownloadWrapper.PerformDownload())
+            {
+                using (new CenterWinDialog(this))
+                {
+                    MessageBox.Show("The kernel dll has been downloaded.\nYou will need to restart the application so it can be loaded.", "Download done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                Application.Exit();
+            }
+            else
+            {
+                using (new CenterWinDialog(this))
+                {
+                    MessageBox.Show("It was not possible to download the kernel.", "Download failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
     }
 
